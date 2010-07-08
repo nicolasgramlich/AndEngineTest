@@ -5,11 +5,11 @@ import org.anddev.andengine.engine.camera.Camera;
 import org.anddev.andengine.engine.options.EngineOptions;
 import org.anddev.andengine.engine.options.EngineOptions.ScreenOrientation;
 import org.anddev.andengine.engine.options.resolutionpolicy.FillResolutionPolicy;
-import org.anddev.andengine.entity.Scene;
-import org.anddev.andengine.entity.primitives.Rectangle;
-import org.anddev.andengine.input.touch.IOnAreaTouchListener;
-import org.anddev.andengine.input.touch.IOnSceneTouchListener;
-import org.anddev.andengine.input.touch.ITouchArea;
+import org.anddev.andengine.entity.primitive.Rectangle;
+import org.anddev.andengine.entity.scene.Scene;
+import org.anddev.andengine.entity.scene.Scene.IOnAreaTouchListener;
+import org.anddev.andengine.entity.scene.Scene.IOnSceneTouchListener;
+import org.anddev.andengine.entity.scene.Scene.ITouchArea;
 
 import android.os.SystemClock;
 import android.test.AndroidTestCase;
@@ -19,7 +19,7 @@ import android.view.MotionEvent;
  * @author Nicolas Gramlich
  * @since 15:27:27 - 12.05.2010
  */
-public class SceneTest  extends AndroidTestCase {
+public class SceneTest extends AndroidTestCase {
 	// ===========================================================
 	// Constants
 	// ===========================================================
