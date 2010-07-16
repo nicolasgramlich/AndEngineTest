@@ -10,6 +10,7 @@ import org.anddev.andengine.entity.scene.Scene;
 import org.anddev.andengine.entity.scene.Scene.IOnAreaTouchListener;
 import org.anddev.andengine.entity.scene.Scene.IOnSceneTouchListener;
 import org.anddev.andengine.entity.scene.Scene.ITouchArea;
+import org.anddev.andengine.input.touch.TouchEvent;
 
 import android.os.SystemClock;
 import android.test.AndroidTestCase;
@@ -39,7 +40,7 @@ public class SceneTest extends AndroidTestCase {
 	@Override
 	public void setUp() throws Exception {
 		this.mCamera = new Camera(0, 0, 100, 100);
-		this.mEngine = new Engine(new EngineOptions(true, ScreenOrientation.PORTRAIT, new FillResolutionPolicy(), this.mCamera, true));
+		this.mEngine = new Engine(new EngineOptions(true, ScreenOrientation.PORTRAIT, new FillResolutionPolicy(), this.mCamera));
 		this.mEngine.setSurfaceSize(100, 100);
 
 		this.mScene = new Scene(1);
@@ -145,9 +146,9 @@ public class SceneTest extends AndroidTestCase {
 	private void testSceneTouchWorker(final Scene pScene, final int pSurfaceTouchX, final int pSurfaceTouchY, final float pExpectedX, final float pExpectedY) {
 		pScene.setOnSceneTouchListener(new IOnSceneTouchListener() {
 			@Override
-			public boolean onSceneTouchEvent(final Scene pScene, final MotionEvent pSceneMotionEvent) {
-				final float actualX = pSceneMotionEvent.getX();
-				final float actualY = pSceneMotionEvent.getY();
+			public boolean onSceneTouchEvent(final Scene pScene, final TouchEvent pSceneTouchEvent) {
+				final float actualX = pSceneTouchEvent.getX();
+				final float actualY = pSceneTouchEvent.getY();
 				assertEquals(pExpectedX, actualX);
 				assertEquals(pExpectedY, actualY);
 				return true;
@@ -166,7 +167,7 @@ public class SceneTest extends AndroidTestCase {
 		
 		pScene.setOnAreaTouchListener(new IOnAreaTouchListener() {
 			@Override
-			public boolean onAreaTouched(final ITouchArea pActualTouchArea, final MotionEvent pSceneMotionEvent) {
+			public boolean onAreaTouched(final ITouchArea pActualTouchArea, final TouchEvent pSceneTouchEvent) {
 				assertSame(pExpectedTouchArea, pActualTouchArea);
 				return true;
 			}

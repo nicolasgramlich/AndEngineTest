@@ -12,6 +12,7 @@ import org.anddev.andengine.entity.scene.menu.MenuScene.IOnMenuItemClickListener
 import org.anddev.andengine.entity.scene.menu.animator.DirectMenuAnimator;
 import org.anddev.andengine.entity.scene.menu.item.IMenuItem;
 import org.anddev.andengine.entity.scene.menu.item.SpriteMenuItem;
+import org.anddev.andengine.input.touch.TouchEvent;
 import org.anddev.andengine.opengl.texture.region.TextureRegion;
 
 import android.os.SystemClock;
@@ -48,7 +49,7 @@ public class MenuSceneTest  extends AndroidTestCase {
 	@Override
 	public void setUp() throws Exception {
 		this.mCamera = new Camera(0, 0, CAMERA_WIDTH, CAMERA_HEIGHT);
-		this.mEngine = new Engine(new EngineOptions(true, ScreenOrientation.PORTRAIT, new FillResolutionPolicy(), this.mCamera, true));
+		this.mEngine = new Engine(new EngineOptions(true, ScreenOrientation.PORTRAIT, new FillResolutionPolicy(), this.mCamera));
 		this.mEngine.setSurfaceSize(CAMERA_WIDTH, CAMERA_HEIGHT);
 
 		this.mScene = new Scene(1);
@@ -226,9 +227,9 @@ public class MenuSceneTest  extends AndroidTestCase {
 	private void testSceneTouchWorker(final Scene pScene, final int pSurfaceTouchX, final int pSurfaceTouchY, final float pExpectedX, final float pExpectedY) {
 		pScene.setOnSceneTouchListener(new IOnSceneTouchListener() {
 			@Override
-			public boolean onSceneTouchEvent(final Scene pScene, final MotionEvent pSceneMotionEvent) {
-				final float actualX = pSceneMotionEvent.getX();
-				final float actualY = pSceneMotionEvent.getY();
+			public boolean onSceneTouchEvent(final Scene pScene, final TouchEvent pSceneTouchEvent) {
+				final float actualX = pSceneTouchEvent.getX();
+				final float actualY = pSceneTouchEvent.getY();
 				assertEquals(pExpectedX, actualX);
 				assertEquals(pExpectedY, actualY);
 				return true;
