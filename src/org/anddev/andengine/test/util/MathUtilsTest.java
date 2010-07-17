@@ -16,7 +16,7 @@ public class MathUtilsTest extends TestCase {
 	
 	private static final float DELTA = 0.0001f;
 	
-	private static final float[] TEMP_ARRAY = new float[2];
+	private static float[] TEMP_ARRAY = new float[2];
 
 	// ===========================================================
 	// Fields
@@ -43,19 +43,19 @@ public class MathUtilsTest extends TestCase {
 	// ===========================================================
 
 	public void testRotateAroundCenterOriginAngleZero() {
-		assertArrayEquals(new float[]{1, 1}, MathUtils.rotateAroundCenter(0, 1, 1, 0, 0, TEMP_ARRAY), DELTA);
+		assertArrayEquals(new float[]{1, 1}, MathUtils.rotateAroundCenter(new float[]{1, 1}, 0, 0, 0), DELTA);
 	}
 	
 	public void testRotateAroundCenterOriginAngle90() {
-		assertArrayEquals(new float[]{-1, 1}, MathUtils.rotateAroundCenter(90, 1, 1, 0, 0, TEMP_ARRAY), DELTA);
+		assertArrayEquals(new float[]{-1, 1}, MathUtils.rotateAroundCenter(new float[]{1, 1}, 90, 0, 0), DELTA);
 	}
 	
 	public void testRotateAroundCenterNonOriginAngle0() {
-		assertArrayEquals(new float[]{1, 1}, MathUtils.rotateAroundCenter(0, 1, 1, 2, 2, TEMP_ARRAY), DELTA);
+		assertArrayEquals(new float[]{1, 1}, MathUtils.rotateAroundCenter(new float[]{1, 1}, 0, 2, 2), DELTA);
 	}
 	
 	public void testRotateAroundCenterNonOriginAngle180() {
-		assertArrayEquals(new float[]{3, 3}, MathUtils.rotateAroundCenter(180, 1, 1, 2, 2, TEMP_ARRAY), DELTA);
+		assertArrayEquals(new float[]{3, 3}, MathUtils.rotateAroundCenter(new float[]{1, 1}, 180, 2, 2), DELTA);
 	}
 	
 	// ===========================================================
@@ -63,23 +63,23 @@ public class MathUtilsTest extends TestCase {
 	// ===========================================================
 	
 	public void testScaleAroundCenterOriginFactor1() {
-		assertArrayEquals(new float[]{1, 1}, MathUtils.scaleAroundCenter(1, 1, 1, 1, 0, 0, TEMP_ARRAY), DELTA);
+		assertArrayEquals(new float[]{1, 1}, MathUtils.scaleAroundCenter(new float[]{1, 1}, 1, 1, 0, 0), DELTA);
 	}
 	
 	public void testScaleAroundCenterOriginFactor2() {
-		assertArrayEquals(new float[]{2, 2}, MathUtils.scaleAroundCenter(2, 2, 1, 1, 0, 0, TEMP_ARRAY), DELTA);
+		assertArrayEquals(new float[]{2, 2}, MathUtils.scaleAroundCenter(new float[]{1, 1}, 2, 2, 0, 0), DELTA);
 	}
 	
 	public void testScaleAroundCenterOriginFactor0_5() {
-		assertArrayEquals(new float[]{-0.5f, 0.5f}, MathUtils.scaleAroundCenter(0.5f, 0.5f, -1, 1, 0, 0, TEMP_ARRAY), DELTA);
+		assertArrayEquals(new float[]{-0.5f, 0.5f}, MathUtils.scaleAroundCenter(new float[]{-1, 1}, 0.5f, 0.5f, 0, 0), DELTA);
 	}
 	
 	public void testScaleAroundCenterNonOriginFactor1() {
-		assertArrayEquals(new float[]{1, 1}, MathUtils.scaleAroundCenter(1, 1, 1, 1, 2, 2, TEMP_ARRAY), DELTA);
+		assertArrayEquals(new float[]{1, 1}, MathUtils.scaleAroundCenter(new float[]{1, 1}, 1, 1, 2, 2), DELTA);
 	}
 	
 	public void testScaleAroundCenterNonOriginFactor() {
-		assertArrayEquals(new float[]{0, 0}, MathUtils.scaleAroundCenter(2, 2, 1, 1, 2, 2, TEMP_ARRAY), DELTA);
+		assertArrayEquals(new float[]{0, 0}, MathUtils.scaleAroundCenter(new float[]{1, 1}, 2, 2, 2, 2), DELTA);
 	}
 	
 	// ===========================================================
@@ -87,15 +87,17 @@ public class MathUtilsTest extends TestCase {
 	// ===========================================================
 	
 	public void testRotateAndScaleAroundCenterOriginAngle0Factor1() {
-		MathUtils.rotateAroundCenter(0, 1, 1, 0, 0, TEMP_ARRAY);
-		MathUtils.scaleAroundCenter(1, 1, TEMP_ARRAY[0], TEMP_ARRAY[1], 0, 0, TEMP_ARRAY);
+		TEMP_ARRAY = new float[]{1, 1};
+		MathUtils.rotateAroundCenter(TEMP_ARRAY, 0, 0, 0);
+		MathUtils.scaleAroundCenter(TEMP_ARRAY, 1, 1, 0, 0);
 		
 		assertArrayEquals(new float[]{1, 1}, TEMP_ARRAY, DELTA);
 	}
 	
 	public void testRotateAndScaleAroundCenterOriginAngle90Factor2() {
-		MathUtils.rotateAroundCenter(90, 1, 1, 0, 0, TEMP_ARRAY);
-		MathUtils.scaleAroundCenter(2, 2, TEMP_ARRAY[0], TEMP_ARRAY[1], 0, 0, TEMP_ARRAY);
+		TEMP_ARRAY = new float[]{1, 1};
+		MathUtils.rotateAroundCenter(TEMP_ARRAY, 90, 0, 0);
+		MathUtils.scaleAroundCenter(TEMP_ARRAY, 2, 2, 0, 0);
 		
 		assertArrayEquals(new float[]{-2, 2}, TEMP_ARRAY, DELTA);
 	}
