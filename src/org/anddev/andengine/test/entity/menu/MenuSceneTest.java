@@ -246,7 +246,7 @@ public class MenuSceneTest  extends AndroidTestCase {
 	private boolean testMenuItemTouchWorker(final Scene pScene, final MenuScene pMenuScene, final int pSurfaceTouchX, final int pSurfaceTouchY, final int pMenuItemID) {
 		pMenuScene.setOnMenuItemClickListener(new IOnMenuItemClickListener() {
 			@Override
-			public boolean onMenuItemClicked(final MenuScene pMenuScene, final IMenuItem pMenuItem) {
+			public boolean onMenuItemClicked(final MenuScene pMenuScene, final IMenuItem pMenuItem, final float pMenuItemLocalX, final float pMenuItemLocalY) {
 				assertSame(pMenuItemID, pMenuItem.getID());
 				return true;
 			}

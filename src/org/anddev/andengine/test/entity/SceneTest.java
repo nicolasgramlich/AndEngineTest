@@ -167,7 +167,7 @@ public class SceneTest extends AndroidTestCase {
 		
 		pScene.setOnAreaTouchListener(new IOnAreaTouchListener() {
 			@Override
-			public boolean onAreaTouched(final ITouchArea pActualTouchArea, final TouchEvent pSceneTouchEvent) {
+			public boolean onAreaTouched(final TouchEvent pSceneTouchEvent, final ITouchArea pActualTouchArea, final float pTouchAreaLocalX, final float pTouchAreaLocalY) {
 				assertSame(pExpectedTouchArea, pActualTouchArea);
 				return true;
 			}

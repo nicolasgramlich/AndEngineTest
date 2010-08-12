@@ -4,6 +4,7 @@ import javax.microedition.khronos.opengles.GL10;
 
 import junit.framework.TestCase;
 
+import org.anddev.andengine.engine.camera.Camera;
 import org.anddev.andengine.entity.IEntity;
 import org.anddev.andengine.entity.layer.ILayer;
 
@@ -89,10 +90,14 @@ public abstract class ILayerTest extends TestCase {
 	
 	protected static class DummyEntity implements IEntity {
 		@Override
-		public void onDraw(GL10 pGL) {}
+		public void onDraw(GL10 pGL, Camera pCamera) {}
 		@Override
 		public void onUpdate(float pSecondsElapsed) {}
 		@Override
 		public void reset() {}
+		@Override
+		public int getZIndex() { return 0; }
+		@Override
+		public void setZIndex(int pZIndex) { }
 	}
 }

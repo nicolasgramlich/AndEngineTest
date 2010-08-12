@@ -3,8 +3,9 @@ package org.anddev.andengine.test.entity.primitive;
 
 import junit.framework.TestCase;
 
-import org.anddev.andengine.entity.primitive.RectangularShape;
+import org.anddev.andengine.entity.shape.RectangularShape;
 import org.anddev.andengine.opengl.buffer.BufferObjectManager;
+import org.anddev.andengine.test.util.AssertUtils;
 
 import android.util.FloatMath;
 
@@ -16,6 +17,8 @@ public class RectangularShapeTest extends TestCase {
 	// ===========================================================
 	// Constants
 	// ===========================================================
+	
+	private static final float DELTA = 0.0001f;
 
 	// ===========================================================
 	// Fields
@@ -226,6 +229,74 @@ public class RectangularShapeTest extends TestCase {
 
 		shapeB.setScale(2f / FloatMath.sqrt(2f) - 0.01f);
 		assertFalse(shapeA.collidesWith(shapeB));
+	}
+	
+	
+	public void testGetLocalCoordinatesSimple() {
+		final TestRectangularShape shape = new TestRectangularShape(0, 0, 2, 2);
+		AssertUtils.assertArrayEquals(new float[]{1, 1}, shape.convertSceneToLocalCoordinates(1, 1), DELTA);
+	}
+	
+	public void testGetLocalCoordinatesNonOrigin() {
+		final TestRectangularShape shape = new TestRectangularShape(10, 10, 2, 2);
+		AssertUtils.assertArrayEquals(new float[]{1, 1}, shape.convertSceneToLocalCoordinates(11, 11), DELTA);
+	}
+	
+	public void testGetLocalCoordinatesNonOriginRotated() {
+		final TestRectangularShape shape = new TestRectangularShape(10, 10, 2, 2);
+		shape.setRotation(90);
+		AssertUtils.assertArrayEquals(new float[]{0, 2}, shape.convertSceneToLocalCoordinates(10, 10), DELTA);
+	}
+	
+	public void testGetLocalCoordinatesNonOriginScaled() {
+		final TestRectangularShape shape = new TestRectangularShape(10, 10, 2, 2);
+		shape.setScale(0.5f);
+		AssertUtils.assertArrayEquals(new float[]{0, 0}, shape.convertSceneToLocalCoordinates(10.5f, 10.5f), DELTA);
+	}
+	
+
+	public void testGetSceneCenterCoordinatesSimple() {
+		final TestRectangularShape shape = new TestRectangularShape(0, 0, 2, 2);
+		AssertUtils.assertArrayEquals(new float[]{1, 1}, shape.getSceneCenterCoordinates(), DELTA);
+	}
+	
+	public void testGetSceneCenterCoordinatesNonOrigin() {
+		final TestRectangularShape shape = new TestRectangularShape(10, 10, 2, 2);
+		AssertUtils.assertArrayEquals(new float[]{11, 11}, shape.getSceneCenterCoordinates(), DELTA);
+	}
+	
+	public void testGetSceneCenterCoordinatesScaled() {
+		final TestRectangularShape shape = new TestRectangularShape(10, 10, 2, 2);
+		shape.setScale(2);
+		AssertUtils.assertArrayEquals(new float[]{11, 11}, shape.getSceneCenterCoordinates(), DELTA);
+	}
+	
+	public void testGetSceneCenterCoordinatesRotated() {
+		final TestRectangularShape shape = new TestRectangularShape(10, 10, 2, 2);
+		shape.setRotation(123);
+		AssertUtils.assertArrayEquals(new float[]{11, 11}, shape.getSceneCenterCoordinates(), DELTA);
+	}
+	
+	public void testGetSceneCenterCoordinatesScaledUneven() {
+		final TestRectangularShape shape = new TestRectangularShape(10, 10, 2, 2);
+		shape.setScale(2);
+		shape.setScaleCenter(0, 0);
+		AssertUtils.assertArrayEquals(new float[]{12, 12}, shape.getSceneCenterCoordinates(), DELTA);
+	}
+	
+	public void testGetSceneCenterCoordinatesRotatedUneven() {
+		final TestRectangularShape shape = new TestRectangularShape(10, 10, 2, 2);
+		shape.setRotation(90);
+		shape.setRotationCenter(0, 0);
+		AssertUtils.assertArrayEquals(new float[]{9, 11}, shape.getSceneCenterCoordinates(), DELTA);
+	}
+	
+	public void testGetSceneCenterCoordinatesRotatedAndScaledUneven() {
+		final TestRectangularShape shape = new TestRectangularShape(10, 10, 2, 2);
+		shape.setRotation(123);
+		shape.setScale(2);
+		shape.setScaleCenter(0, 0);
+		AssertUtils.assertArrayEquals(new float[]{12, 12}, shape.getSceneCenterCoordinates(), DELTA);
 	}
 	
 	// ===========================================================
