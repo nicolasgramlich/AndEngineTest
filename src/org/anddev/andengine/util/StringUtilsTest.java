@@ -1,9 +1,8 @@
-package org.anddev.andengine.test.util;
+package org.anddev.andengine.util;
 
 
+import junit.framework.Assert;
 import junit.framework.TestCase;
-
-import org.anddev.andengine.util.StringUtils;
 
 /**
  * @author Nicolas Gramlich
@@ -35,78 +34,78 @@ public class StringUtilsTest extends TestCase {
 	// ===========================================================
 
 	public void testCountOccurrenceFollowUp() {
-		assertEquals(2, StringUtils.countOccurrences("aabbccdd", 'b'));
+		Assert.assertEquals(2, StringUtils.countOccurrences("aabbccdd", 'b'));
 	}
 
 	public void testCountOccurrenceEmpty() {
-		assertEquals(0, StringUtils.countOccurrences("", 'b'));
+		Assert.assertEquals(0, StringUtils.countOccurrences("", 'b'));
 	}
 
 	public void testCountOccurrenceNone() {
-		assertEquals(0, StringUtils.countOccurrences("aaaaaaaa", 'b'));
+		Assert.assertEquals(0, StringUtils.countOccurrences("aaaaaaaa", 'b'));
 	}
 
 	public void testCountOccurrenceBeginning() {
-		assertEquals(1, StringUtils.countOccurrences("baaaaa", 'b'));
+		Assert.assertEquals(1, StringUtils.countOccurrences("baaaaa", 'b'));
 	}
 
 	public void testCountOccurrenceBeginningAndEnd() {
-		assertEquals(2, StringUtils.countOccurrences("baaaaab", 'b'));
+		Assert.assertEquals(2, StringUtils.countOccurrences("baaaaab", 'b'));
 	}
 
 	public void testSplitSimple() {
 		final String[] split = StringUtils.split("a\nb", '\n');
-		assertEquals(2, split.length);
-		assertArrayEquals(new String[]{"a", "b"}, split);
+		Assert.assertEquals(2, split.length);
+		this.assertArrayEquals(new String[]{"a", "b"}, split);
 	}
 
 	public void testSplitSimple2() {
 		final String[] split = StringUtils.split("a\nb\nc", '\n');
-		assertEquals(3, split.length);
-		assertArrayEquals(new String[]{"a", "b", "c"}, split);
+		Assert.assertEquals(3, split.length);
+		this.assertArrayEquals(new String[]{"a", "b", "c"}, split);
 	}
 
 	public void testSplitSimple3() {
 		final String[] split = StringUtils.split("a\nb\nc\n", '\n');
-		assertEquals(4, split.length);
-		assertArrayEquals(new String[]{"a", "b", "c", ""}, split);
+		Assert.assertEquals(4, split.length);
+		this.assertArrayEquals(new String[]{"a", "b", "c", ""}, split);
 	}
-	
+
 	public void testSplitEmpty() {
 		final String[] split = StringUtils.split("", '\n');
-		assertEquals(1, split.length);
-		assertArrayEquals(new String[]{""}, split);
+		Assert.assertEquals(1, split.length);
+		this.assertArrayEquals(new String[]{""}, split);
 	}
-	
+
 	public void testSplitEmpty2() {
 		final String[] split = StringUtils.split("\n", '\n');
-		assertEquals(2, split.length);
-		assertArrayEquals(new String[]{"", ""}, split);
+		Assert.assertEquals(2, split.length);
+		this.assertArrayEquals(new String[]{"", ""}, split);
 	}
-	
+
 	public void testSplitEmptyLines() {
 		final String[] split = StringUtils.split("\n\na", '\n');
-		assertEquals(3, split.length);
-		assertArrayEquals(new String[]{"", "", "a"}, split);
+		Assert.assertEquals(3, split.length);
+		this.assertArrayEquals(new String[]{"", "", "a"}, split);
 	}
-	
+
 	public void testSplitEmptyLines2() {
 		final String[] split = StringUtils.split("\n\n\n", '\n');
-		assertEquals(4, split.length);
-		assertArrayEquals(new String[]{"", "", "", ""}, split);
+		Assert.assertEquals(4, split.length);
+		this.assertArrayEquals(new String[]{"", "", "", ""}, split);
 	}
-	
-	private void assertArrayEquals(Object[] pArrayA, Object[] pArrayB) {
+
+	private void assertArrayEquals(final Object[] pArrayA, final Object[] pArrayB) {
 		if(pArrayA == null || pArrayB == null) {
-			fail("One of the arrays was null.");
+			Assert.fail("One of the arrays was null.");
 		}
-		
+
 		if(pArrayA.length != pArrayB.length) {
-			fail("Arrays were not the same lenght.");
+			Assert.fail("Arrays were not the same lenght.");
 		}
-		
+
 		for(int i = 0; i < pArrayA.length; i++) {
-			assertEquals("Index: i", pArrayA[i], pArrayB[i]);
+			Assert.assertEquals("Index: i", pArrayA[i], pArrayB[i]);
 		}
 	}
 

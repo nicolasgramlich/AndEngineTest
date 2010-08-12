@@ -1,9 +1,9 @@
-package org.anddev.andengine.test.entity.layer.tiled.tmx;
+package org.anddev.andengine.entity.layer.tiled.tmx;
 
 import java.io.ByteArrayInputStream;
 
-import org.anddev.andengine.entity.layer.tiled.tmx.TMXLoader;
-import org.anddev.andengine.entity.layer.tiled.tmx.TMXTiledMap;
+import junit.framework.Assert;
+
 import org.anddev.andengine.entity.layer.tiled.tmx.util.constants.TMXConstants;
 import org.anddev.andengine.opengl.texture.TextureManager;
 
@@ -67,39 +67,39 @@ public class TMXLoaderTest extends AndroidTestCase implements TMXConstants {
 
 	public void testLoad() throws Exception {
 		final TMXTiledMap tmxTiledMap = this.mTMXLoader.load(new ByteArrayInputStream(TESTMAP.getBytes("UTF-8")));
-		
-		assertEquals(TAG_MAP_ATTRIBUTE_ORIENTATION_VALUE_ORTHOGONAL, tmxTiledMap.getOrientation());
-		assertEquals(10, tmxTiledMap.getWidth());
-		assertEquals(10, tmxTiledMap.getHeight());
-		assertEquals(32, tmxTiledMap.getTileWidth());
-		assertEquals(32, tmxTiledMap.getTileHeight());
+
+		Assert.assertEquals(TAG_MAP_ATTRIBUTE_ORIENTATION_VALUE_ORTHOGONAL, tmxTiledMap.getOrientation());
+		Assert.assertEquals(10, tmxTiledMap.getWidth());
+		Assert.assertEquals(10, tmxTiledMap.getHeight());
+		Assert.assertEquals(32, tmxTiledMap.getTileWidth());
+		Assert.assertEquals(32, tmxTiledMap.getTileHeight());
 
 		{
-			assertEquals(2, tmxTiledMap.getTMXTileSets().size());
+			Assert.assertEquals(2, tmxTiledMap.getTMXTileSets().size());
 
-			assertEquals(1, tmxTiledMap.getTMXTileSets().get(0).getFirstGlobalTileID());
-			assertEquals("TestTileSet 1", tmxTiledMap.getTMXTileSets().get(0).getName());
-			assertEquals(32, tmxTiledMap.getTMXTileSets().get(0).getTileWidth());
-			assertEquals(32, tmxTiledMap.getTMXTileSets().get(0).getTileHeight());
-			assertEquals("../test/test_file_1.png", tmxTiledMap.getTMXTileSets().get(0).getImageSource());
+			Assert.assertEquals(1, tmxTiledMap.getTMXTileSets().get(0).getFirstGlobalTileID());
+			Assert.assertEquals("TestTileSet 1", tmxTiledMap.getTMXTileSets().get(0).getName());
+			Assert.assertEquals(32, tmxTiledMap.getTMXTileSets().get(0).getTileWidth());
+			Assert.assertEquals(32, tmxTiledMap.getTMXTileSets().get(0).getTileHeight());
+			Assert.assertEquals("../test/test_file_1.png", tmxTiledMap.getTMXTileSets().get(0).getImageSource());
 
-			assertEquals(3, tmxTiledMap.getTMXTileSets().get(1).getFirstGlobalTileID());
-			assertEquals("TestTileSet 2", tmxTiledMap.getTMXTileSets().get(1).getName());
-			assertEquals(32, tmxTiledMap.getTMXTileSets().get(1).getTileWidth());
-			assertEquals(32, tmxTiledMap.getTMXTileSets().get(1).getTileHeight());
-			assertEquals("../test/test_file_2.png", tmxTiledMap.getTMXTileSets().get(1).getImageSource());
+			Assert.assertEquals(3, tmxTiledMap.getTMXTileSets().get(1).getFirstGlobalTileID());
+			Assert.assertEquals("TestTileSet 2", tmxTiledMap.getTMXTileSets().get(1).getName());
+			Assert.assertEquals(32, tmxTiledMap.getTMXTileSets().get(1).getTileWidth());
+			Assert.assertEquals(32, tmxTiledMap.getTMXTileSets().get(1).getTileHeight());
+			Assert.assertEquals("../test/test_file_2.png", tmxTiledMap.getTMXTileSets().get(1).getImageSource());
 		}
-		
+
 		{
-			assertEquals(2, tmxTiledMap.getTMXLayers().size());
+			Assert.assertEquals(2, tmxTiledMap.getTMXLayers().size());
 
-			assertEquals("TestLayer 1", tmxTiledMap.getTMXLayers().get(0).getName());
-			assertEquals(10, tmxTiledMap.getTMXLayers().get(0).getTileColumns());
-			assertEquals(10, tmxTiledMap.getTMXLayers().get(0).getTileRows());
+			Assert.assertEquals("TestLayer 1", tmxTiledMap.getTMXLayers().get(0).getName());
+			Assert.assertEquals(10, tmxTiledMap.getTMXLayers().get(0).getTileColumns());
+			Assert.assertEquals(10, tmxTiledMap.getTMXLayers().get(0).getTileRows());
 
-			assertEquals("TestLayer 2", tmxTiledMap.getTMXLayers().get(1).getName());
-			assertEquals(10, tmxTiledMap.getTMXLayers().get(1).getTileColumns());
-			assertEquals(10, tmxTiledMap.getTMXLayers().get(1).getTileRows());
+			Assert.assertEquals("TestLayer 2", tmxTiledMap.getTMXLayers().get(1).getName());
+			Assert.assertEquals(10, tmxTiledMap.getTMXLayers().get(1).getTileColumns());
+			Assert.assertEquals(10, tmxTiledMap.getTMXLayers().get(1).getTileRows());
 		}
 	}
 

@@ -1,7 +1,8 @@
-package org.anddev.andengine.test.entity.layer;
+package org.anddev.andengine.entity.layer;
+
+import junit.framework.Assert;
 
 import org.anddev.andengine.entity.IEntity;
-import org.anddev.andengine.entity.layer.DynamicCapacityLayer;
 
 /**
  * @author Nicolas Gramlich
@@ -36,7 +37,7 @@ public class DynamicCapacityLayerTest extends ILayerTest {
 	// ===========================================================
 	// Methods
 	// ===========================================================
-	
+
 	public void testRemoveAndCheck() {
 		final DummyEntity removeEntity = new DummyEntity();
 		final DummyEntity checkEntity = new DummyEntity();
@@ -44,11 +45,11 @@ public class DynamicCapacityLayerTest extends ILayerTest {
 		this.mLayer.addEntity(new DummyEntity());
 		this.mLayer.addEntity(new DummyEntity());
 		this.mLayer.addEntity(checkEntity);
-		
+
 		this.mLayer.removeEntity(removeEntity);
-		
+
 		final IEntity checkedEntity = this.mLayer.getEntity(2);
-		assertSame(checkEntity, checkedEntity);
+		Assert.assertSame(checkEntity, checkedEntity);
 	}
 
 	// ===========================================================

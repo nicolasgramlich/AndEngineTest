@@ -1,12 +1,12 @@
-package org.anddev.andengine.test.entity.layer;
+package org.anddev.andengine.entity.layer;
 
 import javax.microedition.khronos.opengles.GL10;
 
+import junit.framework.Assert;
 import junit.framework.TestCase;
 
 import org.anddev.andengine.engine.camera.Camera;
 import org.anddev.andengine.entity.IEntity;
-import org.anddev.andengine.entity.layer.ILayer;
 
 /**
  * @author Nicolas Gramlich
@@ -22,7 +22,7 @@ public abstract class ILayerTest extends TestCase {
 	// ===========================================================
 	// Fields
 	// ===========================================================
-	
+
 	protected ILayer mLayer;
 
 	// ===========================================================
@@ -42,62 +42,62 @@ public abstract class ILayerTest extends TestCase {
 	// ===========================================================
 
 	public void testEmpty() {
-		assertEquals(0, this.mLayer.getEntityCount());
+		Assert.assertEquals(0, this.mLayer.getEntityCount());
 	}
-	
+
 	public void testAdd() {
 		this.mLayer.addEntity(new DummyEntity());
-		assertEquals(1, this.mLayer.getEntityCount());
+		Assert.assertEquals(1, this.mLayer.getEntityCount());
 	}
-	
+
 	public void testRemoveSingle() {
 		final DummyEntity removeEntity = new DummyEntity();
 		this.mLayer.addEntity(removeEntity);
-		
+
 		final boolean success = this.mLayer.removeEntity(removeEntity);
-		
-		assertTrue(success);
-		assertEquals(0, this.mLayer.getEntityCount());
+
+		Assert.assertTrue(success);
+		Assert.assertEquals(0, this.mLayer.getEntityCount());
 	}
-	
+
 	public void testRemoveLastByIndex() {
 		final DummyEntity removeEntity = new DummyEntity();
 		this.mLayer.addEntity(new DummyEntity());
 		this.mLayer.addEntity(new DummyEntity());
 		this.mLayer.addEntity(new DummyEntity());
 		this.mLayer.addEntity(removeEntity);
-		
+
 		final IEntity removedEntity = this.mLayer.removeEntity(3);
-		
-		assertSame(removeEntity, removedEntity);
+
+		Assert.assertSame(removeEntity, removedEntity);
 	}
-	
+
 	public void testRemoveFirstByIndex() {
 		final DummyEntity removeEntity = new DummyEntity();
 		this.mLayer.addEntity(removeEntity);
 		this.mLayer.addEntity(new DummyEntity());
 		this.mLayer.addEntity(new DummyEntity());
 		this.mLayer.addEntity(new DummyEntity());
-		
+
 		final IEntity removedEntity = this.mLayer.removeEntity(0);
-		
-		assertSame(removeEntity, removedEntity);
+
+		Assert.assertSame(removeEntity, removedEntity);
 	}
 
 	// ===========================================================
 	// Inner and Anonymous Classes
 	// ===========================================================
-	
+
 	protected static class DummyEntity implements IEntity {
 		@Override
-		public void onDraw(GL10 pGL, Camera pCamera) {}
+		public void onDraw(final GL10 pGL, final Camera pCamera) {}
 		@Override
-		public void onUpdate(float pSecondsElapsed) {}
+		public void onUpdate(final float pSecondsElapsed) {}
 		@Override
 		public void reset() {}
 		@Override
 		public int getZIndex() { return 0; }
 		@Override
-		public void setZIndex(int pZIndex) { }
+		public void setZIndex(final int pZIndex) { }
 	}
 }

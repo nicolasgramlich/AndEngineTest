@@ -1,14 +1,14 @@
-package org.anddev.andengine.test;
+package org.anddev.andengine.entity.layer;
 
-import junit.framework.Test;
-import junit.framework.TestSuite;
-import android.test.suitebuilder.TestSuiteBuilder;
+import junit.framework.Assert;
+
+import org.anddev.andengine.entity.IEntity;
 
 /**
  * @author Nicolas Gramlich
- * @since 20:54:43 - 08.07.2010
+ * @since 13:13:18 - 09.07.2010
  */
-public class AllTests extends TestSuite {
+public class FixedCapacityLayerTest extends ILayerTest {
 	// ===========================================================
 	// Constants
 	// ===========================================================
@@ -20,9 +20,10 @@ public class AllTests extends TestSuite {
 	// ===========================================================
 	// Constructors
 	// ===========================================================
-	
-	public static Test suite() {
-		return new TestSuiteBuilder(AllTests.class).includeAllPackagesUnderHere().build();
+
+	@Override
+	protected void setUp() throws Exception {
+		this.mLayer = new FixedCapacityLayer(CAPACITY);
 	}
 
 	// ===========================================================
@@ -36,6 +37,20 @@ public class AllTests extends TestSuite {
 	// ===========================================================
 	// Methods
 	// ===========================================================
+
+	public void testRemoveAndCheck() {
+		final DummyEntity removeEntity = new DummyEntity();
+		final DummyEntity checkEntity = new DummyEntity();
+		this.mLayer.addEntity(removeEntity);
+		this.mLayer.addEntity(new DummyEntity());
+		this.mLayer.addEntity(new DummyEntity());
+		this.mLayer.addEntity(checkEntity);
+
+		this.mLayer.removeEntity(removeEntity);
+
+		final IEntity checkedEntity = this.mLayer.getEntity(0);
+		Assert.assertSame(checkEntity, checkedEntity);
+	}
 
 	// ===========================================================
 	// Inner and Anonymous Classes

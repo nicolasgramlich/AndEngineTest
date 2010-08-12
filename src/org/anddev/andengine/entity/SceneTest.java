@@ -1,4 +1,6 @@
-package org.anddev.andengine.test.entity;
+package org.anddev.andengine.entity;
+
+import junit.framework.Assert;
 
 import org.anddev.andengine.engine.Engine;
 import org.anddev.andengine.engine.camera.Camera;
@@ -126,17 +128,17 @@ public class SceneTest extends AndroidTestCase {
 		final int surfaceTouchY = 50;
 
 		final ITouchArea touchArea = new Rectangle(0, 0, 50, 50);
-		
-		assertTrue(this.testAreaTouchWorker(this.mScene, surfaceTouchX, surfaceTouchY, touchArea));
+
+		Assert.assertTrue(this.testAreaTouchWorker(this.mScene, surfaceTouchX, surfaceTouchY, touchArea));
 	}
-	
+
 	public void testAreaTouchOutside() throws Exception {
 		final int surfaceTouchX = 51;
 		final int surfaceTouchY = 51;
 
 		final ITouchArea touchArea = new Rectangle(0, 0, 50, 50);
-		
-		assertFalse(this.testAreaTouchWorker(this.mScene, surfaceTouchX, surfaceTouchY, touchArea));
+
+		Assert.assertFalse(this.testAreaTouchWorker(this.mScene, surfaceTouchX, surfaceTouchY, touchArea));
 	}
 
 	// ===========================================================
@@ -149,8 +151,8 @@ public class SceneTest extends AndroidTestCase {
 			public boolean onSceneTouchEvent(final Scene pScene, final TouchEvent pSceneTouchEvent) {
 				final float actualX = pSceneTouchEvent.getX();
 				final float actualY = pSceneTouchEvent.getY();
-				assertEquals(pExpectedX, actualX);
-				assertEquals(pExpectedY, actualY);
+				Assert.assertEquals(pExpectedX, actualX);
+				Assert.assertEquals(pExpectedY, actualY);
 				return true;
 			}
 		});
@@ -159,16 +161,16 @@ public class SceneTest extends AndroidTestCase {
 
 		final boolean result = this.mEngine.onTouch(null, MotionEvent.obtain(uptimeMillis, uptimeMillis, MotionEvent.ACTION_DOWN, pSurfaceTouchX, pSurfaceTouchY, 0));
 
-		assertTrue(result);
+		Assert.assertTrue(result);
 	}
 
 	private boolean testAreaTouchWorker(final Scene pScene, final int pSurfaceTouchX, final int pSurfaceTouchY, final ITouchArea pExpectedTouchArea) {
 		pScene.registerTouchArea(pExpectedTouchArea);
-		
+
 		pScene.setOnAreaTouchListener(new IOnAreaTouchListener() {
 			@Override
 			public boolean onAreaTouched(final TouchEvent pSceneTouchEvent, final ITouchArea pActualTouchArea, final float pTouchAreaLocalX, final float pTouchAreaLocalY) {
-				assertSame(pExpectedTouchArea, pActualTouchArea);
+				Assert.assertSame(pExpectedTouchArea, pActualTouchArea);
 				return true;
 			}
 		});
