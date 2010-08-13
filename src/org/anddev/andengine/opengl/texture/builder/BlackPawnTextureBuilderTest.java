@@ -1,11 +1,11 @@
-package org.anddev.andengine.opengl.texture.source.packing;
+package org.anddev.andengine.opengl.texture.builder;
 
 import junit.framework.Assert;
 import junit.framework.TestCase;
 
+import org.anddev.andengine.opengl.texture.builder.BlackPawnTextureBuilder.Node;
+import org.anddev.andengine.opengl.texture.builder.BlackPawnTextureBuilder.Rect;
 import org.anddev.andengine.opengl.texture.source.ITextureSource;
-import org.anddev.andengine.opengl.texture.source.packing.BlackPawnTextureSourcePackingAlgorithm.Node;
-import org.anddev.andengine.opengl.texture.source.packing.BlackPawnTextureSourcePackingAlgorithm.Rect;
 
 import android.graphics.Bitmap;
 
@@ -14,7 +14,7 @@ import android.graphics.Bitmap;
  * @author Nicolas Gramlich
  * @since 16:08:32 - 12.08.2010
  */
-public class BlackPawnTextureSourcePackingAlgorithmTest extends TestCase {
+public class BlackPawnTextureBuilderTest extends TestCase {
 
 	// ===========================================================
 	// Constants

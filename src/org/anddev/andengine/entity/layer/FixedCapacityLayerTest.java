@@ -51,6 +51,24 @@ public class FixedCapacityLayerTest extends ILayerTest {
 		final IEntity checkedEntity = this.mLayer.getEntity(0);
 		Assert.assertSame(checkEntity, checkedEntity);
 	}
+	
+	public void testRemoveLastByIndexAtFullCapacity() {
+		final DummyEntity removeEntity = new DummyEntity();
+		this.mLayer.addEntity(new DummyEntity()); // 0
+		this.mLayer.addEntity(new DummyEntity()); // 1
+		this.mLayer.addEntity(new DummyEntity()); // 2
+		this.mLayer.addEntity(new DummyEntity()); // 3
+		this.mLayer.addEntity(new DummyEntity()); // 4
+		this.mLayer.addEntity(new DummyEntity()); // 5
+		this.mLayer.addEntity(new DummyEntity()); // 6
+		this.mLayer.addEntity(new DummyEntity()); // 7
+		this.mLayer.addEntity(new DummyEntity()); // 8
+		this.mLayer.addEntity(removeEntity); // 8
+
+		final IEntity removedEntity = this.mLayer.removeEntity(9);
+
+		Assert.assertSame(removeEntity, removedEntity);
+	}
 
 	// ===========================================================
 	// Inner and Anonymous Classes
