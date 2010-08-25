@@ -1,4 +1,4 @@
-package org.anddev.andengine.entity.menu;
+package org.anddev.andengine.entity.scene.menu;
 
 import junit.framework.Assert;
 
@@ -34,6 +34,8 @@ public class MenuSceneTest  extends AndroidTestCase {
 
 	private static final int CAMERA_WIDTH = 100;
 	private static final int CAMERA_HEIGHT = 100;
+
+	private static final float DELTA = 0.0001f;
 
 	// ===========================================================
 	// Fields
@@ -232,8 +234,8 @@ public class MenuSceneTest  extends AndroidTestCase {
 			public boolean onSceneTouchEvent(final Scene pScene, final TouchEvent pSceneTouchEvent) {
 				final float actualX = pSceneTouchEvent.getX();
 				final float actualY = pSceneTouchEvent.getY();
-				Assert.assertEquals(pExpectedX, actualX);
-				Assert.assertEquals(pExpectedY, actualY);
+				Assert.assertEquals(pExpectedX, actualX, DELTA);
+				Assert.assertEquals(pExpectedY, actualY, DELTA);
 				return true;
 			}
 		});

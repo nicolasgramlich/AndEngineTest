@@ -69,8 +69,8 @@ public class TMXLoaderTest extends AndroidTestCase implements TMXConstants {
 		final TMXTiledMap tmxTiledMap = this.mTMXLoader.load(new ByteArrayInputStream(TESTMAP.getBytes("UTF-8")));
 
 		Assert.assertEquals(TAG_MAP_ATTRIBUTE_ORIENTATION_VALUE_ORTHOGONAL, tmxTiledMap.getOrientation());
-		Assert.assertEquals(10, tmxTiledMap.getWidth());
-		Assert.assertEquals(10, tmxTiledMap.getHeight());
+		Assert.assertEquals(10, tmxTiledMap.getTileColumns());
+		Assert.assertEquals(10, tmxTiledMap.getTileRows());
 		Assert.assertEquals(32, tmxTiledMap.getTileWidth());
 		Assert.assertEquals(32, tmxTiledMap.getTileHeight());
 
