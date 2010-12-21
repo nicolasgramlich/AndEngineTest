@@ -41,7 +41,7 @@ public class AssertUtils {
 		}
 
 		for(int i = 0; i < pArrayA.length; i++) {
-			Assert.assertEquals("Index: i", pArrayA[i], pArrayB[i], pDelta);
+			Assert.assertEquals("Index: [" + i + "] ", pArrayA[i], pArrayB[i], pDelta);
 		}
 	}
 
