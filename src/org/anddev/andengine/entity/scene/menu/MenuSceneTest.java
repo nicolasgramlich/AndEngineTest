@@ -58,7 +58,7 @@ public class MenuSceneTest  extends AndroidTestCase {
 		this.mEngine = new Engine(new EngineOptions(true, ScreenOrientation.PORTRAIT, new FillResolutionPolicy(), this.mCamera));
 		this.mEngine.setSurfaceSize(CAMERA_WIDTH, CAMERA_HEIGHT);
 
-		this.mScene = new Scene(1);
+		this.mScene = new Scene();
 
 		this.mMenuScene = new MenuScene(this.mCamera);
 

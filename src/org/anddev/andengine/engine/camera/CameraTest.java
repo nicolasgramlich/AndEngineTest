@@ -48,9 +48,9 @@ public class CameraTest  extends AndroidTestCase {
 		this.mEngine = new Engine(new EngineOptions(true, ScreenOrientation.PORTRAIT, new FillResolutionPolicy(), this.mCamera));
 		this.mEngine.setSurfaceSize(CAMERA_WIDTH, CAMERA_HEIGHT);
 
-		this.mScene = new Scene(1);
+		this.mScene = new Scene();
 
-		this.mCameraScene = new CameraScene(1);
+		this.mCameraScene = new CameraScene();
 		this.mCameraScene.setCamera(this.mCamera);
 
 		this.mScene.setChildScene(this.mCameraScene, true, true, false);

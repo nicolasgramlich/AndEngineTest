@@ -48,9 +48,9 @@ public class ZoomCameraTest  extends AndroidTestCase {
 		this.mEngine = new Engine(new EngineOptions(true, ScreenOrientation.PORTRAIT, new FillResolutionPolicy(), this.mZoomCamera));
 		this.mEngine.setSurfaceSize(CAMERA_WIDTH, CAMERA_HEIGHT);
 
-		this.mScene = new Scene(1);
+		this.mScene = new Scene();
 
-		this.mCameraScene = new CameraScene(1);
+		this.mCameraScene = new CameraScene();
 		this.mCameraScene.setCamera(this.mZoomCamera);
 
 		this.mScene.setChildScene(this.mCameraScene, true, true, false);

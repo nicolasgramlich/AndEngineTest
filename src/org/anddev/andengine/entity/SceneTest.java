@@ -45,7 +45,7 @@ public class SceneTest extends AndroidTestCase {
 		this.mEngine = new Engine(new EngineOptions(true, ScreenOrientation.PORTRAIT, new FillResolutionPolicy(), this.mCamera));
 		this.mEngine.setSurfaceSize(100, 100);
 
-		this.mScene = new Scene(1);
+		this.mScene = new Scene();
 
 		this.mEngine.setScene(this.mScene);
 
@@ -94,7 +94,7 @@ public class SceneTest extends AndroidTestCase {
 	}
 
 	public void testChildSceneTouch() throws Exception {
-		final Scene childScene = new Scene(1);
+		final Scene childScene = new Scene();
 
 		this.mScene.setChildSceneModal(childScene);
 
@@ -110,7 +110,7 @@ public class SceneTest extends AndroidTestCase {
 	public void testChildSceneTouchOffsetCamera() throws Exception {
 		this.mCamera.setCenter(0, 0);
 
-		final Scene childScene = new Scene(1);
+		final Scene childScene = new Scene();
 
 		this.mScene.setChildSceneModal(childScene);
 
