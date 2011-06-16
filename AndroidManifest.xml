@@ -4,7 +4,7 @@
 	android:versionCode="1"
 	android:versionName="1.0">
     
-	<application android:debuggable="true">
+	<application android:debuggable="true" android:icon="@drawable/icon">
 		<uses-library android:name="android.test.runner" />
 	</application>
     

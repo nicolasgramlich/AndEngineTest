@@ -9,12 +9,12 @@ import org.anddev.andengine.engine.options.EngineOptions.ScreenOrientation;
 import org.anddev.andengine.engine.options.resolutionpolicy.FillResolutionPolicy;
 import org.anddev.andengine.entity.scene.Scene;
 import org.anddev.andengine.entity.scene.Scene.IOnSceneTouchListener;
-import org.anddev.andengine.entity.scene.menu.MenuScene;
 import org.anddev.andengine.entity.scene.menu.MenuScene.IOnMenuItemClickListener;
 import org.anddev.andengine.entity.scene.menu.animator.DirectMenuAnimator;
 import org.anddev.andengine.entity.scene.menu.item.IMenuItem;
 import org.anddev.andengine.entity.scene.menu.item.SpriteMenuItem;
 import org.anddev.andengine.input.touch.TouchEvent;
+import org.anddev.andengine.opengl.texture.Texture;
 import org.anddev.andengine.opengl.texture.region.TextureRegion;
 
 import android.os.SystemClock;
@@ -45,6 +45,8 @@ public class MenuSceneTest  extends AndroidTestCase {
 	private Camera mCamera;
 	private Scene mScene;
 	private MenuScene mMenuScene;
+
+	private final Texture mTexture = new Texture(2, 2);
 
 	// ===========================================================
 	// Constructors
@@ -146,7 +148,7 @@ public class MenuSceneTest  extends AndroidTestCase {
 		final int surfaceTouchX = 50;
 		final int surfaceTouchY = 50;
 
-		this.mMenuScene.addMenuItem(new SpriteMenuItem(MENU_TEST_ID, new TextureRegion(null, 0, 0, 50, 50)));
+		this.mMenuScene.addMenuItem(new SpriteMenuItem(MENU_TEST_ID, new TextureRegion(this.mTexture, 0, 0, 50, 50)));
 		this.mMenuScene.setMenuAnimator(new DirectMenuAnimator());
 		this.mMenuScene.buildAnimations();
 
@@ -157,7 +159,7 @@ public class MenuSceneTest  extends AndroidTestCase {
 		final int surfaceTouchX = 75;
 		final int surfaceTouchY = 75;
 
-		this.mMenuScene.addMenuItem(new SpriteMenuItem(MENU_TEST_ID, new TextureRegion(null, 0, 0, 50, 50)));
+		this.mMenuScene.addMenuItem(new SpriteMenuItem(MENU_TEST_ID, new TextureRegion(this.mTexture, 0, 0, 50, 50)));
 		this.mMenuScene.setMenuAnimator(new DirectMenuAnimator());
 		this.mMenuScene.buildAnimations();
 
@@ -168,7 +170,7 @@ public class MenuSceneTest  extends AndroidTestCase {
 		final int surfaceTouchX = 76;
 		final int surfaceTouchY = 76;
 
-		this.mMenuScene.addMenuItem(new SpriteMenuItem(MENU_TEST_ID, new TextureRegion(null, 0, 0, 50, 50)));
+		this.mMenuScene.addMenuItem(new SpriteMenuItem(MENU_TEST_ID, new TextureRegion(this.mTexture, 0, 0, 50, 50)));
 		this.mMenuScene.setMenuAnimator(new DirectMenuAnimator());
 		this.mMenuScene.buildAnimations();
 
@@ -181,7 +183,7 @@ public class MenuSceneTest  extends AndroidTestCase {
 
 		final MenuScene subMenuScene = new MenuScene(this.mCamera);
 
-		subMenuScene.addMenuItem(new SpriteMenuItem(MENU_TEST_ID, new TextureRegion(null, 0, 0, 50, 50)));
+		subMenuScene.addMenuItem(new SpriteMenuItem(MENU_TEST_ID, new TextureRegion(this.mTexture, 0, 0, 50, 50)));
 		subMenuScene.setMenuAnimator(new DirectMenuAnimator());
 		subMenuScene.buildAnimations();
 
@@ -198,7 +200,7 @@ public class MenuSceneTest  extends AndroidTestCase {
 
 		final MenuScene subMenuScene = new MenuScene(this.mCamera);
 
-		subMenuScene.addMenuItem(new SpriteMenuItem(MENU_TEST_ID, new TextureRegion(null, 0, 0, 50, 50)));
+		subMenuScene.addMenuItem(new SpriteMenuItem(MENU_TEST_ID, new TextureRegion(this.mTexture, 0, 0, 50, 50)));
 		subMenuScene.setMenuAnimator(new DirectMenuAnimator());
 		subMenuScene.buildAnimations();
 
@@ -215,7 +217,7 @@ public class MenuSceneTest  extends AndroidTestCase {
 
 		final MenuScene subMenuScene = new MenuScene(this.mCamera);
 
-		subMenuScene.addMenuItem(new SpriteMenuItem(MENU_TEST_ID, new TextureRegion(null, 0, 0, 50, 50)));
+		subMenuScene.addMenuItem(new SpriteMenuItem(MENU_TEST_ID, new TextureRegion(this.mTexture, 0, 0, 50, 50)));
 		subMenuScene.setMenuAnimator(new DirectMenuAnimator());
 		subMenuScene.buildAnimations();
 

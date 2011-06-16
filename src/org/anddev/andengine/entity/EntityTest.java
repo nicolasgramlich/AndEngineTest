@@ -1,5 +1,7 @@
 package org.anddev.andengine.entity;
 
+import junit.framework.Assert;
+
 import org.anddev.andengine.entity.primitive.Rectangle;
 import org.anddev.andengine.opengl.buffer.BufferObjectManager;
 import org.anddev.andengine.util.AssertUtils;
@@ -81,7 +83,7 @@ public class EntityTest extends AndroidTestCase {
 		final IEntity parent = new Entity(0, 0);
 		final IEntity entity = new Entity(0, 0);
 
-		parent.addChild(entity);
+		parent.attachChild(entity);
 
 		final float testX = 5;
 		final float testY = 5;
@@ -98,7 +100,7 @@ public class EntityTest extends AndroidTestCase {
 		final IEntity entity = new Entity(0, 0);
 		entity.setRotation(180);
 
-		parent.addChild(entity);
+		parent.attachChild(entity);
 
 		final float testX = 5;
 		final float testY = 5;
@@ -113,7 +115,7 @@ public class EntityTest extends AndroidTestCase {
 		final IEntity parent = new Entity(5, 5);
 		final IEntity entity = new Entity(5, 5);
 
-		parent.addChild(entity);
+		parent.attachChild(entity);
 
 		final float testX = 5;
 		final float testY = 5;
@@ -123,13 +125,13 @@ public class EntityTest extends AndroidTestCase {
 
 		this.testConvertLocalToSceneCoordinates(entity, testX, testY, expectedX, expectedY);
 	}
-	
+
 	public void testConvertLocalToSceneCoordinatesWithParentAndRotation() throws Exception {
 		final IEntity parent = new Entity(5, 5);
 		final IEntity entity = new Entity(5, 5);
 		entity.setRotation(180);
 
-		parent.addChild(entity);
+		parent.attachChild(entity);
 
 		final float testX = 5;
 		final float testY = 5;
@@ -139,13 +141,13 @@ public class EntityTest extends AndroidTestCase {
 
 		this.testConvertLocalToSceneCoordinates(entity, testX, testY, expectedX, expectedY);
 	}
-	
+
 	public void testConvertLocalToSceneCoordinatesWithParentAndRotation2() throws Exception {
 		final IEntity parent = new Entity(5, 5);
 		final IEntity entity = new Entity(5, 5);
 		entity.setRotation(90);
 
-		parent.addChild(entity);
+		parent.attachChild(entity);
 
 		final float testX = 5;
 		final float testY = 5;
@@ -273,138 +275,138 @@ public class EntityTest extends AndroidTestCase {
 	public void testRectangleContains() throws Exception {
 		final Rectangle rectangle = new Rectangle(0, 0, 10, 10);
 
-		assertTrue(rectangle.contains(5, 5));
-		assertTrue(rectangle.contains(0, 0));
-		assertTrue(rectangle.contains(0, 10));
-		assertTrue(rectangle.contains(10, 0));
-		assertTrue(rectangle.contains(10, 10));
+		Assert.assertTrue(rectangle.contains(5, 5));
+		Assert.assertTrue(rectangle.contains(0, 0));
+		Assert.assertTrue(rectangle.contains(0, 10));
+		Assert.assertTrue(rectangle.contains(10, 0));
+		Assert.assertTrue(rectangle.contains(10, 10));
 
-		assertFalse(rectangle.contains(-0.01f, -0.01f));
-		assertFalse(rectangle.contains(10.01f, -0.01f));
-		assertFalse(rectangle.contains(-0.01f, 10.01f));
-		assertFalse(rectangle.contains(10.01f, 10.01f));
+		Assert.assertFalse(rectangle.contains(-0.01f, -0.01f));
+		Assert.assertFalse(rectangle.contains(10.01f, -0.01f));
+		Assert.assertFalse(rectangle.contains(-0.01f, 10.01f));
+		Assert.assertFalse(rectangle.contains(10.01f, 10.01f));
 	}
 
 	public void testRectangleContainsWithScale() throws Exception {
 		final Rectangle rectangle = new Rectangle(0, 0, 10, 10);
 		rectangle.setScale(2);
 
-		assertTrue(rectangle.contains(5, 5));
-		assertTrue(rectangle.contains(-5, -5));
-		assertTrue(rectangle.contains(15, -5));
-		assertTrue(rectangle.contains(-5, 15));
-		assertTrue(rectangle.contains(15, 15));
+		Assert.assertTrue(rectangle.contains(5, 5));
+		Assert.assertTrue(rectangle.contains(-5, -5));
+		Assert.assertTrue(rectangle.contains(15, -5));
+		Assert.assertTrue(rectangle.contains(-5, 15));
+		Assert.assertTrue(rectangle.contains(15, 15));
 
-		assertFalse(rectangle.contains(-5.01f, -5.01f));
-		assertFalse(rectangle.contains(15.01f, -5.01f));
-		assertFalse(rectangle.contains(-5.01f, 15.01f));
-		assertFalse(rectangle.contains(15.01f, 15.01f));
+		Assert.assertFalse(rectangle.contains(-5.01f, -5.01f));
+		Assert.assertFalse(rectangle.contains(15.01f, -5.01f));
+		Assert.assertFalse(rectangle.contains(-5.01f, 15.01f));
+		Assert.assertFalse(rectangle.contains(15.01f, 15.01f));
 	}
-	
+
 	public void testRectangleContainsOriginWithParent() throws Exception {
 		final IEntity parent = new Entity(0, 0);
 		final Rectangle rectangle = new Rectangle(0, 0, 10, 10);
 		rectangle.setParent(parent);
 
-		assertTrue(rectangle.contains(5, 5));
-		assertTrue(rectangle.contains(0, 0));
-		assertTrue(rectangle.contains(0, 10));
-		assertTrue(rectangle.contains(10, 0));
-		assertTrue(rectangle.contains(10, 10));
+		Assert.assertTrue(rectangle.contains(5, 5));
+		Assert.assertTrue(rectangle.contains(0, 0));
+		Assert.assertTrue(rectangle.contains(0, 10));
+		Assert.assertTrue(rectangle.contains(10, 0));
+		Assert.assertTrue(rectangle.contains(10, 10));
 
-		assertFalse(rectangle.contains(-0.01f, -0.01f));
-		assertFalse(rectangle.contains(10.01f, -0.01f));
-		assertFalse(rectangle.contains(-0.01f, 10.01f));
-		assertFalse(rectangle.contains(10.01f, 10.01f));
+		Assert.assertFalse(rectangle.contains(-0.01f, -0.01f));
+		Assert.assertFalse(rectangle.contains(10.01f, -0.01f));
+		Assert.assertFalse(rectangle.contains(-0.01f, 10.01f));
+		Assert.assertFalse(rectangle.contains(10.01f, 10.01f));
 	}
-	
+
 	public void testRectangleContainsOriginWithParentAndScale() throws Exception {
 		final IEntity parent = new Entity(0, 0);
 		final Rectangle rectangle = new Rectangle(0, 0, 10, 10);
 		rectangle.setParent(parent);
 		rectangle.setScale(2);
 
-		assertTrue(rectangle.contains(5, 5));
-		assertTrue(rectangle.contains(-5, -5));
-		assertTrue(rectangle.contains(15, -5));
-		assertTrue(rectangle.contains(-5, 15));
-		assertTrue(rectangle.contains(15, 15));
+		Assert.assertTrue(rectangle.contains(5, 5));
+		Assert.assertTrue(rectangle.contains(-5, -5));
+		Assert.assertTrue(rectangle.contains(15, -5));
+		Assert.assertTrue(rectangle.contains(-5, 15));
+		Assert.assertTrue(rectangle.contains(15, 15));
 
-		assertFalse(rectangle.contains(-5.01f, -5.01f));
-		assertFalse(rectangle.contains(15.01f, -5.01f));
-		assertFalse(rectangle.contains(-5.01f, 15.01f));
-		assertFalse(rectangle.contains(15.01f, 15.01f));
+		Assert.assertFalse(rectangle.contains(-5.01f, -5.01f));
+		Assert.assertFalse(rectangle.contains(15.01f, -5.01f));
+		Assert.assertFalse(rectangle.contains(-5.01f, 15.01f));
+		Assert.assertFalse(rectangle.contains(15.01f, 15.01f));
 	}
-	
+
 	public void testRectangleContainsOriginWithParentAndScale2() throws Exception {
 		final IEntity parent = new Entity(0, 0);
 		parent.setScale(2);
 		final Rectangle rectangle = new Rectangle(0, 0, 10, 10);
 		rectangle.setParent(parent);
-		
-		assertTrue(rectangle.contains(10, 10));
-		assertTrue(rectangle.contains(0, 0));
-		assertTrue(rectangle.contains(0, 20));
-		assertTrue(rectangle.contains(20, 0));
-		assertTrue(rectangle.contains(20, 20));
 
-		assertFalse(rectangle.contains(-0.01f, -0.01f));
-		assertFalse(rectangle.contains(20.01f, -0.01f));
-		assertFalse(rectangle.contains(-0.01f, 20.01f));
-		assertFalse(rectangle.contains(20.01f, 20.01f));
+		Assert.assertTrue(rectangle.contains(10, 10));
+		Assert.assertTrue(rectangle.contains(0, 0));
+		Assert.assertTrue(rectangle.contains(0, 20));
+		Assert.assertTrue(rectangle.contains(20, 0));
+		Assert.assertTrue(rectangle.contains(20, 20));
+
+		Assert.assertFalse(rectangle.contains(-0.01f, -0.01f));
+		Assert.assertFalse(rectangle.contains(20.01f, -0.01f));
+		Assert.assertFalse(rectangle.contains(-0.01f, 20.01f));
+		Assert.assertFalse(rectangle.contains(20.01f, 20.01f));
 	}
-	
+
 	public void testRectangleContainsOriginWithParentAndScale3() throws Exception {
 		final IEntity parent = new Entity(0, 0);
 		parent.setScale(2);
 		final Rectangle rectangle = new Rectangle(0, 0, 10, 10);
 		rectangle.setParent(parent);
 		rectangle.setScale(2);
-		
-		assertTrue(rectangle.contains(10, 10));
-		assertTrue(rectangle.contains(-10, -10));
-		assertTrue(rectangle.contains(-10, 30));
-		assertTrue(rectangle.contains(30, -10));
-		assertTrue(rectangle.contains(30, 30));
 
-		assertFalse(rectangle.contains(-10.01f, -10.01f));
-		assertFalse(rectangle.contains(30.01f, -10.01f));
-		assertFalse(rectangle.contains(-10.01f, 30.01f));
-		assertFalse(rectangle.contains(30.01f, 30.01f));
+		Assert.assertTrue(rectangle.contains(10, 10));
+		Assert.assertTrue(rectangle.contains(-10, -10));
+		Assert.assertTrue(rectangle.contains(-10, 30));
+		Assert.assertTrue(rectangle.contains(30, -10));
+		Assert.assertTrue(rectangle.contains(30, 30));
+
+		Assert.assertFalse(rectangle.contains(-10.01f, -10.01f));
+		Assert.assertFalse(rectangle.contains(30.01f, -10.01f));
+		Assert.assertFalse(rectangle.contains(-10.01f, 30.01f));
+		Assert.assertFalse(rectangle.contains(30.01f, 30.01f));
 	}
-	
+
 	public void testRectangleContainsNonOriginWithParent() throws Exception {
 		final IEntity parent = new Entity(5, 5);
 		final Rectangle rectangle = new Rectangle(0, 0, 10, 10);
 		rectangle.setParent(parent);
 
-		assertTrue(rectangle.contains(10, 10));
-		assertTrue(rectangle.contains(5, 5));
-		assertTrue(rectangle.contains(5, 15));
-		assertTrue(rectangle.contains(15, 5));
-		assertTrue(rectangle.contains(15, 15));
+		Assert.assertTrue(rectangle.contains(10, 10));
+		Assert.assertTrue(rectangle.contains(5, 5));
+		Assert.assertTrue(rectangle.contains(5, 15));
+		Assert.assertTrue(rectangle.contains(15, 5));
+		Assert.assertTrue(rectangle.contains(15, 15));
 
-		assertFalse(rectangle.contains(4.99f, 4.99f));
-		assertFalse(rectangle.contains(15.01f, 4.99f));
-		assertFalse(rectangle.contains(4.99f, 15.01f));
-		assertFalse(rectangle.contains(15.01f, 15.01f));
+		Assert.assertFalse(rectangle.contains(4.99f, 4.99f));
+		Assert.assertFalse(rectangle.contains(15.01f, 4.99f));
+		Assert.assertFalse(rectangle.contains(4.99f, 15.01f));
+		Assert.assertFalse(rectangle.contains(15.01f, 15.01f));
 	}
-	
+
 	public void testRectangleContainsNonOriginWithParent2() throws Exception {
 		final IEntity parent = new Entity(5, 5);
 		final Rectangle rectangle = new Rectangle(5, 5, 10, 10);
 		rectangle.setParent(parent);
 
-		assertTrue(rectangle.contains(15, 15));
-		assertTrue(rectangle.contains(10, 10));
-		assertTrue(rectangle.contains(10, 20));
-		assertTrue(rectangle.contains(20, 10));
-		assertTrue(rectangle.contains(20, 20));
+		Assert.assertTrue(rectangle.contains(15, 15));
+		Assert.assertTrue(rectangle.contains(10, 10));
+		Assert.assertTrue(rectangle.contains(10, 20));
+		Assert.assertTrue(rectangle.contains(20, 10));
+		Assert.assertTrue(rectangle.contains(20, 20));
 
-		assertFalse(rectangle.contains(9.99f, 9.99f));
-		assertFalse(rectangle.contains(20.01f, 9.99f));
-		assertFalse(rectangle.contains(9.99f, 20.01f));
-		assertFalse(rectangle.contains(20.01f, 20.01f));
+		Assert.assertFalse(rectangle.contains(9.99f, 9.99f));
+		Assert.assertFalse(rectangle.contains(20.01f, 9.99f));
+		Assert.assertFalse(rectangle.contains(9.99f, 20.01f));
+		Assert.assertFalse(rectangle.contains(20.01f, 20.01f));
 	}
 
 	// ===========================================================
@@ -416,7 +418,7 @@ public class EntityTest extends AndroidTestCase {
 
 		AssertUtils.assertArrayEquals(new float[]{pExpectedX, pExpectedY}, actual, EntityTest.DELTA);
 	}
-	
+
 	private void testConvertSceneToLocalCoordinates(final IEntity pEntity, final float pTestX, final float pTestY, final float pExpectedX, final float pExpectedY) {
 		final float[] actual = pEntity.convertSceneToLocalCoordinates(pTestX, pTestY);
 

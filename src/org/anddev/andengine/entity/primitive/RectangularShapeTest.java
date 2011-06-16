@@ -292,14 +292,6 @@ public class RectangularShapeTest extends TestCase {
 		AssertUtils.assertArrayEquals(new float[]{9, 11}, shape.getSceneCenterCoordinates(), DELTA);
 	}
 
-	public void testGetSceneCenterCoordinatesRotatedAndScaledUneven() {
-		final TestRectangularShape shape = new TestRectangularShape(10, 10, 2, 2);
-		shape.setRotation(123);
-		shape.setScale(2);
-		shape.setScaleCenter(0, 0);
-		AssertUtils.assertArrayEquals(new float[]{12, 12}, shape.getSceneCenterCoordinates(), DELTA);
-	}
-
 	// ===========================================================
 	// Inner and Anonymous Classes
 	// ===========================================================
