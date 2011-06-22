@@ -19,6 +19,8 @@ public class EntityTest extends AndroidTestCase {
 
 	private static final float DELTA = 0.0001f;
 
+	private static final BufferObjectManager BUFFEROBJECTMANAGER = new BufferObjectManager();
+
 	// ===========================================================
 	// Fields
 	// ===========================================================
@@ -29,7 +31,7 @@ public class EntityTest extends AndroidTestCase {
 
 	@Override
 	public void setUp() throws Exception {
-		BufferObjectManager.setActiveInstance(new BufferObjectManager());
+		BufferObjectManager.setActiveInstance(BUFFEROBJECTMANAGER);
 	}
 
 	@Override

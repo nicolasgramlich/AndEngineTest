@@ -7,6 +7,7 @@ import org.anddev.andengine.opengl.texture.builder.BlackPawnTextureBuilder.Node;
 import org.anddev.andengine.opengl.texture.source.ITextureSource;
 
 import android.graphics.Bitmap;
+import android.graphics.Bitmap.Config;
 
 /**
  * @author Nicolas Gramlich
@@ -194,7 +195,7 @@ public class BlackPawnTextureBuilderTest extends TestCase {
 		}
 
 		@Override
-		public Bitmap onLoadBitmap() {
+		public Bitmap onLoadBitmap(final Config pBitmapConfig) {
 			return null;
 		}
 
