@@ -1,13 +1,11 @@
-package org.anddev.andengine.opengl.texture.builder;
+package org.anddev.andengine.opengl.texture.atlas.buildable.builder;
 
 import junit.framework.Assert;
 import junit.framework.TestCase;
 
-import org.anddev.andengine.opengl.texture.builder.BlackPawnTextureBuilder.Node;
-import org.anddev.andengine.opengl.texture.source.ITextureSource;
-
-import android.graphics.Bitmap;
-import android.graphics.Bitmap.Config;
+import org.anddev.andengine.opengl.texture.atlas.buildable.builder.BlackPawnTextureBuilder.Node;
+import org.anddev.andengine.opengl.texture.atlas.source.ITextureAtlasSource;
+import org.anddev.andengine.util.modifier.IModifier.DeepCopyNotSupportedException;
 
 /**
  * @author Nicolas Gramlich
@@ -175,7 +173,7 @@ public class BlackPawnTextureBuilderTest extends TestCase {
 	// Inner and Anonymous Classes
 	// ===========================================================
 
-	protected static class DummyTextureSource implements ITextureSource {
+	protected static class DummyTextureSource implements ITextureAtlasSource {
 		private final int mWidth;
 		private final int mHeight;
 
@@ -195,13 +193,31 @@ public class BlackPawnTextureBuilderTest extends TestCase {
 		}
 
 		@Override
-		public Bitmap onLoadBitmap(final Config pBitmapConfig) {
-			return null;
+		public DummyTextureSource clone() {
+			return new DummyTextureSource(this.mWidth, this.mHeight);
 		}
 
 		@Override
-		public DummyTextureSource clone() {
-			return new DummyTextureSource(this.mWidth, this.mHeight);
+		public int getTexturePositionX() {
+			return 0;
+		}
+
+		@Override
+		public int getTexturePositionY() {
+			return 0;
+		}
+
+		@Override
+		public void setTexturePositionX(int pTexturePositionX) {
+		}
+
+		@Override
+		public void setTexturePositionY(int pTexturePositionY) {
+		}
+		
+		@Override
+		public ITextureAtlasSource deepCopy() throws DeepCopyNotSupportedException {
+			return null;
 		}
 	}
 }

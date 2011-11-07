@@ -3,6 +3,8 @@ package org.anddev.andengine.util;
 
 import junit.framework.TestCase;
 
+import org.anddev.andengine.util.math.MathUtils;
+
 /**
  * @author Nicolas Gramlich
  * @since 19:03:16 - 03.04.2010

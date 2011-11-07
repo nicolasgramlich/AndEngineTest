@@ -136,8 +136,8 @@ public class SequenceModifierTest extends AndroidTestCase implements ISubSequenc
 		}
 
 		@Override
-		public IModifier<Object> clone() throws CloneNotSupportedException {
-			throw new CloneNotSupportedException();
+		public IModifier<Object> deepCopy() throws DeepCopyNotSupportedException {
+			return null;
 		}
 
 		// ===========================================================

@@ -34,6 +34,7 @@ public class AssertUtils {
 	public static void assertArrayEquals(final float[] pArrayA, final float[] pArrayB, final float pDelta) {
 		if(pArrayA == null || pArrayB == null) {
 			Assert.fail("One of the arrays was null.");
+			return;
 		}
 
 		if(pArrayA.length != pArrayB.length) {
@@ -42,6 +43,21 @@ public class AssertUtils {
 
 		for(int i = 0; i < pArrayA.length; i++) {
 			Assert.assertEquals("Index: [" + i + "] ", pArrayA[i], pArrayB[i], pDelta);
+		}
+	}
+
+	public static void assertArrayEquals(final byte[] pArrayA, final byte[] pArrayB) {
+		if(pArrayA == null || pArrayB == null) {
+			Assert.fail("One of the arrays was null.");
+			return;
+		}
+
+		if(pArrayA.length != pArrayB.length) {
+			Assert.fail("Arrays were not the same lenght.");
+		}
+
+		for(int i = 0; i < pArrayA.length; i++) {
+			Assert.assertEquals("Index: [" + i + "] ", pArrayA[i], pArrayB[i]);
 		}
 	}
 

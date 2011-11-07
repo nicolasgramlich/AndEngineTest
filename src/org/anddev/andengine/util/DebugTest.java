@@ -1,8 +1,9 @@
 package org.anddev.andengine.util;
 
-import org.anddev.andengine.util.Debug.DebugLevel;
-
 import junit.framework.TestCase;
+
+import org.anddev.andengine.util.debug.Debug;
+import org.anddev.andengine.util.debug.Debug.DebugLevel;
 
 /**
  * @author Nicolas Gramlich

@@ -1,5 +1,7 @@
 package org.anddev.andengine.util;
 
+import org.anddev.andengine.util.transformation.Transformation;
+
 import android.graphics.Matrix;
 import android.test.AndroidTestCase;
 

@@ -170,8 +170,8 @@ public class LoopModifierTest extends AndroidTestCase implements ILoopModifierLi
 		}
 
 		@Override
-		public IModifier<Object> clone() throws CloneNotSupportedException {
-			throw new CloneNotSupportedException();
+		public IModifier<Object> deepCopy() throws DeepCopyNotSupportedException {
+			return null;
 		}
 
 		// ===========================================================

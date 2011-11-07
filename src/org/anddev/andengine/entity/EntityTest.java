@@ -3,7 +3,7 @@ package org.anddev.andengine.entity;
 import junit.framework.Assert;
 
 import org.anddev.andengine.entity.primitive.Rectangle;
-import org.anddev.andengine.opengl.buffer.BufferObjectManager;
+import org.anddev.andengine.opengl.vbo.VertexBufferObjectManager;
 import org.anddev.andengine.util.AssertUtils;
 
 import android.test.AndroidTestCase;
@@ -19,8 +19,6 @@ public class EntityTest extends AndroidTestCase {
 
 	private static final float DELTA = 0.0001f;
 
-	private static final BufferObjectManager BUFFEROBJECTMANAGER = new BufferObjectManager();
-
 	// ===========================================================
 	// Fields
 	// ===========================================================
@@ -31,7 +29,8 @@ public class EntityTest extends AndroidTestCase {
 
 	@Override
 	public void setUp() throws Exception {
-		BufferObjectManager.setActiveInstance(BUFFEROBJECTMANAGER);
+		VertexBufferObjectManager.onDestroy();
+		VertexBufferObjectManager.onCreate();
 	}
 
 	@Override

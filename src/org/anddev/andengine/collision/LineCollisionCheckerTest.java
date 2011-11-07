@@ -4,7 +4,7 @@ import junit.framework.Assert;
 import junit.framework.TestCase;
 
 import org.anddev.andengine.entity.primitive.Line;
-import org.anddev.andengine.opengl.buffer.BufferObjectManager;
+import org.anddev.andengine.opengl.vbo.VertexBufferObjectManager;
 import org.anddev.andengine.util.constants.Constants;
 
 /**
@@ -18,8 +18,6 @@ public class LineCollisionCheckerTest extends TestCase {
 
 	private static final float DELTA = 0.0001f;
 
-	private static final BufferObjectManager BUFFEROBJECTMANAGER = new BufferObjectManager();
-
 	private static final float[] VERTICES = new float[4];
 
 	// ===========================================================
@@ -32,7 +30,8 @@ public class LineCollisionCheckerTest extends TestCase {
 
 	@Override
 	public void setUp() throws Exception {
-		BufferObjectManager.setActiveInstance(BUFFEROBJECTMANAGER);
+		VertexBufferObjectManager.onDestroy();
+		VertexBufferObjectManager.onCreate();
 	}
 
 	@Override

@@ -15,6 +15,7 @@ import org.anddev.andengine.entity.scene.menu.item.IMenuItem;
 import org.anddev.andengine.entity.scene.menu.item.SpriteMenuItem;
 import org.anddev.andengine.input.touch.TouchEvent;
 import org.anddev.andengine.opengl.texture.Texture;
+import org.anddev.andengine.opengl.texture.atlas.bitmap.BitmapTextureAtlas;
 import org.anddev.andengine.opengl.texture.region.TextureRegion;
 
 import android.os.SystemClock;
@@ -46,7 +47,7 @@ public class MenuSceneTest  extends AndroidTestCase {
 	private Scene mScene;
 	private MenuScene mMenuScene;
 
-	private final Texture mTexture = new Texture(2, 2);
+	private final Texture mTexture = new BitmapTextureAtlas(2, 2);
 
 	// ===========================================================
 	// Constructors

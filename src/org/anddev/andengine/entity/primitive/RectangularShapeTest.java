@@ -5,7 +5,7 @@ import junit.framework.Assert;
 import junit.framework.TestCase;
 
 import org.anddev.andengine.entity.shape.RectangularShape;
-import org.anddev.andengine.opengl.buffer.BufferObjectManager;
+import org.anddev.andengine.opengl.vbo.VertexBufferObjectManager;
 import org.anddev.andengine.util.AssertUtils;
 
 import android.util.FloatMath;
@@ -31,7 +31,8 @@ public class RectangularShapeTest extends TestCase {
 
 	@Override
 	protected void setUp() throws Exception {
-		BufferObjectManager.setActiveInstance(new BufferObjectManager());
+		VertexBufferObjectManager.onDestroy();
+		VertexBufferObjectManager.onCreate();
 	}
 
 	// ===========================================================
@@ -298,10 +299,11 @@ public class RectangularShapeTest extends TestCase {
 
 	private class TestRectangularShape extends RectangularShape {
 		public TestRectangularShape(final float pX, final float pY, final float pWidth, final float pHeight) {
-			super(pX, pY, pWidth, pHeight, null);
+			super(pX, pY, pWidth, pHeight, null, null);
 		}
 
 		@Override
-		protected void onUpdateVertexBuffer() {}
+		protected void onUpdateVertices() {
+		}
 	}
 }
