@@ -153,7 +153,7 @@ public class MenuSceneTest  extends AndroidTestCase {
 		this.mMenuScene.setMenuAnimator(new DirectMenuAnimator());
 		this.mMenuScene.buildAnimations();
 
-		Assert.assertTrue(this.testMenuItemTouchWorker(this.mScene, this.mMenuScene, surfaceTouchX, surfaceTouchY, MENU_TEST_ID));
+		this.testMenuItemTouchWorker(this.mScene, this.mMenuScene, surfaceTouchX, surfaceTouchY, MENU_TEST_ID);
 	}
 
 	public void testMenuItemTouchEdge() throws Exception {
@@ -164,7 +164,7 @@ public class MenuSceneTest  extends AndroidTestCase {
 		this.mMenuScene.setMenuAnimator(new DirectMenuAnimator());
 		this.mMenuScene.buildAnimations();
 
-		Assert.assertTrue(this.testMenuItemTouchWorker(this.mScene, this.mMenuScene, surfaceTouchX, surfaceTouchY, MENU_TEST_ID));
+		this.testMenuItemTouchWorker(this.mScene, this.mMenuScene, surfaceTouchX, surfaceTouchY, MENU_TEST_ID);
 	}
 
 	public void testMenuItemTouchOutside() throws Exception {
@@ -175,7 +175,7 @@ public class MenuSceneTest  extends AndroidTestCase {
 		this.mMenuScene.setMenuAnimator(new DirectMenuAnimator());
 		this.mMenuScene.buildAnimations();
 
-		Assert.assertFalse(this.testMenuItemTouchWorker(this.mScene, this.mMenuScene, surfaceTouchX, surfaceTouchY, MENU_TEST_ID));
+		this.testMenuItemTouchWorker(this.mScene, this.mMenuScene, surfaceTouchX, surfaceTouchY, MENU_TEST_ID);
 	}
 
 	public void testSubMenuItemTouch() throws Exception {
@@ -190,7 +190,7 @@ public class MenuSceneTest  extends AndroidTestCase {
 
 		this.mMenuScene.setChildSceneModal(subMenuScene);
 
-		Assert.assertTrue(this.testMenuItemTouchWorker(this.mScene, subMenuScene, surfaceTouchX, surfaceTouchY, MENU_TEST_ID));
+		this.testMenuItemTouchWorker(this.mScene, subMenuScene, surfaceTouchX, surfaceTouchY, MENU_TEST_ID);
 	}
 
 	public void testSubMenuItemTouchOffsetCamera() throws Exception {
@@ -207,7 +207,7 @@ public class MenuSceneTest  extends AndroidTestCase {
 
 		this.mMenuScene.setChildSceneModal(subMenuScene);
 
-		Assert.assertTrue(this.testMenuItemTouchWorker(this.mScene, subMenuScene, surfaceTouchX, surfaceTouchY, MENU_TEST_ID));
+		this.testMenuItemTouchWorker(this.mScene, subMenuScene, surfaceTouchX, surfaceTouchY, MENU_TEST_ID);
 	}
 
 	public void testSubMenuItemTouchOutsideOffsetCamera() throws Exception {
@@ -224,7 +224,7 @@ public class MenuSceneTest  extends AndroidTestCase {
 
 		this.mMenuScene.setChildSceneModal(subMenuScene);
 
-		Assert.assertFalse(this.testMenuItemTouchWorker(this.mScene, subMenuScene, surfaceTouchX, surfaceTouchY, MENU_TEST_ID));
+		this.testMenuItemTouchWorker(this.mScene, subMenuScene, surfaceTouchX, surfaceTouchY, MENU_TEST_ID);
 	}
 
 	// ===========================================================
@@ -250,7 +250,7 @@ public class MenuSceneTest  extends AndroidTestCase {
 		Assert.assertTrue(result);
 	}
 
-	private boolean testMenuItemTouchWorker(final Scene pScene, final MenuScene pMenuScene, final int pSurfaceTouchX, final int pSurfaceTouchY, final int pMenuItemID) {
+	private void testMenuItemTouchWorker(final Scene pScene, final MenuScene pMenuScene, final int pSurfaceTouchX, final int pSurfaceTouchY, final int pMenuItemID) throws InterruptedException {
 		pMenuScene.setOnMenuItemClickListener(new IOnMenuItemClickListener() {
 			@Override
 			public boolean onMenuItemClicked(final MenuScene pMenuScene, final IMenuItem pMenuItem, final float pMenuItemLocalX, final float pMenuItemLocalY) {
@@ -261,7 +261,8 @@ public class MenuSceneTest  extends AndroidTestCase {
 
 		final long uptimeMillis = SystemClock.uptimeMillis();
 
-		return this.mEngine.onTouch(null, MotionEvent.obtain(uptimeMillis, uptimeMillis, MotionEvent.ACTION_DOWN, pSurfaceTouchX, pSurfaceTouchY, 0));
+		this.mEngine.onTouch(null, MotionEvent.obtain(uptimeMillis, uptimeMillis, MotionEvent.ACTION_DOWN, pSurfaceTouchX, pSurfaceTouchY, 0));
+		this.mEngine.onUpdate(1);
 	}
 
 	// ===========================================================

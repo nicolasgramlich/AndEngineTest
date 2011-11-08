@@ -129,7 +129,7 @@ public class SceneTest extends AndroidTestCase {
 
 		final ITouchArea touchArea = new Rectangle(0, 0, 50, 50);
 
-		Assert.assertTrue(this.testAreaTouchWorker(this.mScene, surfaceTouchX, surfaceTouchY, touchArea));
+		this.testAreaTouchWorker(this.mScene, surfaceTouchX, surfaceTouchY, touchArea);
 	}
 
 	public void testAreaTouchOutside() throws Exception {
@@ -138,7 +138,7 @@ public class SceneTest extends AndroidTestCase {
 
 		final ITouchArea touchArea = new Rectangle(0, 0, 50, 50);
 
-		Assert.assertFalse(this.testAreaTouchWorker(this.mScene, surfaceTouchX, surfaceTouchY, touchArea));
+		this.testAreaTouchWorker(this.mScene, surfaceTouchX, surfaceTouchY, touchArea);
 	}
 
 	// ===========================================================
@@ -164,7 +164,7 @@ public class SceneTest extends AndroidTestCase {
 		Assert.assertTrue(result);
 	}
 
-	private boolean testAreaTouchWorker(final Scene pScene, final int pSurfaceTouchX, final int pSurfaceTouchY, final ITouchArea pExpectedTouchArea) {
+	private void testAreaTouchWorker(final Scene pScene, final int pSurfaceTouchX, final int pSurfaceTouchY, final ITouchArea pExpectedTouchArea) throws InterruptedException {
 		pScene.registerTouchArea(pExpectedTouchArea);
 
 		pScene.setOnAreaTouchListener(new IOnAreaTouchListener() {
@@ -177,7 +177,8 @@ public class SceneTest extends AndroidTestCase {
 
 		final long uptimeMillis = SystemClock.uptimeMillis();
 
-		return this.mEngine.onTouch(null, MotionEvent.obtain(uptimeMillis, uptimeMillis, MotionEvent.ACTION_DOWN, pSurfaceTouchX, pSurfaceTouchY, 0));
+		this.mEngine.onTouch(null, MotionEvent.obtain(uptimeMillis, uptimeMillis, MotionEvent.ACTION_DOWN, pSurfaceTouchX, pSurfaceTouchY, 0));
+		this.mEngine.onUpdate(1);
 	}
 
 	// ===========================================================
