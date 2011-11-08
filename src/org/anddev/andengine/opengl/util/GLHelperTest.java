@@ -1,5 +1,7 @@
 package org.anddev.andengine.opengl.util;
 
+import java.nio.ByteOrder;
+
 import junit.framework.TestCase;
 
 import org.anddev.andengine.util.AssertUtils;
@@ -36,42 +38,18 @@ public class GLHelperTest extends TestCase {
 	// ===========================================================
 
 	public void testConvertARGB_8888toRGBA_8888() {
-		final int[] actual = GLHelper.convertARGB_8888toRGBA_8888(new int[] { 0xFECB8754 });
-
-		final int[] expected;
-		if(GLHelper.IS_LITTLE_ENDIAN) {
-			expected = new int[] { 0xFE5487CB };
-		} else {
-			expected = new int[] { 0xCB8754FE };
-		}
-
-		AssertUtils.assertArrayEquals(expected, actual);
+		AssertUtils.assertArrayEquals(new int[] { 0xFE5487CB }, GLHelper.convertARGB_8888toRGBA_8888(new int[] { 0xFECB8754 }, ByteOrder.LITTLE_ENDIAN));
+		AssertUtils.assertArrayEquals(new int[] { 0xCB8754FE }, GLHelper.convertARGB_8888toRGBA_8888(new int[] { 0xFECB8754 }, ByteOrder.BIG_ENDIAN));
 	}
 
 	public void testConvertARGB_8888toRGBA_4444() {
-		final short[] actual = GLHelper.convertARGB_8888toRGBA_4444(new int[] { 0xFECB8754 });
-
-		final short[] expected;
-		if(GLHelper.IS_LITTLE_ENDIAN) {
-			expected = new short[] { (short) 0x5FC8 };
-		} else {
-			expected = new short[] { (short) 0xC85F };
-		}
-
-		AssertUtils.assertArrayEquals(expected, actual);
+		AssertUtils.assertArrayEquals(new short[] { (short) 0x5FC8 }, GLHelper.convertARGB_8888toRGBA_4444(new int[] { 0xFECB8754 }, ByteOrder.LITTLE_ENDIAN));
+		AssertUtils.assertArrayEquals(new short[] { (short) 0xC85F }, GLHelper.convertARGB_8888toRGBA_4444(new int[] { 0xFECB8754 }, ByteOrder.BIG_ENDIAN));
 	}
 
 	public void testConvertARGB_8888toRGBA_565() {
-		final short[] actual = GLHelper.convertARGB_8888toRGB_565(new int[] { 0xFECB8754 });
-
-		final short[] expected;
-		if(GLHelper.IS_LITTLE_ENDIAN) {
-			expected = new short[] { (short) 0x2ACC };
-		} else {
-			expected = new short[] { (short) 0xCC2A };
-		}
-
-		AssertUtils.assertArrayEquals(expected, actual);
+		AssertUtils.assertArrayEquals(new short[] { (short) 0x2ACC }, GLHelper.convertARGB_8888toRGB_565(new int[] { 0xFECB8754 }, ByteOrder.LITTLE_ENDIAN));
+		AssertUtils.assertArrayEquals(new short[] { (short) 0xCC2A }, GLHelper.convertARGB_8888toRGB_565(new int[] { 0xFECB8754 }, ByteOrder.BIG_ENDIAN));
 	}
 
 	public void testConvertARGB_8888toA_8() {
