@@ -5,6 +5,7 @@ import junit.framework.Assert;
 import junit.framework.TestCase;
 
 import org.anddev.andengine.entity.shape.RectangularShape;
+import org.anddev.andengine.opengl.vbo.IVertexBufferObject;
 import org.anddev.andengine.opengl.vbo.VertexBufferObjectManager;
 import org.anddev.andengine.util.AssertUtils;
 
@@ -299,11 +300,16 @@ public class RectangularShapeTest extends TestCase {
 
 	private class TestRectangularShape extends RectangularShape {
 		public TestRectangularShape(final float pX, final float pY, final float pWidth, final float pHeight) {
-			super(pX, pY, pWidth, pHeight, null, null);
+			super(pX, pY, pWidth, pHeight, null);
 		}
 
 		@Override
 		protected void onUpdateVertices() {
+		}
+
+		@Override
+		public IVertexBufferObject getVertexBufferObject() {
+			return null;
 		}
 	}
 }

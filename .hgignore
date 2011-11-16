@@ -1,4 +1,11 @@
 syntax: glob
 bin/**
+doc/**
+gen/**
 .DS_Store
 Thumbs.db
+gdb.setup
+gdbserver
+.svn
+local.properties
+.settings
