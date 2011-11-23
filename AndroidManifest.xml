@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-	package="org.anddev.andengine.test"
+	package="org.andengine.test"
 	android:versionCode="1"
 	android:versionName="1.0">
     
@@ -9,5 +9,5 @@
 	</application>
     
 	<uses-sdk android:minSdkVersion="4" />
-	<instrumentation android:targetPackage="org.anddev.andengine" android:name="android.test.InstrumentationTestRunner" />
+	<instrumentation android:targetPackage="org.andengine" android:name="android.test.InstrumentationTestRunner" />
 </manifest> 
