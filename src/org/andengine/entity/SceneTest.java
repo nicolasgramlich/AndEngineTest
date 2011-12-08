@@ -42,7 +42,7 @@ public class SceneTest extends AndroidTestCase {
 	@Override
 	public void setUp() throws Exception {
 		this.mCamera = new Camera(0, 0, 100, 100);
-		this.mEngine = new Engine(new EngineOptions(true, ScreenOrientation.PORTRAIT, new FillResolutionPolicy(), this.mCamera));
+		this.mEngine = new Engine(new EngineOptions(true, ScreenOrientation.PORTRAIT_FIXED, new FillResolutionPolicy(), this.mCamera));
 		this.mEngine.setSurfaceSize(100, 100);
 
 		this.mScene = new Scene();

@@ -45,7 +45,7 @@ public class ZoomCameraTest  extends AndroidTestCase {
 	@Override
 	public void setUp() throws Exception {
 		this.mZoomCamera = new ZoomCamera(0, 0, CAMERA_WIDTH, CAMERA_HEIGHT);
-		this.mEngine = new Engine(new EngineOptions(true, ScreenOrientation.PORTRAIT, new FillResolutionPolicy(), this.mZoomCamera));
+		this.mEngine = new Engine(new EngineOptions(true, ScreenOrientation.PORTRAIT_FIXED, new FillResolutionPolicy(), this.mZoomCamera));
 		this.mEngine.setSurfaceSize(CAMERA_WIDTH, CAMERA_HEIGHT);
 
 		this.mScene = new Scene();

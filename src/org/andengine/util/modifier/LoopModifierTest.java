@@ -24,8 +24,6 @@ public class LoopModifierTest extends AndroidTestCase implements ILoopModifierLi
 	// Fields
 	// ===========================================================
 
-	private LoopModifier<Object> mLoopModifier;
-
 	private int mLoopsStarted;
 	private int mLoopsFinished;
 
@@ -64,12 +62,12 @@ public class LoopModifierTest extends AndroidTestCase implements ILoopModifierLi
 
 	public void testDuration() throws Exception {
 		float elapsed;
-		this.mLoopModifier = new LoopModifier<Object>(new DummyModifier(DURATION), LoopModifier.LOOP_CONTINUOUS, this);
+		final LoopModifier<Object> loopModifier = new LoopModifier<Object>(new DummyModifier(DURATION), LoopModifier.LOOP_CONTINUOUS, this);
 
 		Assert.assertEquals(0, this.mLoopsStarted);
 		Assert.assertEquals(0, this.mLoopsFinished);
 
-		elapsed = this.mLoopModifier.onUpdate(DURATION, null);
+		elapsed = loopModifier.onUpdate(DURATION, null);
 		Assert.assertEquals(DURATION, elapsed, DELTA);
 
 		Assert.assertEquals(1, this.mLoopsStarted);
@@ -78,18 +76,18 @@ public class LoopModifierTest extends AndroidTestCase implements ILoopModifierLi
 
 	public void testDurationNonContinuous() throws Exception {
 		float elapsed;
-		this.mLoopModifier = new LoopModifier<Object>(new DummyModifier(DURATION), 1, this);
+		final LoopModifier<Object> loopModifier = new LoopModifier<Object>(new DummyModifier(DURATION), 1, this);
 
 		Assert.assertEquals(0, this.mLoopsStarted);
 		Assert.assertEquals(0, this.mLoopsFinished);
 
-		elapsed = this.mLoopModifier.onUpdate(DURATION, null);
+		elapsed = loopModifier.onUpdate(DURATION, null);
 		Assert.assertEquals(DURATION, elapsed, DELTA);
 
 		Assert.assertEquals(1, this.mLoopsStarted);
 		Assert.assertEquals(1, this.mLoopsFinished);
 
-		elapsed = this.mLoopModifier.onUpdate(DURATION, null);
+		elapsed = loopModifier.onUpdate(DURATION, null);
 		Assert.assertEquals(0, elapsed, DELTA);
 		
 		Assert.assertEquals(1, this.mLoopsStarted);
@@ -99,35 +97,35 @@ public class LoopModifierTest extends AndroidTestCase implements ILoopModifierLi
 
 	public void testDurationNonContinuousAlmost() throws Exception {
 		float elapsed;
-		this.mLoopModifier = new LoopModifier<Object>(new DummyModifier(DURATION), 1, this);
+		final LoopModifier<Object> loopModifier = new LoopModifier<Object>(new DummyModifier(DURATION), 1, this);
 
 		Assert.assertEquals(0, this.mLoopsStarted);
 		Assert.assertEquals(0, this.mLoopsFinished);
 
-		elapsed = this.mLoopModifier.onUpdate(DURATION - DURATION_DELTA, null);
+		elapsed = loopModifier.onUpdate(DURATION - DURATION_DELTA, null);
 		Assert.assertEquals(DURATION - DURATION_DELTA, elapsed, DELTA);
 
 		Assert.assertEquals(1, this.mLoopsStarted);
 		Assert.assertEquals(0, this.mLoopsFinished);
 
-		elapsed = this.mLoopModifier.onUpdate(DURATION_DELTA, null);
+		elapsed = loopModifier.onUpdate(DURATION_DELTA, null);
 		Assert.assertEquals(DURATION_DELTA, elapsed, DELTA);
 	}
 
 	public void testDurationAlmost() throws Exception {
 		float elapsed;
-		this.mLoopModifier = new LoopModifier<Object>(new DummyModifier(DURATION), LoopModifier.LOOP_CONTINUOUS, this);
+		final LoopModifier<Object> loopModifier = new LoopModifier<Object>(new DummyModifier(DURATION), LoopModifier.LOOP_CONTINUOUS, this);
 
 		Assert.assertEquals(0, this.mLoopsStarted);
 		Assert.assertEquals(0, this.mLoopsFinished);
 
-		elapsed = this.mLoopModifier.onUpdate(DURATION - DURATION_DELTA, null);
+		elapsed = loopModifier.onUpdate(DURATION - DURATION_DELTA, null);
 		Assert.assertEquals(DURATION - DURATION_DELTA, elapsed, DELTA);
 
 		Assert.assertEquals(1, this.mLoopsStarted);
 		Assert.assertEquals(0, this.mLoopsFinished);
 
-		elapsed = this.mLoopModifier.onUpdate(2 * DURATION_DELTA, null);
+		elapsed = loopModifier.onUpdate(2 * DURATION_DELTA, null);
 		Assert.assertEquals(2 * DURATION_DELTA, elapsed, DELTA);
 
 		Assert.assertEquals(2, this.mLoopsStarted);
@@ -136,16 +134,27 @@ public class LoopModifierTest extends AndroidTestCase implements ILoopModifierLi
 
 	public void testDurationDouble() throws Exception {
 		float elapsed;
-		this.mLoopModifier = new LoopModifier<Object>(new DummyModifier(DURATION), LoopModifier.LOOP_CONTINUOUS, this);
+		final LoopModifier<Object> loopModifier = new LoopModifier<Object>(new DummyModifier(DURATION), LoopModifier.LOOP_CONTINUOUS, this);
 
 		Assert.assertEquals(0, this.mLoopsStarted);
 		Assert.assertEquals(0, this.mLoopsFinished);
 
-		elapsed = this.mLoopModifier.onUpdate(2 * DURATION, null);
+		elapsed = loopModifier.onUpdate(2 * DURATION, null);
 		Assert.assertEquals(2 * DURATION, elapsed, DELTA);
 
 		Assert.assertEquals(2, this.mLoopsStarted);
 		Assert.assertEquals(2, this.mLoopsFinished);
+	}
+
+	@SuppressWarnings("unchecked")
+	public void testLoopSequenceLoopSequenceNesting() throws Exception {
+		final SequenceModifier<Object> innerSequenceModifier = new SequenceModifier<Object>(new DummyModifier(DURATION), new DummyModifier(DURATION));
+		final LoopModifier<Object> innerLoopModifier = new LoopModifier<Object>(innerSequenceModifier, 3);
+		final SequenceModifier<Object> outerSequenceModifier = new SequenceModifier<Object>(new IModifier[]{innerLoopModifier, new DummyModifier(DURATION)});
+		final LoopModifier<Object> outerLoopModifier = new LoopModifier<Object>(outerSequenceModifier);
+		
+		/* Should not cause an infinite loop. */
+		outerLoopModifier.onUpdate(1000, null);
 	}
 
 	// ===========================================================
