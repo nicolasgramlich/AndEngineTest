@@ -23,14 +23,16 @@ public class EntityTest extends AndroidTestCase {
 	// Fields
 	// ===========================================================
 
+	private final VertexBufferObjectManager mVertexBufferObjectManager = new VertexBufferObjectManager();
+
 	// ===========================================================
 	// Constructors
 	// ===========================================================
 
 	@Override
 	public void setUp() throws Exception {
-		VertexBufferObjectManager.onDestroy();
-		VertexBufferObjectManager.onCreate();
+		this.mVertexBufferObjectManager.onDestroy();
+		this.mVertexBufferObjectManager.onCreate();
 	}
 
 	@Override
@@ -249,7 +251,7 @@ public class EntityTest extends AndroidTestCase {
 	}
 
 	public void testConvertSceneToLocalCoordinatesNotOriginWithScale2() throws Exception {
-		final Rectangle rectangle = new Rectangle(5, 5, 5, 5);
+		final Rectangle rectangle = new Rectangle(5, 5, 5, 5, this.mVertexBufferObjectManager);
 
 		final float testX = 7.5f;
 		final float testY = 7.5f;
@@ -261,7 +263,7 @@ public class EntityTest extends AndroidTestCase {
 	}
 
 	public void testConvertSceneToLocalCoordinatesNotOriginWithScale3() throws Exception {
-		final Rectangle rectangle = new Rectangle(5, 5, 5, 5);
+		final Rectangle rectangle = new Rectangle(5, 5, 5, 5, this.mVertexBufferObjectManager);
 		rectangle.setScale(2);
 
 		final float testX = 7.5f;
@@ -274,7 +276,7 @@ public class EntityTest extends AndroidTestCase {
 	}
 
 	public void testRectangleContains() throws Exception {
-		final Rectangle rectangle = new Rectangle(0, 0, 10, 10);
+		final Rectangle rectangle = new Rectangle(0, 0, 10, 10, this.mVertexBufferObjectManager);
 
 		Assert.assertTrue(rectangle.contains(5, 5));
 		Assert.assertTrue(rectangle.contains(0, 0));
@@ -289,7 +291,7 @@ public class EntityTest extends AndroidTestCase {
 	}
 
 	public void testRectangleContainsWithScale() throws Exception {
-		final Rectangle rectangle = new Rectangle(0, 0, 10, 10);
+		final Rectangle rectangle = new Rectangle(0, 0, 10, 10, this.mVertexBufferObjectManager);
 		rectangle.setScale(2);
 
 		Assert.assertTrue(rectangle.contains(5, 5));
@@ -306,7 +308,7 @@ public class EntityTest extends AndroidTestCase {
 
 	public void testRectangleContainsOriginWithParent() throws Exception {
 		final IEntity parent = new Entity(0, 0);
-		final Rectangle rectangle = new Rectangle(0, 0, 10, 10);
+		final Rectangle rectangle = new Rectangle(0, 0, 10, 10, this.mVertexBufferObjectManager);
 		rectangle.setParent(parent);
 
 		Assert.assertTrue(rectangle.contains(5, 5));
@@ -323,7 +325,7 @@ public class EntityTest extends AndroidTestCase {
 
 	public void testRectangleContainsOriginWithParentAndScale() throws Exception {
 		final IEntity parent = new Entity(0, 0);
-		final Rectangle rectangle = new Rectangle(0, 0, 10, 10);
+		final Rectangle rectangle = new Rectangle(0, 0, 10, 10, this.mVertexBufferObjectManager);
 		rectangle.setParent(parent);
 		rectangle.setScale(2);
 
@@ -342,7 +344,7 @@ public class EntityTest extends AndroidTestCase {
 	public void testRectangleContainsOriginWithParentAndScale2() throws Exception {
 		final IEntity parent = new Entity(0, 0);
 		parent.setScale(2);
-		final Rectangle rectangle = new Rectangle(0, 0, 10, 10);
+		final Rectangle rectangle = new Rectangle(0, 0, 10, 10, this.mVertexBufferObjectManager);
 		rectangle.setParent(parent);
 
 		Assert.assertTrue(rectangle.contains(10, 10));
@@ -360,7 +362,7 @@ public class EntityTest extends AndroidTestCase {
 	public void testRectangleContainsOriginWithParentAndScale3() throws Exception {
 		final IEntity parent = new Entity(0, 0);
 		parent.setScale(2);
-		final Rectangle rectangle = new Rectangle(0, 0, 10, 10);
+		final Rectangle rectangle = new Rectangle(0, 0, 10, 10, this.mVertexBufferObjectManager);
 		rectangle.setParent(parent);
 		rectangle.setScale(2);
 
@@ -378,7 +380,7 @@ public class EntityTest extends AndroidTestCase {
 
 	public void testRectangleContainsNonOriginWithParent() throws Exception {
 		final IEntity parent = new Entity(5, 5);
-		final Rectangle rectangle = new Rectangle(0, 0, 10, 10);
+		final Rectangle rectangle = new Rectangle(0, 0, 10, 10, this.mVertexBufferObjectManager);
 		rectangle.setParent(parent);
 
 		Assert.assertTrue(rectangle.contains(10, 10));
@@ -395,7 +397,7 @@ public class EntityTest extends AndroidTestCase {
 
 	public void testRectangleContainsNonOriginWithParent2() throws Exception {
 		final IEntity parent = new Entity(5, 5);
-		final Rectangle rectangle = new Rectangle(5, 5, 10, 10);
+		final Rectangle rectangle = new Rectangle(5, 5, 10, 10, this.mVertexBufferObjectManager);
 		rectangle.setParent(parent);
 
 		Assert.assertTrue(rectangle.contains(15, 15));

@@ -13,6 +13,7 @@ import org.andengine.entity.scene.Scene.IOnAreaTouchListener;
 import org.andengine.entity.scene.Scene.IOnSceneTouchListener;
 import org.andengine.entity.scene.Scene.ITouchArea;
 import org.andengine.input.touch.TouchEvent;
+import org.andengine.opengl.vbo.VertexBufferObjectManager;
 
 import android.os.SystemClock;
 import android.test.AndroidTestCase;
@@ -32,6 +33,7 @@ public class SceneTest extends AndroidTestCase {
 	// ===========================================================
 
 	private Engine mEngine;
+	private VertexBufferObjectManager mVertexBufferObjectManager;
 	private Camera mCamera;
 	private Scene mScene;
 
@@ -44,6 +46,8 @@ public class SceneTest extends AndroidTestCase {
 		this.mCamera = new Camera(0, 0, 100, 100);
 		this.mEngine = new Engine(new EngineOptions(true, ScreenOrientation.PORTRAIT_FIXED, new FillResolutionPolicy(), this.mCamera));
 		this.mEngine.setSurfaceSize(100, 100);
+
+		this.mVertexBufferObjectManager = this.mEngine.getVertexBufferObjectManager();
 
 		this.mScene = new Scene();
 
@@ -127,7 +131,7 @@ public class SceneTest extends AndroidTestCase {
 		final int surfaceTouchX = 50;
 		final int surfaceTouchY = 50;
 
-		final ITouchArea touchArea = new Rectangle(0, 0, 50, 50);
+		final ITouchArea touchArea = new Rectangle(0, 0, 50, 50, this.mVertexBufferObjectManager);
 
 		this.testAreaTouchWorker(this.mScene, surfaceTouchX, surfaceTouchY, touchArea);
 	}
@@ -136,7 +140,7 @@ public class SceneTest extends AndroidTestCase {
 		final int surfaceTouchX = 51;
 		final int surfaceTouchY = 51;
 
-		final ITouchArea touchArea = new Rectangle(0, 0, 50, 50);
+		final ITouchArea touchArea = new Rectangle(0, 0, 50, 50, this.mVertexBufferObjectManager);
 
 		this.testAreaTouchWorker(this.mScene, surfaceTouchX, surfaceTouchY, touchArea);
 	}

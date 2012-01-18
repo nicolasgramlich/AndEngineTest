@@ -17,6 +17,7 @@ import org.andengine.input.touch.TouchEvent;
 import org.andengine.opengl.texture.Texture;
 import org.andengine.opengl.texture.atlas.bitmap.BitmapTextureAtlas;
 import org.andengine.opengl.texture.region.TextureRegion;
+import org.andengine.opengl.vbo.VertexBufferObjectManager;
 
 import android.os.SystemClock;
 import android.test.AndroidTestCase;
@@ -43,6 +44,7 @@ public class MenuSceneTest  extends AndroidTestCase {
 	// ===========================================================
 
 	private Engine mEngine;
+	private VertexBufferObjectManager mVertexBufferObjectManager;
 	private Camera mCamera;
 	private Scene mScene;
 	private MenuScene mMenuScene;
@@ -58,6 +60,8 @@ public class MenuSceneTest  extends AndroidTestCase {
 		this.mCamera = new Camera(0, 0, CAMERA_WIDTH, CAMERA_HEIGHT);
 		this.mEngine = new Engine(new EngineOptions(true, ScreenOrientation.PORTRAIT_FIXED, new FillResolutionPolicy(), this.mCamera));
 		this.mEngine.setSurfaceSize(CAMERA_WIDTH, CAMERA_HEIGHT);
+
+		this.mVertexBufferObjectManager = this.mEngine.getVertexBufferObjectManager();
 
 		this.mScene = new Scene();
 
@@ -149,7 +153,7 @@ public class MenuSceneTest  extends AndroidTestCase {
 		final int surfaceTouchX = 50;
 		final int surfaceTouchY = 50;
 
-		this.mMenuScene.addMenuItem(new SpriteMenuItem(MENU_TEST_ID, new TextureRegion(this.mTexture, 0, 0, 50, 50)));
+		this.mMenuScene.addMenuItem(new SpriteMenuItem(MENU_TEST_ID, new TextureRegion(this.mTexture, 0, 0, 50, 50), this.mVertexBufferObjectManager));
 		this.mMenuScene.setMenuAnimator(new DirectMenuAnimator());
 		this.mMenuScene.buildAnimations();
 
@@ -160,7 +164,7 @@ public class MenuSceneTest  extends AndroidTestCase {
 		final int surfaceTouchX = 75;
 		final int surfaceTouchY = 75;
 
-		this.mMenuScene.addMenuItem(new SpriteMenuItem(MENU_TEST_ID, new TextureRegion(this.mTexture, 0, 0, 50, 50)));
+		this.mMenuScene.addMenuItem(new SpriteMenuItem(MENU_TEST_ID, new TextureRegion(this.mTexture, 0, 0, 50, 50), this.mVertexBufferObjectManager));
 		this.mMenuScene.setMenuAnimator(new DirectMenuAnimator());
 		this.mMenuScene.buildAnimations();
 
@@ -171,7 +175,7 @@ public class MenuSceneTest  extends AndroidTestCase {
 		final int surfaceTouchX = 76;
 		final int surfaceTouchY = 76;
 
-		this.mMenuScene.addMenuItem(new SpriteMenuItem(MENU_TEST_ID, new TextureRegion(this.mTexture, 0, 0, 50, 50)));
+		this.mMenuScene.addMenuItem(new SpriteMenuItem(MENU_TEST_ID, new TextureRegion(this.mTexture, 0, 0, 50, 50), this.mVertexBufferObjectManager));
 		this.mMenuScene.setMenuAnimator(new DirectMenuAnimator());
 		this.mMenuScene.buildAnimations();
 
@@ -184,7 +188,7 @@ public class MenuSceneTest  extends AndroidTestCase {
 
 		final MenuScene subMenuScene = new MenuScene(this.mCamera);
 
-		subMenuScene.addMenuItem(new SpriteMenuItem(MENU_TEST_ID, new TextureRegion(this.mTexture, 0, 0, 50, 50)));
+		subMenuScene.addMenuItem(new SpriteMenuItem(MENU_TEST_ID, new TextureRegion(this.mTexture, 0, 0, 50, 50), this.mVertexBufferObjectManager));
 		subMenuScene.setMenuAnimator(new DirectMenuAnimator());
 		subMenuScene.buildAnimations();
 
@@ -201,7 +205,7 @@ public class MenuSceneTest  extends AndroidTestCase {
 
 		final MenuScene subMenuScene = new MenuScene(this.mCamera);
 
-		subMenuScene.addMenuItem(new SpriteMenuItem(MENU_TEST_ID, new TextureRegion(this.mTexture, 0, 0, 50, 50)));
+		subMenuScene.addMenuItem(new SpriteMenuItem(MENU_TEST_ID, new TextureRegion(this.mTexture, 0, 0, 50, 50), this.mVertexBufferObjectManager));
 		subMenuScene.setMenuAnimator(new DirectMenuAnimator());
 		subMenuScene.buildAnimations();
 
@@ -218,7 +222,7 @@ public class MenuSceneTest  extends AndroidTestCase {
 
 		final MenuScene subMenuScene = new MenuScene(this.mCamera);
 
-		subMenuScene.addMenuItem(new SpriteMenuItem(MENU_TEST_ID, new TextureRegion(this.mTexture, 0, 0, 50, 50)));
+		subMenuScene.addMenuItem(new SpriteMenuItem(MENU_TEST_ID, new TextureRegion(this.mTexture, 0, 0, 50, 50), this.mVertexBufferObjectManager));
 		subMenuScene.setMenuAnimator(new DirectMenuAnimator());
 		subMenuScene.buildAnimations();
 

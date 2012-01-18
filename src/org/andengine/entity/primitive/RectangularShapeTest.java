@@ -6,7 +6,6 @@ import junit.framework.TestCase;
 
 import org.andengine.entity.shape.RectangularShape;
 import org.andengine.opengl.vbo.IVertexBufferObject;
-import org.andengine.opengl.vbo.VertexBufferObjectManager;
 import org.andengine.util.AssertUtils;
 
 import android.util.FloatMath;
@@ -29,12 +28,6 @@ public class RectangularShapeTest extends TestCase {
 	// ===========================================================
 	// Constructors
 	// ===========================================================
-
-	@Override
-	protected void setUp() throws Exception {
-		VertexBufferObjectManager.onDestroy();
-		VertexBufferObjectManager.onCreate();
-	}
 
 	// ===========================================================
 	// Getter & Setter
