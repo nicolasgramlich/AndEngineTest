@@ -192,12 +192,12 @@ public class BlackPawnTextureAtlasBuilderTest extends TestCase {
 		}
 
 		@Override
-		public int getHeight() {
+		public int getTextureHeight() {
 			return this.mHeight;
 		}
 
 		@Override
-		public int getWidth() {
+		public int getTextureWidth() {
 			return this.mWidth;
 		}
 
@@ -207,21 +207,29 @@ public class BlackPawnTextureAtlasBuilderTest extends TestCase {
 		}
 
 		@Override
-		public int getTexturePositionX() {
+		public int getTextureX() {
 			return 0;
 		}
 
 		@Override
-		public int getTexturePositionY() {
+		public int getTextureY() {
 			return 0;
 		}
 
 		@Override
-		public void setTexturePositionX(int pTexturePositionX) {
+		public void setTextureX(final int pTextureX) {
 		}
 
 		@Override
-		public void setTexturePositionY(int pTexturePositionY) {
+		public void setTextureY(final int pTextureY) {
+		}
+
+		@Override
+		public void setTextureWidth(final int pTextureWidth) {
+		}
+
+		@Override
+		public void setTextureHeight(final int pTextureHeight) {
 		}
 		
 		@Override
