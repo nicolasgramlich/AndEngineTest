@@ -54,43 +54,43 @@ public class StringUtilsTest extends TestCase {
 	}
 
 	public void testSplitSimple() {
-		final String[] split = StringUtils.split("a\nb", '\n');
+		final String[] split = StringUtils.split("a\nb", '\n').toArray(new String[2]);
 		Assert.assertEquals(2, split.length);
 		this.assertArrayEquals(new String[]{"a", "b"}, split);
 	}
 
 	public void testSplitSimple2() {
-		final String[] split = StringUtils.split("a\nb\nc", '\n');
+		final String[] split = StringUtils.split("a\nb\nc", '\n').toArray(new String[3]);
 		Assert.assertEquals(3, split.length);
 		this.assertArrayEquals(new String[]{"a", "b", "c"}, split);
 	}
 
 	public void testSplitSimple3() {
-		final String[] split = StringUtils.split("a\nb\nc\n", '\n');
+		final String[] split = StringUtils.split("a\nb\nc\n", '\n').toArray(new String[4]);
 		Assert.assertEquals(4, split.length);
 		this.assertArrayEquals(new String[]{"a", "b", "c", ""}, split);
 	}
 
 	public void testSplitEmpty() {
-		final String[] split = StringUtils.split("", '\n');
+		final String[] split = StringUtils.split("", '\n').toArray(new String[1]);
 		Assert.assertEquals(1, split.length);
 		this.assertArrayEquals(new String[]{""}, split);
 	}
 
 	public void testSplitEmpty2() {
-		final String[] split = StringUtils.split("\n", '\n');
+		final String[] split = StringUtils.split("\n", '\n').toArray(new String[2]);
 		Assert.assertEquals(2, split.length);
 		this.assertArrayEquals(new String[]{"", ""}, split);
 	}
 
 	public void testSplitEmptyLines() {
-		final String[] split = StringUtils.split("\n\na", '\n');
+		final String[] split = StringUtils.split("\n\na", '\n').toArray(new String[3]);
 		Assert.assertEquals(3, split.length);
 		this.assertArrayEquals(new String[]{"", "", "a"}, split);
 	}
 
 	public void testSplitEmptyLines2() {
-		final String[] split = StringUtils.split("\n\n\n", '\n');
+		final String[] split = StringUtils.split("\n\n\n", '\n').toArray(new String[4]);
 		Assert.assertEquals(4, split.length);
 		this.assertArrayEquals(new String[]{"", "", "", ""}, split);
 	}
