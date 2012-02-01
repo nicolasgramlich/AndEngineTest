@@ -8,7 +8,7 @@
     
 	<uses-sdk android:minSdkVersion="8" android:targetSdkVersion="8"/>
 
-	<application android:debuggable="true" android:icon="@drawable/icon">
+	<application android:debuggable="true">
 		<uses-library android:name="android.test.runner" />
 	</application>
     

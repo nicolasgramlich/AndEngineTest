@@ -166,7 +166,7 @@ public class FontUtilsTest extends TestCase {
 
 	
 	private void runSplitLinesTest(final String pText, final int pLineWidthMaximum, final String ... pExpectedLines) {
-		final ArrayList<String> result = new ArrayList<String>();
+		final ArrayList<CharSequence> result = new ArrayList<CharSequence>();
 		Assert.assertEquals(pExpectedLines.length, FontUtils.splitLines(this.mFont, pText, result, pLineWidthMaximum).size());
 		AssertUtils.assertArrayEquals(pExpectedLines, result.toArray(new String[pExpectedLines.length]));
 	}
