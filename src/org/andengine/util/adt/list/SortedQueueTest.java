@@ -57,7 +57,7 @@ public class SortedQueueTest extends TestCase {
 		Assert.assertEquals(2, this.mIntegerSortedQueue.poll().intValue());
 	}
 
-	public void testTwoItemsRevereseOrder() {
+	public void testTwoItemsReverseOrder() {
 		this.mIntegerSortedQueue.enter(2);
 		this.mIntegerSortedQueue.enter(1);
 
