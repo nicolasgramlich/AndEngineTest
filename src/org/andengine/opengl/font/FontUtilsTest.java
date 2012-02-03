@@ -22,7 +22,7 @@ public class FontUtilsTest extends TestCase {
 	// Constants
 	// ===========================================================
 
-	protected static final int WIDTH = 0;
+	protected static final int WIDTH = 10;
 	protected static final int HEIGHT = 0;
 	protected static final float OFFSET_X = 0;
 	protected static final float OFFSET_Y = 0;
