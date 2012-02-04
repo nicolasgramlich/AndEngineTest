@@ -3,14 +3,14 @@ package org.andengine.util.adt.list;
 import junit.framework.Assert;
 import junit.framework.TestCase;
 
-import org.andengine.util.adt.list.ShiftQueue;
-import org.andengine.util.adt.list.SortedQueue;
+import org.andengine.util.adt.list.ShiftList;
+import org.andengine.util.adt.list.SortedList;
 
 /**
  * @author Nicolas Gramlich
  * @since 22:31:38 - 16.09.2010
  */
-public class SortedQueueTest extends TestCase {
+public class SortedListTest extends TestCase {
 	// ===========================================================
 	// Constants
 	// ===========================================================
@@ -19,16 +19,16 @@ public class SortedQueueTest extends TestCase {
 	// Fields
 	// ===========================================================
 
-	private SortedQueue<Integer> mIntegerSortedQueue;
-	private SortedQueue<UniqueInteger> mUniqueIntegerSortedQueue;
+	private SortedList<Integer> mIntegerSortedQueue;
+	private SortedList<UniqueInteger> mUniqueIntegerSortedQueue;
 	// ===========================================================
 	// Constructors
 	// ===========================================================
 
 	@Override
 	protected void setUp() throws Exception {
-		this.mIntegerSortedQueue = new SortedQueue<Integer>(new ShiftQueue<Integer>(1));
-		this.mUniqueIntegerSortedQueue = new SortedQueue<UniqueInteger>(new ShiftQueue<UniqueInteger>(1));
+		this.mIntegerSortedQueue = new SortedList<Integer>(new ShiftList<Integer>(1));
+		this.mUniqueIntegerSortedQueue = new SortedList<UniqueInteger>(new ShiftList<UniqueInteger>(1));
 	}
 
 	// ===========================================================
@@ -44,57 +44,57 @@ public class SortedQueueTest extends TestCase {
 	// ===========================================================
 
 	public void testSingleItem() {
-		this.mIntegerSortedQueue.enter(1);
+		this.mIntegerSortedQueue.add(1);
 
-		Assert.assertEquals(1, this.mIntegerSortedQueue.poll().intValue());
+		Assert.assertEquals(1, this.mIntegerSortedQueue.removeFirst().intValue());
 	}
 
 	public void testTwoItemsCorrectOrder() {
-		this.mIntegerSortedQueue.enter(1);
-		this.mIntegerSortedQueue.enter(2);
+		this.mIntegerSortedQueue.add(1);
+		this.mIntegerSortedQueue.add(2);
 
-		Assert.assertEquals(1, this.mIntegerSortedQueue.poll().intValue());
-		Assert.assertEquals(2, this.mIntegerSortedQueue.poll().intValue());
+		Assert.assertEquals(1, this.mIntegerSortedQueue.removeFirst().intValue());
+		Assert.assertEquals(2, this.mIntegerSortedQueue.removeFirst().intValue());
 	}
 
 	public void testTwoItemsReverseOrder() {
-		this.mIntegerSortedQueue.enter(2);
-		this.mIntegerSortedQueue.enter(1);
+		this.mIntegerSortedQueue.add(2);
+		this.mIntegerSortedQueue.add(1);
 
-		Assert.assertEquals(1, this.mIntegerSortedQueue.poll().intValue());
-		Assert.assertEquals(2, this.mIntegerSortedQueue.poll().intValue());
+		Assert.assertEquals(1, this.mIntegerSortedQueue.removeFirst().intValue());
+		Assert.assertEquals(2, this.mIntegerSortedQueue.removeFirst().intValue());
 	}
 
 	public void testDuplicateItems() {
-		this.mIntegerSortedQueue.enter(2);
-		this.mIntegerSortedQueue.enter(2);
+		this.mIntegerSortedQueue.add(2);
+		this.mIntegerSortedQueue.add(2);
 
-		Assert.assertEquals(2, this.mIntegerSortedQueue.poll().intValue());
-		Assert.assertEquals(2, this.mIntegerSortedQueue.poll().intValue());
+		Assert.assertEquals(2, this.mIntegerSortedQueue.removeFirst().intValue());
+		Assert.assertEquals(2, this.mIntegerSortedQueue.removeFirst().intValue());
 	}
 
 	public void testManyItemsWithDuplicates() {
-		this.mIntegerSortedQueue.enter(1);
-		this.mIntegerSortedQueue.enter(2);
-		this.mIntegerSortedQueue.enter(3);
-		this.mIntegerSortedQueue.enter(2);
+		this.mIntegerSortedQueue.add(1);
+		this.mIntegerSortedQueue.add(2);
+		this.mIntegerSortedQueue.add(3);
+		this.mIntegerSortedQueue.add(2);
 
-		Assert.assertEquals(1, this.mIntegerSortedQueue.poll().intValue());
-		Assert.assertEquals(2, this.mIntegerSortedQueue.poll().intValue());
-		Assert.assertEquals(2, this.mIntegerSortedQueue.poll().intValue());
-		Assert.assertEquals(3, this.mIntegerSortedQueue.poll().intValue());
+		Assert.assertEquals(1, this.mIntegerSortedQueue.removeFirst().intValue());
+		Assert.assertEquals(2, this.mIntegerSortedQueue.removeFirst().intValue());
+		Assert.assertEquals(2, this.mIntegerSortedQueue.removeFirst().intValue());
+		Assert.assertEquals(3, this.mIntegerSortedQueue.removeFirst().intValue());
 	}
 
 	public void testRemoveSingle() {
-		this.mIntegerSortedQueue.enter(1);
+		this.mIntegerSortedQueue.add(1);
 
 		Assert.assertTrue(this.mIntegerSortedQueue.remove(new Integer(1)));
 	}
 
 	public void testRemoveMultiple() {
-		this.mIntegerSortedQueue.enter(1);
-		this.mIntegerSortedQueue.enter(2);
-		this.mIntegerSortedQueue.enter(3);
+		this.mIntegerSortedQueue.add(1);
+		this.mIntegerSortedQueue.add(2);
+		this.mIntegerSortedQueue.add(3);
 
 		Assert.assertTrue(this.mIntegerSortedQueue.remove(new Integer(1)));
 		Assert.assertTrue(this.mIntegerSortedQueue.remove(new Integer(2)));
@@ -102,9 +102,9 @@ public class SortedQueueTest extends TestCase {
 	}
 
 	public void testRemoveNonExistent() {
-		this.mIntegerSortedQueue.enter(1);
-		this.mIntegerSortedQueue.enter(2);
-		this.mIntegerSortedQueue.enter(3);
+		this.mIntegerSortedQueue.add(1);
+		this.mIntegerSortedQueue.add(2);
+		this.mIntegerSortedQueue.add(3);
 
 		Assert.assertFalse(this.mIntegerSortedQueue.remove(new Integer(4)));
 	}
@@ -114,9 +114,9 @@ public class SortedQueueTest extends TestCase {
 		UniqueInteger one_1 = new UniqueInteger(1, "ONE(1)");
 		UniqueInteger one_2 = new UniqueInteger(1, "ONE(2)");
 		
-		this.mUniqueIntegerSortedQueue.enter(zero);
-		this.mUniqueIntegerSortedQueue.enter(one_1);
-		this.mUniqueIntegerSortedQueue.enter(one_2);
+		this.mUniqueIntegerSortedQueue.add(zero);
+		this.mUniqueIntegerSortedQueue.add(one_1);
+		this.mUniqueIntegerSortedQueue.add(one_2);
 
 		Assert.assertTrue(this.mUniqueIntegerSortedQueue.remove(one_1));
 	}
@@ -126,9 +126,9 @@ public class SortedQueueTest extends TestCase {
 		UniqueInteger one_1 = new UniqueInteger(1, "ONE(1)");
 		UniqueInteger one_2 = new UniqueInteger(1, "ONE(2)");
 		
-		this.mUniqueIntegerSortedQueue.enter(zero);
-		this.mUniqueIntegerSortedQueue.enter(one_1);
-		this.mUniqueIntegerSortedQueue.enter(one_2);
+		this.mUniqueIntegerSortedQueue.add(zero);
+		this.mUniqueIntegerSortedQueue.add(one_1);
+		this.mUniqueIntegerSortedQueue.add(one_2);
 
 		Assert.assertTrue(this.mUniqueIntegerSortedQueue.remove(one_2));
 	}

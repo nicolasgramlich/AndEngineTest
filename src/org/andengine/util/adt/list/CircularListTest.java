@@ -1,11 +1,12 @@
 package org.andengine.util.adt.list;
 
 
+
 /**
  * @author Nicolas Gramlich
  * @since 22:31:38 - 16.09.2010
  */
-public class ShiftQueueTest extends QueueTest {
+public class CircularListTest extends IListTest {
 	// ===========================================================
 	// Constants
 	// ===========================================================
@@ -28,9 +29,10 @@ public class ShiftQueueTest extends QueueTest {
 	// ===========================================================
 
 	@Override
-	protected IQueue<Integer> newQueue(final int pInitialCapacity) {
-		return new ShiftQueue<Integer>(pInitialCapacity);
+	protected IList<String> newList(final int pInitialCapacity) {
+		return new CircularList<String>(pInitialCapacity);
 	}
+
 	// ===========================================================
 	// Methods
 	// ===========================================================
