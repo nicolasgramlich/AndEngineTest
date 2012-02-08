@@ -35,13 +35,11 @@ public class FontUtilsTest extends TestCase {
 	private final IFont mFont = new IFont() {
 
 		@Override
-		public IFont unload(final TextureManager pTextureManager, final FontManager pFontManager) {
-			return null;
+		public void unload(final TextureManager pTextureManager, final FontManager pFontManager) {
 		}
 
 		@Override
-		public IFont load(final TextureManager pTextureManager, final FontManager pFontManager) {
-			return null;
+		public void load(final TextureManager pTextureManager, final FontManager pFontManager) {
 		}
 
 		@Override

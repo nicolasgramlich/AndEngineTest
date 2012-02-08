@@ -390,10 +390,7 @@ public abstract class IListTest extends TestCase {
 		final int size = arraylist.size();
 		Assert.assertEquals(size, list.size());
 		for(int j = 0; j < size; j++) {
-			final boolean equals = arraylist.get(j).equals(list.get(j));
-			if(!equals) {
-				fail();
-			}
+			Assert.assertEquals(arraylist.get(j), list.get(j));
 		}
 	}
 
