@@ -279,15 +279,15 @@ public class EntityTest extends AndroidTestCase {
 		final Rectangle rectangle = new Rectangle(0, 0, 10, 10, this.mVertexBufferObjectManager);
 
 		Assert.assertTrue(rectangle.contains(5, 5));
-		Assert.assertTrue(rectangle.contains(0, 0));
-		Assert.assertTrue(rectangle.contains(0, 10));
-		Assert.assertTrue(rectangle.contains(10, 0));
-		Assert.assertTrue(rectangle.contains(10, 10));
+		Assert.assertTrue(rectangle.contains(0 + DELTA, 0 + DELTA));
+		Assert.assertTrue(rectangle.contains(0 + DELTA, 10 - DELTA));
+		Assert.assertTrue(rectangle.contains(10 - DELTA, 0 + DELTA));
+		Assert.assertTrue(rectangle.contains(10 - DELTA, 10 - DELTA));
 
-		Assert.assertFalse(rectangle.contains(-0.01f, -0.01f));
-		Assert.assertFalse(rectangle.contains(10.01f, -0.01f));
-		Assert.assertFalse(rectangle.contains(-0.01f, 10.01f));
-		Assert.assertFalse(rectangle.contains(10.01f, 10.01f));
+		Assert.assertFalse(rectangle.contains(0 - DELTA, 0 - DELTA));
+		Assert.assertFalse(rectangle.contains(10 + DELTA, 0 - DELTA));
+		Assert.assertFalse(rectangle.contains(0 - DELTA, 10 + DELTA));
+		Assert.assertFalse(rectangle.contains(10 + DELTA, 10 + DELTA));
 	}
 
 	public void testRectangleContainsWithScale() throws Exception {
@@ -295,15 +295,15 @@ public class EntityTest extends AndroidTestCase {
 		rectangle.setScale(2);
 
 		Assert.assertTrue(rectangle.contains(5, 5));
-		Assert.assertTrue(rectangle.contains(-5, -5));
-		Assert.assertTrue(rectangle.contains(15, -5));
-		Assert.assertTrue(rectangle.contains(-5, 15));
-		Assert.assertTrue(rectangle.contains(15, 15));
+		Assert.assertTrue(rectangle.contains(-5 + DELTA, -5 + DELTA));
+		Assert.assertTrue(rectangle.contains(15 - DELTA, -5 + DELTA));
+		Assert.assertTrue(rectangle.contains(-5 + DELTA, 15 - DELTA));
+		Assert.assertTrue(rectangle.contains(15 - DELTA, 15 - DELTA));
 
-		Assert.assertFalse(rectangle.contains(-5.01f, -5.01f));
-		Assert.assertFalse(rectangle.contains(15.01f, -5.01f));
-		Assert.assertFalse(rectangle.contains(-5.01f, 15.01f));
-		Assert.assertFalse(rectangle.contains(15.01f, 15.01f));
+		Assert.assertFalse(rectangle.contains(-5 - DELTA, -5 - DELTA));
+		Assert.assertFalse(rectangle.contains(15 + DELTA, -5 - DELTA));
+		Assert.assertFalse(rectangle.contains(-5 - DELTA, 15 + DELTA));
+		Assert.assertFalse(rectangle.contains(15 + DELTA, 15 + DELTA));
 	}
 
 	public void testRectangleContainsOriginWithParent() throws Exception {
@@ -312,15 +312,15 @@ public class EntityTest extends AndroidTestCase {
 		rectangle.setParent(parent);
 
 		Assert.assertTrue(rectangle.contains(5, 5));
-		Assert.assertTrue(rectangle.contains(0, 0));
-		Assert.assertTrue(rectangle.contains(0, 10));
-		Assert.assertTrue(rectangle.contains(10, 0));
-		Assert.assertTrue(rectangle.contains(10, 10));
+		Assert.assertTrue(rectangle.contains(0 + DELTA, 0 + DELTA));
+		Assert.assertTrue(rectangle.contains(0 + DELTA, 10 - DELTA));
+		Assert.assertTrue(rectangle.contains(10 - DELTA, 0 + DELTA));
+		Assert.assertTrue(rectangle.contains(10 - DELTA, 10 - DELTA));
 
-		Assert.assertFalse(rectangle.contains(-0.01f, -0.01f));
-		Assert.assertFalse(rectangle.contains(10.01f, -0.01f));
-		Assert.assertFalse(rectangle.contains(-0.01f, 10.01f));
-		Assert.assertFalse(rectangle.contains(10.01f, 10.01f));
+		Assert.assertFalse(rectangle.contains(0 - DELTA, 0 - DELTA));
+		Assert.assertFalse(rectangle.contains(10 + DELTA, 0 - DELTA));
+		Assert.assertFalse(rectangle.contains(0 - DELTA, 10 + DELTA));
+		Assert.assertFalse(rectangle.contains(10 + DELTA, 10 + DELTA));
 	}
 
 	public void testRectangleContainsOriginWithParentAndScale() throws Exception {
@@ -330,15 +330,15 @@ public class EntityTest extends AndroidTestCase {
 		rectangle.setScale(2);
 
 		Assert.assertTrue(rectangle.contains(5, 5));
-		Assert.assertTrue(rectangle.contains(-5, -5));
-		Assert.assertTrue(rectangle.contains(15, -5));
-		Assert.assertTrue(rectangle.contains(-5, 15));
-		Assert.assertTrue(rectangle.contains(15, 15));
+		Assert.assertTrue(rectangle.contains(-5 + DELTA, -5 + DELTA));
+		Assert.assertTrue(rectangle.contains(15 - DELTA, -5 + DELTA));
+		Assert.assertTrue(rectangle.contains(-5 + DELTA, 15 - DELTA));
+		Assert.assertTrue(rectangle.contains(15 - DELTA, 15 - DELTA));
 
-		Assert.assertFalse(rectangle.contains(-5.01f, -5.01f));
-		Assert.assertFalse(rectangle.contains(15.01f, -5.01f));
-		Assert.assertFalse(rectangle.contains(-5.01f, 15.01f));
-		Assert.assertFalse(rectangle.contains(15.01f, 15.01f));
+		Assert.assertFalse(rectangle.contains(-5 - DELTA, -5 - DELTA));
+		Assert.assertFalse(rectangle.contains(15 + DELTA, -5 - DELTA));
+		Assert.assertFalse(rectangle.contains(-5 - DELTA, 15 + DELTA));
+		Assert.assertFalse(rectangle.contains(15 + DELTA, 15 + DELTA));
 	}
 
 	public void testRectangleContainsOriginWithParentAndScale2() throws Exception {
@@ -348,15 +348,15 @@ public class EntityTest extends AndroidTestCase {
 		rectangle.setParent(parent);
 
 		Assert.assertTrue(rectangle.contains(10, 10));
-		Assert.assertTrue(rectangle.contains(0, 0));
-		Assert.assertTrue(rectangle.contains(0, 20));
-		Assert.assertTrue(rectangle.contains(20, 0));
-		Assert.assertTrue(rectangle.contains(20, 20));
+		Assert.assertTrue(rectangle.contains(0 + DELTA, 0 + DELTA));
+		Assert.assertTrue(rectangle.contains(0 + DELTA, 20 - DELTA));
+		Assert.assertTrue(rectangle.contains(20 - DELTA, 0 + DELTA));
+		Assert.assertTrue(rectangle.contains(20 - DELTA, 20 - DELTA));
 
-		Assert.assertFalse(rectangle.contains(-0.01f, -0.01f));
-		Assert.assertFalse(rectangle.contains(20.01f, -0.01f));
-		Assert.assertFalse(rectangle.contains(-0.01f, 20.01f));
-		Assert.assertFalse(rectangle.contains(20.01f, 20.01f));
+		Assert.assertFalse(rectangle.contains(0 - DELTA, 0 - DELTA));
+		Assert.assertFalse(rectangle.contains(20 + DELTA, 0 - DELTA));
+		Assert.assertFalse(rectangle.contains(0 - DELTA, 20 + DELTA));
+		Assert.assertFalse(rectangle.contains(20 + DELTA, 20 + DELTA));
 	}
 
 	public void testRectangleContainsOriginWithParentAndScale3() throws Exception {
@@ -367,15 +367,15 @@ public class EntityTest extends AndroidTestCase {
 		rectangle.setScale(2);
 
 		Assert.assertTrue(rectangle.contains(10, 10));
-		Assert.assertTrue(rectangle.contains(-10, -10));
-		Assert.assertTrue(rectangle.contains(-10, 30));
-		Assert.assertTrue(rectangle.contains(30, -10));
-		Assert.assertTrue(rectangle.contains(30, 30));
+		Assert.assertTrue(rectangle.contains(-10 + DELTA, -10 + DELTA));
+		Assert.assertTrue(rectangle.contains(-10 + DELTA, 30 - DELTA));
+		Assert.assertTrue(rectangle.contains(30 - DELTA, -10 + DELTA));
+		Assert.assertTrue(rectangle.contains(30 - DELTA, 30 - DELTA));
 
-		Assert.assertFalse(rectangle.contains(-10.01f, -10.01f));
-		Assert.assertFalse(rectangle.contains(30.01f, -10.01f));
-		Assert.assertFalse(rectangle.contains(-10.01f, 30.01f));
-		Assert.assertFalse(rectangle.contains(30.01f, 30.01f));
+		Assert.assertFalse(rectangle.contains(-10 - DELTA, -10 - DELTA));
+		Assert.assertFalse(rectangle.contains(30 + DELTA, -10 - DELTA));
+		Assert.assertFalse(rectangle.contains(-10 - DELTA, 30 + DELTA));
+		Assert.assertFalse(rectangle.contains(30 + DELTA, 30 + DELTA));
 	}
 
 	public void testRectangleContainsNonOriginWithParent() throws Exception {
@@ -384,15 +384,15 @@ public class EntityTest extends AndroidTestCase {
 		rectangle.setParent(parent);
 
 		Assert.assertTrue(rectangle.contains(10, 10));
-		Assert.assertTrue(rectangle.contains(5, 5));
-		Assert.assertTrue(rectangle.contains(5, 15));
-		Assert.assertTrue(rectangle.contains(15, 5));
-		Assert.assertTrue(rectangle.contains(15, 15));
+		Assert.assertTrue(rectangle.contains(5 + DELTA, 5 + DELTA));
+		Assert.assertTrue(rectangle.contains(5 + DELTA, 15 - DELTA));
+		Assert.assertTrue(rectangle.contains(15 - DELTA, 5 + DELTA));
+		Assert.assertTrue(rectangle.contains(15 - DELTA, 15 - DELTA));
 
-		Assert.assertFalse(rectangle.contains(4.99f, 4.99f));
-		Assert.assertFalse(rectangle.contains(15.01f, 4.99f));
-		Assert.assertFalse(rectangle.contains(4.99f, 15.01f));
-		Assert.assertFalse(rectangle.contains(15.01f, 15.01f));
+		Assert.assertFalse(rectangle.contains(5 - DELTA, 5 - DELTA));
+		Assert.assertFalse(rectangle.contains(15 + DELTA, 5 - DELTA));
+		Assert.assertFalse(rectangle.contains(5 - DELTA, 15 + DELTA));
+		Assert.assertFalse(rectangle.contains(15 + DELTA, 15 + DELTA));
 	}
 
 	public void testRectangleContainsNonOriginWithParent2() throws Exception {
@@ -401,15 +401,15 @@ public class EntityTest extends AndroidTestCase {
 		rectangle.setParent(parent);
 
 		Assert.assertTrue(rectangle.contains(15, 15));
-		Assert.assertTrue(rectangle.contains(10, 10));
-		Assert.assertTrue(rectangle.contains(10, 20));
-		Assert.assertTrue(rectangle.contains(20, 10));
-		Assert.assertTrue(rectangle.contains(20, 20));
+		Assert.assertTrue(rectangle.contains(10 + DELTA, 10 + DELTA));
+		Assert.assertTrue(rectangle.contains(10 + DELTA, 20 - DELTA));
+		Assert.assertTrue(rectangle.contains(20 - DELTA, 10 + DELTA));
+		Assert.assertTrue(rectangle.contains(20 - DELTA, 20 - DELTA));
 
-		Assert.assertFalse(rectangle.contains(9.99f, 9.99f));
-		Assert.assertFalse(rectangle.contains(20.01f, 9.99f));
-		Assert.assertFalse(rectangle.contains(9.99f, 20.01f));
-		Assert.assertFalse(rectangle.contains(20.01f, 20.01f));
+		Assert.assertFalse(rectangle.contains(10 - DELTA, 10 - DELTA));
+		Assert.assertFalse(rectangle.contains(20 + DELTA, 10 - DELTA));
+		Assert.assertFalse(rectangle.contains(10 - DELTA, 20 + DELTA));
+		Assert.assertFalse(rectangle.contains(20 + DELTA, 20 + DELTA));
 	}
 
 	// ===========================================================

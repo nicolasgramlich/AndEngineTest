@@ -48,22 +48,22 @@ public class RectangularShapeTest extends TestCase {
 		Assert.assertTrue(shape.contains(1, 1));
 
 		/* Sides */
-		Assert.assertTrue(shape.contains(1, 0));
-		Assert.assertTrue(shape.contains(0, 1));
-		Assert.assertTrue(shape.contains(2, 1));
-		Assert.assertTrue(shape.contains(1, 2));
+		Assert.assertTrue(shape.contains(1, 0 + DELTA));
+		Assert.assertTrue(shape.contains(0 + DELTA, 1));
+		Assert.assertTrue(shape.contains(2 - DELTA, 1));
+		Assert.assertTrue(shape.contains(1, 2 - DELTA));
 
 		/* Edges */
-		Assert.assertTrue(shape.contains(0, 0));
-		Assert.assertTrue(shape.contains(2, 2));
-		Assert.assertTrue(shape.contains(0, 2));
-		Assert.assertTrue(shape.contains(2, 0));
+		Assert.assertTrue(shape.contains(0 + DELTA, 0 + DELTA));
+		Assert.assertTrue(shape.contains(2 - DELTA, 2 - DELTA));
+		Assert.assertTrue(shape.contains(0 + DELTA, 2 - DELTA));
+		Assert.assertTrue(shape.contains(2 - DELTA, 0 + DELTA));
 
 		/* Outside */
-		Assert.assertFalse(shape.contains(-0.01f, -0.01f));
-		Assert.assertFalse(shape.contains(2.01f, 2.01f));
-		Assert.assertFalse(shape.contains(2.01f, -0.01f));
-		Assert.assertFalse(shape.contains(-0.01f, 2.01f));
+		Assert.assertFalse(shape.contains(0 - DELTA, 0 - DELTA));
+		Assert.assertFalse(shape.contains(2 + DELTA, 2 + DELTA));
+		Assert.assertFalse(shape.contains(2 + DELTA, 0 - DELTA));
+		Assert.assertFalse(shape.contains(0 - DELTA, 2 + DELTA));
 	}
 
 	public void testContainsScaled() {
@@ -74,22 +74,22 @@ public class RectangularShapeTest extends TestCase {
 		Assert.assertTrue(shape.contains(1, 1));
 
 		/* Sides */
-		Assert.assertTrue(shape.contains(1, 0));
-		Assert.assertTrue(shape.contains(0, 1));
-		Assert.assertTrue(shape.contains(2, 1));
-		Assert.assertTrue(shape.contains(1, 2));
+		Assert.assertTrue(shape.contains(1, 0 + DELTA));
+		Assert.assertTrue(shape.contains(0 + DELTA, 1));
+		Assert.assertTrue(shape.contains(2 - DELTA, 1));
+		Assert.assertTrue(shape.contains(1, 2 - DELTA));
 
 		/* Edges */
-		Assert.assertTrue(shape.contains(0, 0));
-		Assert.assertTrue(shape.contains(2, 2));
-		Assert.assertTrue(shape.contains(0, 2));
-		Assert.assertTrue(shape.contains(2, 0));
+		Assert.assertTrue(shape.contains(0 + DELTA, 0 +  DELTA));
+		Assert.assertTrue(shape.contains(2 - DELTA, 2 - DELTA));
+		Assert.assertTrue(shape.contains(0 + DELTA, 2 - DELTA));
+		Assert.assertTrue(shape.contains(2 - DELTA, 0 + DELTA));
 
 		/* Outside */
-		Assert.assertFalse(shape.contains(-0.01f, -0.01f));
-		Assert.assertFalse(shape.contains(2.01f, 2.01f));
-		Assert.assertFalse(shape.contains(2.01f, -0.01f));
-		Assert.assertFalse(shape.contains(-0.01f, 2.01f));
+		Assert.assertFalse(shape.contains(0 - DELTA, 0 - DELTA));
+		Assert.assertFalse(shape.contains(2 + DELTA, 2 + DELTA));
+		Assert.assertFalse(shape.contains(2 + DELTA, 0 - DELTA));
+		Assert.assertFalse(shape.contains(0 - DELTA, 2 + DELTA));
 	}
 
 	public void testContainsRotated() {
@@ -115,7 +115,7 @@ public class RectangularShapeTest extends TestCase {
 	public void testContainsRotatedAndScaled() {
 		final TestRectangularShape shape = new TestRectangularShape(0, 0, 2, 2);
 		shape.setRotation(45);
-		shape.setScale(2.01f / FloatMath.sqrt(2f));
+		shape.setScale(2 + DELTA / FloatMath.sqrt(2f));
 
 		/* Center */
 		Assert.assertTrue(shape.contains(1, 1));
@@ -220,10 +220,10 @@ public class RectangularShapeTest extends TestCase {
 		shapeB.setRotation(45f);
 		Assert.assertFalse(shapeA.collidesWith(shapeB));
 
-		shapeB.setScale(2f / FloatMath.sqrt(2f) + 0.01f);
+		shapeB.setScale(2f / FloatMath.sqrt(2f) + DELTA);
 		Assert.assertTrue(shapeA.collidesWith(shapeB));
 
-		shapeB.setScale(2f / FloatMath.sqrt(2f) - 0.01f);
+		shapeB.setScale(2f / FloatMath.sqrt(2f) - DELTA);
 		Assert.assertFalse(shapeA.collidesWith(shapeB));
 	}
 

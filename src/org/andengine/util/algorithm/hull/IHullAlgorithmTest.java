@@ -1,6 +1,8 @@
 package org.andengine.util.algorithm.hull;
 
 
+import org.andengine.opengl.util.VertexUtils;
+
 import junit.framework.Assert;
 import junit.framework.TestCase;
 
@@ -67,8 +69,8 @@ public abstract class IHullAlgorithmTest extends TestCase {
 		final int hullvertices = hullAlgorithm.computeHull(vertices, 5, 0, 1, 2);
 		
 		Assert.assertEquals(4, hullvertices);
-		Assert.assertEquals(HullUtils.getVertex(vertices, 0, 2, 4), 0.5f);
-		Assert.assertEquals(HullUtils.getVertex(vertices, 1, 2, 4), 0.5f);
+		Assert.assertEquals(VertexUtils.getVertex(vertices, 0, 2, 4), 0.5f);
+		Assert.assertEquals(VertexUtils.getVertex(vertices, 1, 2, 4), 0.5f);
 	}
 
 	// ===========================================================
