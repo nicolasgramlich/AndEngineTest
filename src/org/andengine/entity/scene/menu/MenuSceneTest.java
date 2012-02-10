@@ -27,7 +27,7 @@ import android.view.MotionEvent;
  * @author Nicolas Gramlich
  * @since 00:07:21 - 14.05.2010
  */
-public class MenuSceneTest  extends AndroidTestCase {
+public class MenuSceneTest extends AndroidTestCase {
 	// ===========================================================
 	// Constants
 	// ===========================================================
@@ -44,12 +44,11 @@ public class MenuSceneTest  extends AndroidTestCase {
 	// ===========================================================
 
 	private Engine mEngine;
+	private Texture mTexture;
 	private VertexBufferObjectManager mVertexBufferObjectManager;
 	private Camera mCamera;
 	private Scene mScene;
 	private MenuScene mMenuScene;
-
-	private final Texture mTexture = new BitmapTextureAtlas(2, 2);
 
 	// ===========================================================
 	// Constructors
@@ -60,6 +59,8 @@ public class MenuSceneTest  extends AndroidTestCase {
 		this.mCamera = new Camera(0, 0, CAMERA_WIDTH, CAMERA_HEIGHT);
 		this.mEngine = new Engine(new EngineOptions(true, ScreenOrientation.PORTRAIT_FIXED, new FillResolutionPolicy(), this.mCamera));
 		this.mEngine.setSurfaceSize(CAMERA_WIDTH, CAMERA_HEIGHT);
+		
+		this.mTexture = new BitmapTextureAtlas(this.mEngine.getTextureManager(), 2, 2);
 
 		this.mVertexBufferObjectManager = this.mEngine.getVertexBufferObjectManager();
 

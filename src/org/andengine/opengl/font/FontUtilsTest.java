@@ -8,7 +8,6 @@ import junit.framework.TestCase;
 
 import org.andengine.opengl.font.exception.LetterNotFoundException;
 import org.andengine.opengl.texture.ITexture;
-import org.andengine.opengl.texture.TextureManager;
 import org.andengine.util.AssertUtils;
 
 /**
@@ -33,13 +32,12 @@ public class FontUtilsTest extends TestCase {
 	// ===========================================================
 
 	private final IFont mFont = new IFont() {
-
 		@Override
-		public void unload(final TextureManager pTextureManager, final FontManager pFontManager) {
+		public void unload() {
 		}
 
 		@Override
-		public void load(final TextureManager pTextureManager, final FontManager pFontManager) {
+		public void load() {
 		}
 
 		@Override
