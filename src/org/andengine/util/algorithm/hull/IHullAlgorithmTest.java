@@ -73,6 +73,27 @@ public abstract class IHullAlgorithmTest extends TestCase {
 		Assert.assertEquals(VertexUtils.getVertex(vertices, 1, 2, 4), 0.5f);
 	}
 
+	public void testDuplicateHullVertices() {
+		final IHullAlgorithm hullAlgorithm = this.newHullALgorithm();
+		
+		final float[] vertices = new float[] {
+				0, 1,
+				1, 1,
+				0, 1,
+				1, 1,
+				0, 1,
+				1, 0,
+				1, 1,
+				1, 0,
+				0.5f, 0.5f,
+				0, 0,
+		};
+		
+		final int hullvertices = hullAlgorithm.computeHull(vertices, vertices.length / 2, 0, 1, 2);
+		
+		Assert.assertEquals(4, hullvertices);
+	}
+
 	// ===========================================================
 	// Inner and Anonymous Classes
 	// ===========================================================

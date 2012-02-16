@@ -226,6 +226,80 @@ public class CameraTest  extends AndroidTestCase {
 
 		this.testSceneTouchWorker(this.mCameraScene, surfaceTouchX, surfaceTouchY, expectedX, expectedY);
 	}
+
+
+	public void testConvertSceneToSurfaceTouchEventCenter() {
+		this.mCamera.setCenter(0, 0);
+
+		final TouchEvent touchEvent = TouchEvent.obtain(0, 0, TouchEvent.ACTION_DOWN, 0, null);
+
+		final int surfaceWidth = 100;
+		final int surfaceHeight = 100;
+
+		this.mCamera.convertSceneToSurfaceTouchEvent(touchEvent, surfaceWidth, surfaceHeight);
+
+		Assert.assertEquals(50, touchEvent.getX(), DELTA);
+		Assert.assertEquals(50, touchEvent.getY(), DELTA);
+	}
+
+	public void testConvertSceneToSurfaceTouchEventCenterRotated180() {
+		this.mCamera.setCenter(0, 0);
+		this.mCamera.setRotation(180);
+		
+		final TouchEvent touchEvent = TouchEvent.obtain(0, 0, TouchEvent.ACTION_DOWN, 0, null);
+		
+		final int surfaceWidth = 100;
+		final int surfaceHeight = 100;
+		
+		this.mCamera.convertSceneToSurfaceTouchEvent(touchEvent, surfaceWidth, surfaceHeight);
+		
+		Assert.assertEquals(50, touchEvent.getX(), DELTA);
+		Assert.assertEquals(50, touchEvent.getY(), DELTA);
+	}
+
+	public void testConvertSceneToSurfaceTouchEventNonCenter() {
+		this.mCamera.setCenter(0, 0);
+		
+		final TouchEvent touchEvent = TouchEvent.obtain(-50, -50, TouchEvent.ACTION_DOWN, 0, null);
+		
+		final int surfaceWidth = 100;
+		final int surfaceHeight = 100;
+		
+		this.mCamera.convertSceneToSurfaceTouchEvent(touchEvent, surfaceWidth, surfaceHeight);
+		
+		Assert.assertEquals(0, touchEvent.getX(), DELTA);
+		Assert.assertEquals(0, touchEvent.getY(), DELTA);
+	}
+
+	public void testConvertSceneToSurfaceTouchEventNonCenterRotated180() {
+		this.mCamera.setCenter(0, 0);
+		this.mCamera.setRotation(180);
+		
+		final TouchEvent touchEvent = TouchEvent.obtain(-50, -50, TouchEvent.ACTION_DOWN, 0, null);
+		
+		final int surfaceWidth = 100;
+		final int surfaceHeight = 100;
+		
+		this.mCamera.convertSceneToSurfaceTouchEvent(touchEvent, surfaceWidth, surfaceHeight);
+		
+		Assert.assertEquals(100, touchEvent.getX(), DELTA);
+		Assert.assertEquals(100, touchEvent.getY(), DELTA);
+	}
+	
+	public void testConvertSceneToSurfaceTouchEventNonCenterRotated90() {
+		this.mCamera.setCenter(0, 0);
+		this.mCamera.setRotation(90);
+		
+		final TouchEvent touchEvent = TouchEvent.obtain(-50, -50, TouchEvent.ACTION_DOWN, 0, null);
+		
+		final int surfaceWidth = 100;
+		final int surfaceHeight = 100;
+		
+		this.mCamera.convertSceneToSurfaceTouchEvent(touchEvent, surfaceWidth, surfaceHeight);
+		
+		Assert.assertEquals(0, touchEvent.getX(), DELTA);
+		Assert.assertEquals(100, touchEvent.getY(), DELTA);
+	}
 	
 	// ===========================================================
 	// Methods
