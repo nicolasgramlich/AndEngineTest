@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import junit.framework.Assert;
 import junit.framework.TestCase;
 
+import org.andengine.entity.text.Text.TextOptions.AutoWrap;
 import org.andengine.opengl.font.exception.LetterNotFoundException;
 import org.andengine.opengl.texture.ITexture;
 import org.andengine.util.AssertUtils;
@@ -83,7 +84,7 @@ public class FontUtilsTest extends TestCase {
 	public void testMeasureMultipleCharsSubstring() {
 		this.runMeasureTextTest("AAA", 0, 1, 10);
 	}
-	
+
 	public void testMeasureMultipleCharsInnerSpace() {
 		this.runMeasureTextTest("A A", 0, 3, 30);
 	}
@@ -92,78 +93,99 @@ public class FontUtilsTest extends TestCase {
 		this.runMeasureTextTest("A   A", 0, 5, 50);
 	}
 
-	
-	public void testSplitSingleLineZeroWidth() {
-		this.runSplitLinesTest("A", 0, "A");
+
+	public void testSplitSingleByWordsLineZeroWidth() {
+		this.runSplitLinesByWordsTest("A", 0, "A");
 	}
 
-	public void testSplitSingleLine() {
-		this.runSplitLinesTest("AAA", 100, "AAA");
-		this.runSplitLinesTest("AAA", 30,  "AAA");
+	public void testSplitSingleLineByWords() {
+		this.runSplitLinesByWordsTest("AAA", 100, "AAA");
+		this.runSplitLinesByWordsTest("AAA", 30,  "AAA");
 	}
 
-	public void testSplitSingleLineMultiWordTrailingSpaced() {
-		this.runSplitLinesTest("AAA AAA   ", 100, "AAA AAA");
+	public void testSplitSingleLineByWordsMultiWordTrailingSpaces() {
+		this.runSplitLinesByWordsTest("AAA AAA   ", 100, "AAA AAA");
 	}
 
-	public void testSplitSingleLineExactWidth() {
-		this.runSplitLinesTest("AAA", 29,  "AAA");
+	public void testSplitSingleLineByWordsExactWidth() {
+		this.runSplitLinesByWordsTest("AAA", 29,  "AAA");
 	}
 
-	public void testSplitSingleLineOverWidth() {
-		this.runSplitLinesTest("AAA", 29,  "AAA");
+	public void testSplitSingleLineByWordsOverWidth() {
+		this.runSplitLinesByWordsTest("AAA", 29,  "AAA");
 	}
 
-	public void testMultiLine() {
-		this.runSplitLinesTest("AAA A", 30, "AAA", "A");
+	public void testMultiLineByWords() {
+		this.runSplitLinesByWordsTest("AAA A", 30, "AAA", "A");
 	}
 
-	public void testMultiLineOverWidth() {
-		this.runSplitLinesTest("AAA AAAA A AAA", 30, "AAA", "AAAA", "A", "AAA");
+	public void testMultipleLinesByWordsOverWidth() {
+		this.runSplitLinesByWordsTest("AAA AAAA A AAA", 30, "AAA", "AAAA", "A", "AAA");
 	}
 
-	public void testSplitSingleLineWidthLeadingSpaces() {
-		this.runSplitLinesTest("         A", 30, "A");
+	public void testSplitSingleLineByWordsWidthLeadingSpaces() {
+		this.runSplitLinesByWordsTest("         A", 30, "A");
 	}
 
-	public void testSplitSingleLineTrailingSpaces() {
-		this.runSplitLinesTest("A         ", 30, "A");
+	public void testSplitSingleLineByWordsTrailingSpaces() {
+		this.runSplitLinesByWordsTest("A         ", 30, "A");
 	}
 
-	public void testSplitSingleLineLeadingAndTrailingSpaces() {
-		this.runSplitLinesTest("         A         ", 30, "A");
+	public void testSplitSingleLineByWordsLeadingAndTrailingSpaces() {
+		this.runSplitLinesByWordsTest("         A         ", 30, "A");
 	}
 
-	public void testSplitMultiLineMultiWords() {
-		this.runSplitLinesTest("AA AA AA AA AA", 50, "AA AA", "AA AA", "AA");
-	}
-	
-	public void testSplitMultipleInnerSpaces() {
-		this.runSplitLinesTest("A   A", 100, "A   A");
+	public void testSplitMultipleLinesByWordsMultiWords() {
+		this.runSplitLinesByWordsTest("AA AA AA AA AA", 50, "AA AA", "AA AA", "AA");
 	}
 
-	public void testSplitMultipleInnerSpacesExactWidth() {
-		this.runSplitLinesTest("A   A", 50, "A   A");
-	}
-	
-	public void testSplitMultipleInnerSpacesOverWidth() {
-		this.runSplitLinesTest("A    A", 50, "A", "A");
-	}
-	
-	public void testSplitMultipleLinesMultipleInnerSpacesOverWidth() {
-		this.runSplitLinesTest("AAAAA  A", 50, "AAAAA", "A");
-		this.runSplitLinesTest("AAAAA A", 50, "AAAAA", "A");
-		this.runSplitLinesTest("AAAAA   A", 50, "AAAAA", "A");
-		this.runSplitLinesTest(" AAAAA   A", 50, "AAAAA", "A");
-		this.runSplitLinesTest("AAAAA   A ", 50, "AAAAA", "A");
-		this.runSplitLinesTest(" AAAAA   A ", 50, "AAAAA", "A");
-		this.runSplitLinesTest(" AAAAA A ", 50, "AAAAA", "A");
+	public void testSplitMultipleLinesByWordsInnerSpaces() {
+		this.runSplitLinesByWordsTest("A   A", 100, "A   A");
 	}
 
-	
-	private void runSplitLinesTest(final String pText, final int pLineWidthMaximum, final String ... pExpectedLines) {
+	public void testSplitMultipleLinesByWordsInnerSpacesExactWidth() {
+		this.runSplitLinesByWordsTest("A   A", 50, "A   A");
+	}
+
+	public void testSplitMultipleLinesByWordsInnerSpacesOverWidth() {
+		this.runSplitLinesByWordsTest("A    A", 50, "A", "A");
+	}
+
+	public void testSplitMultipleLinesByWordsMultipleInnerSpacesOverWidth() {
+		this.runSplitLinesByWordsTest("AAAAA  A", 50, "AAAAA", "A");
+		this.runSplitLinesByWordsTest("AAAAA A", 50, "AAAAA", "A");
+		this.runSplitLinesByWordsTest("AAAAA   A", 50, "AAAAA", "A");
+		this.runSplitLinesByWordsTest(" AAAAA   A", 50, "AAAAA", "A");
+		this.runSplitLinesByWordsTest("AAAAA   A ", 50, "AAAAA", "A");
+		this.runSplitLinesByWordsTest(" AAAAA   A ", 50, "AAAAA", "A");
+		this.runSplitLinesByWordsTest(" AAAAA A ", 50, "AAAAA", "A");
+	}
+
+	public void testSplitMultipleLinesByLettersLineZeroWidth() {
+		this.runSplitLinesByLettersTest("A    ", 0, "A");
+		this.runSplitLinesByLettersTest("AAAAA", 0, "A", "A", "A", "A", "A");
+		this.runSplitLinesByLettersTest("    A", 0, "A");
+	}
+
+	public void testSplitMultipleLinesByLetters() {
+		this.runSplitLinesByLettersTest("A      ", 0, "A");
+		this.runSplitLinesByLettersTest("AAA AA", 50, "AAA A", "A");
+		this.runSplitLinesByLettersTest("AAA  A", 50, "AAA", "A");
+		this.runSplitLinesByLettersTest("AAAA A", 50, "AAAA", "A");
+		this.runSplitLinesByLettersTest("     A", 50, "A");
+		this.runSplitLinesByLettersTest("A     ", 50, "A");
+	}
+
+
+	private void runSplitLinesByLettersTest(final String pText, final int pLineWidthMaximum, final String ... pExpectedLines) {
 		final ArrayList<CharSequence> result = new ArrayList<CharSequence>();
-		Assert.assertEquals(pExpectedLines.length, FontUtils.splitLines(this.mFont, pText, result, pLineWidthMaximum).size());
+		Assert.assertEquals(pExpectedLines.length, FontUtils.splitLines(this.mFont, pText, result, AutoWrap.LETTERS, pLineWidthMaximum).size());
+		AssertUtils.assertArrayEquals(pExpectedLines, result.toArray(new String[pExpectedLines.length]));
+	}
+
+	private void runSplitLinesByWordsTest(final String pText, final int pLineWidthMaximum, final String ... pExpectedLines) {
+		final ArrayList<CharSequence> result = new ArrayList<CharSequence>();
+		Assert.assertEquals(pExpectedLines.length, FontUtils.splitLines(this.mFont, pText, result, AutoWrap.WORDS, pLineWidthMaximum).size());
 		AssertUtils.assertArrayEquals(pExpectedLines, result.toArray(new String[pExpectedLines.length]));
 	}
 
