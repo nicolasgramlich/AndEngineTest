@@ -169,6 +169,7 @@ public class FontUtilsTest extends TestCase {
 
 	public void testSplitMultipleLinesByLetters() {
 		this.runSplitLinesByLettersTest("A      ", 0, "A");
+		this.runSplitLinesByLettersTest("AAAAAA", 30, "AAA", "AAA");
 		this.runSplitLinesByLettersTest("AAA AA", 50, "AAA A", "A");
 		this.runSplitLinesByLettersTest("AAA  A", 50, "AAA", "A");
 		this.runSplitLinesByLettersTest("AAAA A", 50, "AAAA", "A");
