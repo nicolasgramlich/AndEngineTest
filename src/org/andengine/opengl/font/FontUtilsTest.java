@@ -167,13 +167,35 @@ public class FontUtilsTest extends TestCase {
 		this.runSplitLinesByLettersTest("    A", 0, "A");
 	}
 
-	public void testSplitMultipleLinesByLetters() {
+	public void testSplitMultipleLinesByLetters1() {
 		this.runSplitLinesByLettersTest("A      ", 0, "A");
-		this.runSplitLinesByLettersTest("AAAAAA", 30, "AAA", "AAA");
-		this.runSplitLinesByLettersTest("AAA AA", 50, "AAA A", "A");
-		this.runSplitLinesByLettersTest("AAA  A", 50, "AAA", "A");
-		this.runSplitLinesByLettersTest("AAAA A", 50, "AAAA", "A");
+	}
+
+	public void testSplitMultipleLinesByLetters2() {
+		this.runSplitLinesByLettersTest("ABCDEF", 30, "ABC", "DEF");
+	}
+
+	public void testSplitMultipleLinesByLetters3() {
+		this.runSplitLinesByLettersTest("ABCDEF", 32, "ABC", "DEF");
+	}
+
+	public void testSplitMultipleLinesByLetters4() {
+		this.runSplitLinesByLettersTest("ABC DE", 50, "ABC D", "E");
+	}
+
+	public void testSplitMultipleLinesByLetters5() {
+		this.runSplitLinesByLettersTest("ABC  D", 50, "ABC", "D");
+	}
+
+	public void testSplitMultipleLinesByLetters6() {
+		this.runSplitLinesByLettersTest("ABCD E", 50, "ABCD", "E");
+	}
+
+	public void testSplitMultipleLinesByLetters7() {
 		this.runSplitLinesByLettersTest("     A", 50, "A");
+	}
+
+	public void testSplitMultipleLinesByLetters8() {
 		this.runSplitLinesByLettersTest("A     ", 50, "A");
 	}
 
