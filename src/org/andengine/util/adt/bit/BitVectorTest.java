@@ -3,7 +3,6 @@ package org.andengine.util.adt.bit;
 import junit.framework.TestCase;
 
 import org.andengine.util.AssertUtils;
-import org.andengine.util.adt.bit.BitVector;
 
 /**
  * @author Nicolas Gramlich

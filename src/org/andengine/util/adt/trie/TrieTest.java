@@ -1,7 +1,5 @@
 package org.andengine.util.adt.trie;
 
-import org.andengine.util.adt.trie.Trie;
-
 import junit.framework.Assert;
 import junit.framework.TestCase;
 

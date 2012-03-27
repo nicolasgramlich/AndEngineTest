@@ -7,8 +7,8 @@ import org.andengine.engine.options.EngineOptions;
 import org.andengine.engine.options.EngineOptions.ScreenOrientation;
 import org.andengine.engine.options.resolutionpolicy.FillResolutionPolicy;
 import org.andengine.entity.scene.CameraScene;
+import org.andengine.entity.scene.IOnSceneTouchListener;
 import org.andengine.entity.scene.Scene;
-import org.andengine.entity.scene.Scene.IOnSceneTouchListener;
 import org.andengine.input.touch.TouchEvent;
 
 import android.os.SystemClock;

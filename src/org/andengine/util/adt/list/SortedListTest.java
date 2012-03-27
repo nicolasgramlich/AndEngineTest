@@ -3,9 +3,6 @@ package org.andengine.util.adt.list;
 import junit.framework.Assert;
 import junit.framework.TestCase;
 
-import org.andengine.util.adt.list.ShiftList;
-import org.andengine.util.adt.list.SortedList;
-
 /**
  * @author Nicolas Gramlich
  * @since 22:31:38 - 16.09.2010

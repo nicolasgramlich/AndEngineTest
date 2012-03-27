@@ -1,7 +1,6 @@
 package org.andengine.util.adt.transformation;
 
 import org.andengine.util.AssertUtils;
-import org.andengine.util.adt.transformation.Transformation;
 
 import android.graphics.Matrix;
 import android.test.AndroidTestCase;

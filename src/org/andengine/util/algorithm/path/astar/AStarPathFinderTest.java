@@ -6,8 +6,6 @@ import junit.framework.TestCase;
 import org.andengine.util.algorithm.path.ICostFunction;
 import org.andengine.util.algorithm.path.IPathFinderMap;
 import org.andengine.util.algorithm.path.Path;
-import org.andengine.util.algorithm.path.astar.AStarPathFinder;
-import org.andengine.util.algorithm.path.astar.EuclideanHeuristic;
 
 /**
  * @author Nicolas Gramlich

@@ -3,8 +3,6 @@ package org.andengine.util.adt.cache;
 import junit.framework.Assert;
 
 import org.andengine.util.adt.array.ArrayUtils;
-import org.andengine.util.adt.cache.IntLRUCache;
-import org.andengine.util.adt.cache.LRUCache;
 import org.andengine.util.math.MathUtils;
 
 import android.test.AndroidTestCase;

@@ -1,10 +1,10 @@
 package org.andengine.util.algorithm.hull;
 
 
-import org.andengine.opengl.util.VertexUtils;
-
 import junit.framework.Assert;
 import junit.framework.TestCase;
+
+import org.andengine.opengl.util.VertexUtils;
 
 /**
  * (c) Zynga 2011

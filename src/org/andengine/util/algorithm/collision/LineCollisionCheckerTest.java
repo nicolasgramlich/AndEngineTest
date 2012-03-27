@@ -6,7 +6,6 @@ import junit.framework.TestCase;
 import org.andengine.entity.primitive.Line;
 import org.andengine.opengl.vbo.VertexBufferObjectManager;
 import org.andengine.util.Constants;
-import org.andengine.util.algorithm.collision.LineCollisionChecker;
 
 /**
  * @author Nicolas Gramlich
