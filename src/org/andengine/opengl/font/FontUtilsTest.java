@@ -199,6 +199,20 @@ public class FontUtilsTest extends TestCase {
 		this.runSplitLinesByLettersTest("A     ", 50, "A");
 	}
 
+	public void testSplitMultipleLinesByCJK(){
+		this.runSplitLinesByCJKTest("A      ", 0, "A");
+		this.runSplitLinesByCJKTest("AAA AA", 50, "AAA A", "A");
+		this.runSplitLinesByCJKTest("AAA  A", 50, "AAA  ", "A");
+		this.runSplitLinesByCJKTest("AAAA A", 50, "AAAA ", "A");
+		this.runSplitLinesByCJKTest("AAAA  A", 50, "AAAA ", " A");
+		this.runSplitLinesByCJKTest("AAAAA A", 50, "AAAAA", " A");
+		this.runSplitLinesByCJKTest("A  A A", 50, "A  A ", "A");
+		this.runSplitLinesByCJKTest("     A", 50, "A");
+		this.runSplitLinesByCJKTest("A     ", 50, "A");
+		this.runSplitLinesByCJKTest("AAAAAA", 32, "AAA", "AAA");
+		this.runSplitLinesByCJKTest("夏洛特 吉尔伯特想要搬进你的塔楼！", 135, "夏洛特 吉尔伯特想要搬进你", "的塔楼！");
+		this.runSplitLinesByCJKTest("你正在出售胡萝卜， 很快就会财源滚滚来，然后用这些钱去建造摩天大楼！", 165, "你正在出售胡萝卜， 很快就会财源", "滚滚来，然后用这些钱去建造摩天大", "楼！");
+	}
 
 	private void runSplitLinesByLettersTest(final String pText, final int pLineWidthMaximum, final String ... pExpectedLines) {
 		final ArrayList<CharSequence> result = new ArrayList<CharSequence>();
@@ -209,6 +223,12 @@ public class FontUtilsTest extends TestCase {
 	private void runSplitLinesByWordsTest(final String pText, final int pLineWidthMaximum, final String ... pExpectedLines) {
 		final ArrayList<CharSequence> result = new ArrayList<CharSequence>();
 		Assert.assertEquals(pExpectedLines.length, FontUtils.splitLines(this.mFont, pText, result, AutoWrap.WORDS, pLineWidthMaximum).size());
+		AssertUtils.assertArrayEquals(pExpectedLines, result.toArray(new String[pExpectedLines.length]));
+	}
+	
+	private void runSplitLinesByCJKTest(final String pText, final int pLineWidthMaximum, final String ... pExpectedLines) {
+		final ArrayList<CharSequence> result = new ArrayList<CharSequence>();
+		Assert.assertEquals(pExpectedLines.length, FontUtils.splitLines(this.mFont, pText, result, AutoWrap.CJK, pLineWidthMaximum).size());
 		AssertUtils.assertArrayEquals(pExpectedLines, result.toArray(new String[pExpectedLines.length]));
 	}
 
