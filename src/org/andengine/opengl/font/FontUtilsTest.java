@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import junit.framework.Assert;
 import junit.framework.TestCase;
 
-import org.andengine.entity.text.Text.TextOptions.AutoWrap;
+import org.andengine.entity.text.AutoWrap;
 import org.andengine.opengl.font.exception.LetterNotFoundException;
 import org.andengine.opengl.texture.ITexture;
 import org.andengine.util.AssertUtils;
