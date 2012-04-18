@@ -17,6 +17,7 @@ public class EntityTest extends AndroidTestCase {
 	// ===========================================================
 
 	private static final float DELTA = 0.0001f;
+	private static final float SQRT_2 = FloatMath.sqrt(2);
 
 	// ===========================================================
 	// Fields
@@ -40,633 +41,254 @@ public class EntityTest extends AndroidTestCase {
 	// Test-Methods
 	// ===========================================================
 
-	public void testConvertLocalToSceneCoordinatesOrigin() throws Exception {
+	public void testNoSize1() throws Exception {
 		final IEntity entity = new Entity(0, 0);
 
-		final float testX = 5;
-		final float testY = 5;
+		final float localX = 0;
+		final float localY = 0;
 
-		final float expectedX = 5;
-		final float expectedY = 5;
+		final float sceneX = 0;
+		final float sceneY = 0;
 
-		this.testConvertLocalToSceneCoordinates(entity, testX, testY, expectedX, expectedY);
+		EntityTest.testCoordinateConversion(localX, localY, entity, sceneX, sceneY);
 	}
 
-	public void testConvertLocalToSceneCoordinatesOriginWithRotation() throws Exception {
-		final IEntity entity = new Entity(0, 0);
-		entity.setRotation(180);
-
-		final float testX = 5;
-		final float testY = 5;
-
-		final float expectedX = -5;
-		final float expectedY = -5;
-
-		this.testConvertLocalToSceneCoordinates(entity, testX, testY, expectedX, expectedY);
-	}
-
-	public void testConvertLocalToSceneCoordinatesOriginWithScale() throws Exception {
-		final IEntity entity = new Entity(0, 0);
-		entity.setScale(2);
-
-		final float testX = 5;
-		final float testY = 5;
-
-		final float expectedX = 10;
-		final float expectedY = 10;
-
-		this.testConvertLocalToSceneCoordinates(entity, testX, testY, expectedX, expectedY);
-	}
-
-	public void testConvertLocalToSceneCoordinatesOriginWithParent() throws Exception {
-		final IEntity parent = new Entity(0, 0);
+	public void testNoSize2() throws Exception {
 		final IEntity entity = new Entity(0, 0);
 
-		parent.attachChild(entity);
+		final float localX = 1;
+		final float localY = 1;
 
-		final float testX = 5;
-		final float testY = 5;
+		final float sceneX = 1;
+		final float sceneY = 1;
 
-		final float expectedX = 5;
-		final float expectedY = 5;
-
-		this.testConvertLocalToSceneCoordinates(entity, testX, testY, expectedX, expectedY);
+		EntityTest.testCoordinateConversion(localX, localY, entity, sceneX, sceneY);
 	}
 
-	public void testConvertLocalToSceneCoordinatesOriginWithParentAndRotation() throws Exception {
-		final IEntity parent = new Entity(0, 0);
-		parent.setRotation(180);
-		final IEntity entity = new Entity(0, 0);
-		entity.setRotation(180);
+	public void testSimple() throws Exception {
+		final IEntity entity = new Entity(0, 0, 2, 2);
 
-		parent.attachChild(entity);
+		final float localX = 0;
+		final float localY = 0;
 
-		final float testX = 5;
-		final float testY = 5;
+		final float sceneX = -1;
+		final float sceneY = -1;
 
-		final float expectedX = 5;
-		final float expectedY = 5;
+		EntityTest.testCoordinateConversion(localX, localY, entity, sceneX, sceneY);
 
-		this.testConvertLocalToSceneCoordinates(entity, testX, testY, expectedX, expectedY);
+		EntityTest.testContains(0, 0, entity);
+		EntityTest.testContains(-1 + EntityTest.DELTA, -1 + EntityTest.DELTA, entity);
+		EntityTest.testContains(1 - EntityTest.DELTA, -1 + EntityTest.DELTA, entity);
+		EntityTest.testContains(-1 + EntityTest.DELTA, 1 - EntityTest.DELTA, entity);
+		EntityTest.testContains(1 - EntityTest.DELTA, 1 - EntityTest.DELTA, entity);
+		
+		EntityTest.testNotContains(-1 - EntityTest.DELTA, -1 - EntityTest.DELTA, entity);
+		EntityTest.testNotContains(1 + EntityTest.DELTA, -1 - EntityTest.DELTA, entity);
+		EntityTest.testNotContains(-1 - EntityTest.DELTA, 1 + EntityTest.DELTA, entity);
+		EntityTest.testNotContains(1 + EntityTest.DELTA, 1 + EntityTest.DELTA, entity);
 	}
 
-	public void testConvertLocalToSceneCoordinatesWithParent() throws Exception {
-		final IEntity parent = new Entity(5, 5);
-		final IEntity entity = new Entity(5, 5);
-
-		parent.attachChild(entity);
-
-		final float testX = 5;
-		final float testY = 5;
-
-		final float expectedX = 15;
-		final float expectedY = 15;
-
-		this.testConvertLocalToSceneCoordinates(entity, testX, testY, expectedX, expectedY);
-	}
-
-	public void testConvertLocalToSceneCoordinatesWithParentAndRotation() throws Exception {
-		final IEntity parent = new Entity(5, 5);
-		final IEntity entity = new Entity(5, 5);
-		entity.setRotation(180);
-
-		parent.attachChild(entity);
-
-		final float testX = 5;
-		final float testY = 5;
-
-		final float expectedX = 5;
-		final float expectedY = 5;
-
-		this.testConvertLocalToSceneCoordinates(entity, testX, testY, expectedX, expectedY);
-	}
-
-	public void testConvertLocalToSceneCoordinatesWithParentAndRotation2() throws Exception {
-		final IEntity parent = new Entity(5, 5);
-		final IEntity entity = new Entity(5, 5);
+	public void testRotation() throws Exception {
+		final IEntity entity = new Entity(0, 0, 2, 2);
 		entity.setRotation(90);
 
-		parent.attachChild(entity);
+		final float localX = 0;
+		final float localY = 0;
 
-		final float testX = 5;
-		final float testY = 5;
+		final float sceneX = 1;
+		final float sceneY = -1;
 
-		final float expectedX = 5;
-		final float expectedY = 15;
+		EntityTest.testCoordinateConversion(localX, localY, entity, sceneX, sceneY);
 
-		this.testConvertLocalToSceneCoordinates(entity, testX, testY, expectedX, expectedY);
+		EntityTest.testContains(0, 0, entity);
+		EntityTest.testContains(-1 + EntityTest.DELTA, -1 + EntityTest.DELTA, entity);
+		EntityTest.testContains(1 - EntityTest.DELTA, -1 + EntityTest.DELTA, entity);
+		EntityTest.testContains(-1 + EntityTest.DELTA, 1 - EntityTest.DELTA, entity);
+		EntityTest.testContains(1 - EntityTest.DELTA, 1 - EntityTest.DELTA, entity);
+		
+		EntityTest.testNotContains(-1 - EntityTest.DELTA, -1 - EntityTest.DELTA, entity);
+		EntityTest.testNotContains(1 + EntityTest.DELTA, -1 - EntityTest.DELTA, entity);
+		EntityTest.testNotContains(-1 - EntityTest.DELTA, 1 + EntityTest.DELTA, entity);
+		EntityTest.testNotContains(1 + EntityTest.DELTA, 1 + EntityTest.DELTA, entity);
 	}
 
-	public void testConvertLocalToSceneCoordinatesNotOrigin() throws Exception {
-		final IEntity entity = new Entity(5, 5);
-
-		final float testX = 5;
-		final float testY = 5;
-
-		final float expectedX = 10;
-		final float expectedY = 10;
-
-		this.testConvertLocalToSceneCoordinates(entity, testX, testY, expectedX, expectedY);
-	}
-
-	public void testConvertLocalToSceneCoordinatesNotOriginWithRotation() throws Exception {
-		final IEntity entity = new Entity(5, 5);
-		entity.setRotation(180);
-
-		final float testX = 5;
-		final float testY = 5;
-
-		final float expectedX = 0;
-		final float expectedY = 0;
-
-		this.testConvertLocalToSceneCoordinates(entity, testX, testY, expectedX, expectedY);
-	}
-
-	public void testConvertLocalToSceneCoordinatesNotOriginWithRotation2() throws Exception {
-		final IEntity entity = new Entity(5, 5);
-		entity.setRotation(180);
-
-		final float testX = 10;
-		final float testY = 10;
-
-		final float expectedX = -5;
-		final float expectedY = -5;
-
-		this.testConvertLocalToSceneCoordinates(entity, testX, testY, expectedX, expectedY);
-	}
-
-	public void testConvertSceneToLocalCoordinatesOrigin() throws Exception {
-		final IEntity entity = new Entity(5, 5);
-
-		final float testX = 10;
-		final float testY = 10;
-
-		final float expectedX = 5;
-		final float expectedY = 5;
-
-		this.testConvertSceneToLocalCoordinates(entity, testX, testY, expectedX, expectedY);
-	}
-
-	public void testConvertSceneToLocalCoordinatesOriginWithScale() throws Exception {
-		final IEntity entity = new Entity(0, 0);
-		entity.setScale(2);
-
-		final float testX = 10;
-		final float testY = 10;
-
-		final float expectedX = 5;
-		final float expectedY = 5;
-
-		this.testConvertSceneToLocalCoordinates(entity, testX, testY, expectedX, expectedY);
-	}
-
-	public void testConvertSceneToLocalCoordinatesNotOriginWithScale() throws Exception {
-		final IEntity entity = new Entity(5, 5);
-		entity.setScale(2);
-
-		final float testX = 5;
-		final float testY = 5;
-
-		final float expectedX = 0;
-		final float expectedY = 0;
-
-		this.testConvertSceneToLocalCoordinates(entity, testX, testY, expectedX, expectedY);
-	}
-
-	public void testConvertSceneToLocalCoordinatesNotOriginWithScale1() throws Exception {
-		final IEntity entity = new Entity(5, 5);
-		entity.setScale(2);
-
-		final float testX = 10;
-		final float testY = 10;
-
-		final float expectedX = 2.5f;
-		final float expectedY = 2.5f;
-
-		this.testConvertSceneToLocalCoordinates(entity, testX, testY, expectedX, expectedY);
-	}
-
-	public void testConvertSceneToLocalCoordinatesNotOriginWithScale2() throws Exception {
-		final Entity entity = new Entity(5, 5, 5, 5);
-
-		final float testX = 7.5f;
-		final float testY = 7.5f;
-
-		final float expectedX = 2.5f;
-		final float expectedY = 2.5f;
-
-		this.testConvertSceneToLocalCoordinates(entity, testX, testY, expectedX, expectedY);
-	}
-
-	public void testConvertSceneToLocalCoordinatesNotOriginWithScale3() throws Exception {
-		final Entity entity = new Entity(5, 5, 5, 5);
-		entity.setScale(2);
-
-		final float testX = 7.5f;
-		final float testY = 7.5f;
-
-		final float expectedX = 2.5f;
-		final float expectedY = 2.5f;
-
-		this.testConvertSceneToLocalCoordinates(entity, testX, testY, expectedX, expectedY);
-	}
-
-	public void testRectangleContains() throws Exception {
-		final Entity entity = new Entity(0, 0, 10, 10);
-
-		Assert.assertTrue(entity.contains(5, 5));
-		Assert.assertTrue(entity.contains(0 + DELTA, 0 + DELTA));
-		Assert.assertTrue(entity.contains(0 + DELTA, 10 - DELTA));
-		Assert.assertTrue(entity.contains(10 - DELTA, 0 + DELTA));
-		Assert.assertTrue(entity.contains(10 - DELTA, 10 - DELTA));
-
-		Assert.assertFalse(entity.contains(0 - DELTA, 0 - DELTA));
-		Assert.assertFalse(entity.contains(10 + DELTA, 0 - DELTA));
-		Assert.assertFalse(entity.contains(0 - DELTA, 10 + DELTA));
-		Assert.assertFalse(entity.contains(10 + DELTA, 10 + DELTA));
-	}
-
-	public void testRectangleContainsWithScale() throws Exception {
-		final Entity entity = new Entity(0, 0, 10, 10);
-		entity.setScale(2);
-
-		Assert.assertTrue(entity.contains(5, 5));
-		Assert.assertTrue(entity.contains(-5 + DELTA, -5 + DELTA));
-		Assert.assertTrue(entity.contains(15 - DELTA, -5 + DELTA));
-		Assert.assertTrue(entity.contains(-5 + DELTA, 15 - DELTA));
-		Assert.assertTrue(entity.contains(15 - DELTA, 15 - DELTA));
-
-		Assert.assertFalse(entity.contains(-5 - DELTA, -5 - DELTA));
-		Assert.assertFalse(entity.contains(15 + DELTA, -5 - DELTA));
-		Assert.assertFalse(entity.contains(-5 - DELTA, 15 + DELTA));
-		Assert.assertFalse(entity.contains(15 + DELTA, 15 + DELTA));
-	}
-
-	public void testRectangleContainsOriginWithParent() throws Exception {
-		final IEntity parent = new Entity(0, 0);
-		final Entity entity = new Entity(0, 0, 10, 10);
-		entity.setParent(parent);
-
-		Assert.assertTrue(entity.contains(5, 5));
-		Assert.assertTrue(entity.contains(0 + DELTA, 0 + DELTA));
-		Assert.assertTrue(entity.contains(0 + DELTA, 10 - DELTA));
-		Assert.assertTrue(entity.contains(10 - DELTA, 0 + DELTA));
-		Assert.assertTrue(entity.contains(10 - DELTA, 10 - DELTA));
-
-		Assert.assertFalse(entity.contains(0 - DELTA, 0 - DELTA));
-		Assert.assertFalse(entity.contains(10 + DELTA, 0 - DELTA));
-		Assert.assertFalse(entity.contains(0 - DELTA, 10 + DELTA));
-		Assert.assertFalse(entity.contains(10 + DELTA, 10 + DELTA));
-	}
-
-	public void testRectangleContainsOriginWithParentAndScale() throws Exception {
-		final IEntity parent = new Entity(0, 0);
-		final Entity entity = new Entity(0, 0, 10, 10);
-		entity.setParent(parent);
-		entity.setScale(2);
-
-		Assert.assertTrue(entity.contains(5, 5));
-		Assert.assertTrue(entity.contains(-5 + DELTA, -5 + DELTA));
-		Assert.assertTrue(entity.contains(15 - DELTA, -5 + DELTA));
-		Assert.assertTrue(entity.contains(-5 + DELTA, 15 - DELTA));
-		Assert.assertTrue(entity.contains(15 - DELTA, 15 - DELTA));
-
-		Assert.assertFalse(entity.contains(-5 - DELTA, -5 - DELTA));
-		Assert.assertFalse(entity.contains(15 + DELTA, -5 - DELTA));
-		Assert.assertFalse(entity.contains(-5 - DELTA, 15 + DELTA));
-		Assert.assertFalse(entity.contains(15 + DELTA, 15 + DELTA));
-	}
-
-	public void testRectangleContainsOriginWithParentAndScale2() throws Exception {
-		final IEntity parent = new Entity(0, 0);
-		parent.setScale(2);
-		final Entity entity = new Entity(0, 0, 10, 10);
-		entity.setParent(parent);
-
-		Assert.assertTrue(entity.contains(10, 10));
-		Assert.assertTrue(entity.contains(0 + DELTA, 0 + DELTA));
-		Assert.assertTrue(entity.contains(0 + DELTA, 20 - DELTA));
-		Assert.assertTrue(entity.contains(20 - DELTA, 0 + DELTA));
-		Assert.assertTrue(entity.contains(20 - DELTA, 20 - DELTA));
-
-		Assert.assertFalse(entity.contains(0 - DELTA, 0 - DELTA));
-		Assert.assertFalse(entity.contains(20 + DELTA, 0 - DELTA));
-		Assert.assertFalse(entity.contains(0 - DELTA, 20 + DELTA));
-		Assert.assertFalse(entity.contains(20 + DELTA, 20 + DELTA));
-	}
-
-	public void testRectangleContainsOriginWithParentAndScale3() throws Exception {
-		final IEntity parent = new Entity(0, 0);
-		parent.setScale(2);
-		final Entity entity = new Entity(0, 0, 10, 10);
-		entity.setParent(parent);
-		entity.setScale(2);
-
-		Assert.assertTrue(entity.contains(10, 10));
-		Assert.assertTrue(entity.contains(-10 + DELTA, -10 + DELTA));
-		Assert.assertTrue(entity.contains(-10 + DELTA, 30 - DELTA));
-		Assert.assertTrue(entity.contains(30 - DELTA, -10 + DELTA));
-		Assert.assertTrue(entity.contains(30 - DELTA, 30 - DELTA));
-
-		Assert.assertFalse(entity.contains(-10 - DELTA, -10 - DELTA));
-		Assert.assertFalse(entity.contains(30 + DELTA, -10 - DELTA));
-		Assert.assertFalse(entity.contains(-10 - DELTA, 30 + DELTA));
-		Assert.assertFalse(entity.contains(30 + DELTA, 30 + DELTA));
-	}
-
-	public void testRectangleContainsNonOriginWithParent() throws Exception {
-		final IEntity parent = new Entity(5, 5);
-		final Entity entity = new Entity(0, 0, 10, 10);
-		entity.setParent(parent);
-
-		Assert.assertTrue(entity.contains(10, 10));
-		Assert.assertTrue(entity.contains(5 + DELTA, 5 + DELTA));
-		Assert.assertTrue(entity.contains(5 + DELTA, 15 - DELTA));
-		Assert.assertTrue(entity.contains(15 - DELTA, 5 + DELTA));
-		Assert.assertTrue(entity.contains(15 - DELTA, 15 - DELTA));
-
-		Assert.assertFalse(entity.contains(5 - DELTA, 5 - DELTA));
-		Assert.assertFalse(entity.contains(15 + DELTA, 5 - DELTA));
-		Assert.assertFalse(entity.contains(5 - DELTA, 15 + DELTA));
-		Assert.assertFalse(entity.contains(15 + DELTA, 15 + DELTA));
-	}
-
-	public void testRectangleContainsNonOriginWithParent2() throws Exception {
-		final IEntity parent = new Entity(5, 5);
-		final Entity entity = new Entity(5, 5, 10, 10);
-		entity.setParent(parent);
-
-		Assert.assertTrue(entity.contains(15, 15));
-		Assert.assertTrue(entity.contains(10 + DELTA, 10 + DELTA));
-		Assert.assertTrue(entity.contains(10 + DELTA, 20 - DELTA));
-		Assert.assertTrue(entity.contains(20 - DELTA, 10 + DELTA));
-		Assert.assertTrue(entity.contains(20 - DELTA, 20 - DELTA));
-
-		Assert.assertFalse(entity.contains(10 - DELTA, 10 - DELTA));
-		Assert.assertFalse(entity.contains(20 + DELTA, 10 - DELTA));
-		Assert.assertFalse(entity.contains(10 - DELTA, 20 + DELTA));
-		Assert.assertFalse(entity.contains(20 + DELTA, 20 + DELTA));
-	}
-
-	public void testContainsSimple() {
-		final Entity entity = new Entity(0, 0, 2, 2);
-
-		/* Center */
-		Assert.assertTrue(entity.contains(1, 1));
-
-		/* Sides */
-		Assert.assertTrue(entity.contains(1, 0 + DELTA));
-		Assert.assertTrue(entity.contains(0 + DELTA, 1));
-		Assert.assertTrue(entity.contains(2 - DELTA, 1));
-		Assert.assertTrue(entity.contains(1, 2 - DELTA));
-
-		/* Edges */
-		Assert.assertTrue(entity.contains(0 + DELTA, 0 + DELTA));
-		Assert.assertTrue(entity.contains(2 - DELTA, 2 - DELTA));
-		Assert.assertTrue(entity.contains(0 + DELTA, 2 - DELTA));
-		Assert.assertTrue(entity.contains(2 - DELTA, 0 + DELTA));
-
-		/* Outside */
-		Assert.assertFalse(entity.contains(0 - DELTA, 0 - DELTA));
-		Assert.assertFalse(entity.contains(2 + DELTA, 2 + DELTA));
-		Assert.assertFalse(entity.contains(2 + DELTA, 0 - DELTA));
-		Assert.assertFalse(entity.contains(0 - DELTA, 2 + DELTA));
-	}
-
-	public void testContainsScaled() {
-		final Entity entity = new Entity(0.5f, 0.5f, 1, 1);
-		entity.setScale(2);
-
-		/* Center */
-		Assert.assertTrue(entity.contains(1, 1));
-
-		/* Sides */
-		Assert.assertTrue(entity.contains(1, 0 + DELTA));
-		Assert.assertTrue(entity.contains(0 + DELTA, 1));
-		Assert.assertTrue(entity.contains(2 - DELTA, 1));
-		Assert.assertTrue(entity.contains(1, 2 - DELTA));
-
-		/* Edges */
-		Assert.assertTrue(entity.contains(0 + DELTA, 0 +  DELTA));
-		Assert.assertTrue(entity.contains(2 - DELTA, 2 - DELTA));
-		Assert.assertTrue(entity.contains(0 + DELTA, 2 - DELTA));
-		Assert.assertTrue(entity.contains(2 - DELTA, 0 + DELTA));
-
-		/* Outside */
-		Assert.assertFalse(entity.contains(0 - DELTA, 0 - DELTA));
-		Assert.assertFalse(entity.contains(2 + DELTA, 2 + DELTA));
-		Assert.assertFalse(entity.contains(2 + DELTA, 0 - DELTA));
-		Assert.assertFalse(entity.contains(0 - DELTA, 2 + DELTA));
-	}
-
-	public void testContainsRotated() {
-		final Entity entity = new Entity(0, 0, 2, 2);
-		entity.setRotation(45);
-
-		/* Center */
-		Assert.assertTrue(entity.contains(1, 1));
-
-		/* (Old)Sides */
-		Assert.assertTrue(entity.contains(1, 0));
-		Assert.assertTrue(entity.contains(0, 1));
-		Assert.assertTrue(entity.contains(2, 1));
-		Assert.assertTrue(entity.contains(1, 2));
-
-		/* (Old)Edges */
-		Assert.assertFalse(entity.contains(0, 0));
-		Assert.assertFalse(entity.contains(2, 2));
-		Assert.assertFalse(entity.contains(0, 2));
-		Assert.assertFalse(entity.contains(2, 0));
-	}
-
-	public void testContainsRotatedAndScaled() {
-		final Entity entity = new Entity(0, 0, 2, 2);
-		entity.setRotation(45);
-		entity.setScale(2 + DELTA / FloatMath.sqrt(2f));
-
-		/* Center */
-		Assert.assertTrue(entity.contains(1, 1));
-
-		/* (Old)Sides */
-		Assert.assertTrue(entity.contains(1, 0));
-		Assert.assertTrue(entity.contains(0, 1));
-		Assert.assertTrue(entity.contains(2, 1));
-		Assert.assertTrue(entity.contains(1, 2));
-
-		/* (Old)Edges */
-		Assert.assertTrue(entity.contains(0, 0));
-		Assert.assertTrue(entity.contains(2, 2));
-		Assert.assertTrue(entity.contains(0, 2));
-		Assert.assertTrue(entity.contains(2, 0));
-
-		/* (New)Edges */
-		Assert.assertTrue(entity.contains(-1, 1));
-		Assert.assertTrue(entity.contains(1, -1));
-		Assert.assertTrue(entity.contains(1, 3));
-		Assert.assertTrue(entity.contains(3, 1));
-	}
-
-	public void testCollidesWithSimple() {
-		final Entity entityA = new Entity(0, 0, 2, 2);
-		final Entity entityB = new Entity(1, 1, 2, 2);
-		Assert.assertTrue(entityA.collidesWith(entityB));
-	}
-
-	public void testCollidesWithSimpleNot() {
-		final Entity entityA = new Entity(0, 0, 2, 2);
-		final Entity entityB = new Entity(3, 0, 2, 2);
-		Assert.assertFalse(entityA.collidesWith(entityB));
-	}
-
-	public void testCollidesWithScaled() {
-		final Entity entityA = new Entity(0, 0, 2, 2);
-		final Entity entityB = new Entity(3, 3, 2, 2);
-		Assert.assertFalse(entityA.collidesWith(entityB));
-
-		entityB.setScale(3);
-		Assert.assertTrue(entityA.collidesWith(entityB));
-
-		entityB.setScaleCenter(0, 0);
-		Assert.assertFalse(entityA.collidesWith(entityB));
-
-		entityB.setScale(2);
-		entityB.setScaleCenter(2, 2);
-		Assert.assertTrue(entityA.collidesWith(entityB));
-	}
-
-	public void testCollidesWithScaledUneven() {
-		final Entity entityA = new Entity(0, 0, 2, 2);
-		final Entity entityB = new Entity(3, 0, 2, 2);
-		Assert.assertFalse(entityA.collidesWith(entityB));
-
-		entityB.setScaleX(2.1f);
-		Assert.assertTrue(entityA.collidesWith(entityB));
-
-		entityB.setScaleX(1);
-		entityB.setScaleY(2.1f);
-		Assert.assertFalse(entityA.collidesWith(entityB));
-	}
-
-	public void testCollidesWithRotated() {
-		final Entity entityA = new Entity(0, 0, 4, 4);
-		final Entity entityB = new Entity(5, 0, 4, 4);
-		Assert.assertFalse(entityA.collidesWith(entityB));
-
-		entityA.setRotation(45f);
-		entityB.setRotation(45f);
-		Assert.assertTrue(entityA.collidesWith(entityB));
-
-		entityB.setRotation(90f);
-		Assert.assertFalse(entityA.collidesWith(entityB));
-	}
-
-	public void testCollidesWithRotatedAroundCenter() {
-		final Entity entityA = new Entity(0, 0, 2, 2);
-		final Entity entityB = new Entity(3, 0, 2, 2);
-		Assert.assertFalse(entityA.collidesWith(entityB));
-
-		entityA.setRotationCenter(2, 2);
-		entityA.setRotation(45f);
-		Assert.assertTrue(entityA.collidesWith(entityB));
-
-		entityA.setRotation(90f);
-		Assert.assertTrue(entityA.collidesWith(entityB));
-
-		entityA.setRotation(179.9f);
-		Assert.assertTrue(entityA.collidesWith(entityB));
-
-		entityA.setRotation(180.1f);
-		Assert.assertFalse(entityA.collidesWith(entityB));
-	}
-
-	public void testCollidesWithRotatedAndScaled() {
-		final Entity entityA = new Entity(0, 0, 2, 2);
-		final Entity entityB = new Entity(3, 0, 2, 2);
-		Assert.assertFalse(entityA.collidesWith(entityB));
-
-		entityB.setRotation(45f);
-		Assert.assertFalse(entityA.collidesWith(entityB));
-
-		entityB.setScale(2f / FloatMath.sqrt(2f) + DELTA);
-		Assert.assertTrue(entityA.collidesWith(entityB));
-
-		entityB.setScale(2f / FloatMath.sqrt(2f) - DELTA);
-		Assert.assertFalse(entityA.collidesWith(entityB));
-	}
-
-
-	public void testGetLocalCoordinatesSimple() {
-		final Entity entity = new Entity(0, 0, 2, 2);
-		AssertUtils.assertArrayEquals(new float[]{1, 1}, entity.convertSceneToLocalCoordinates(1, 1), DELTA);
-	}
-
-	public void testGetLocalCoordinatesNonOrigin() {
-		final Entity entity = new Entity(10, 10, 2, 2);
-		AssertUtils.assertArrayEquals(new float[]{1, 1}, entity.convertSceneToLocalCoordinates(11, 11), DELTA);
-	}
-
-	public void testGetLocalCoordinatesNonOriginRotated() {
-		final Entity entity = new Entity(10, 10, 2, 2);
-		entity.setRotation(90);
-		AssertUtils.assertArrayEquals(new float[]{0, 2}, entity.convertSceneToLocalCoordinates(10, 10), DELTA);
-	}
-
-	public void testGetLocalCoordinatesNonOriginScaled() {
-		final Entity entity = new Entity(10, 10, 2, 2);
-		entity.setScale(0.5f);
-		AssertUtils.assertArrayEquals(new float[]{0, 0}, entity.convertSceneToLocalCoordinates(10.5f, 10.5f), DELTA);
-	}
-
-
-	public void testGetSceneCenterCoordinatesSimple() {
-		final Entity entity = new Entity(0, 0, 2, 2);
-		AssertUtils.assertArrayEquals(new float[]{1, 1}, entity.getSceneCenterCoordinates(), DELTA);
-	}
-
-	public void testGetSceneCenterCoordinatesNonOrigin() {
-		final Entity entity = new Entity(10, 10, 2, 2);
-		AssertUtils.assertArrayEquals(new float[]{11, 11}, entity.getSceneCenterCoordinates(), DELTA);
-	}
-
-	public void testGetSceneCenterCoordinatesScaled() {
-		final Entity entity = new Entity(10, 10, 2, 2);
-		entity.setScale(2);
-		AssertUtils.assertArrayEquals(new float[]{11, 11}, entity.getSceneCenterCoordinates(), DELTA);
-	}
-
-	public void testGetSceneCenterCoordinatesRotated() {
-		final Entity entity = new Entity(10, 10, 2, 2);
-		entity.setRotation(123);
-		AssertUtils.assertArrayEquals(new float[]{11, 11}, entity.getSceneCenterCoordinates(), DELTA);
-	}
-
-	public void testGetSceneCenterCoordinatesScaledUneven() {
-		final Entity entity = new Entity(10, 10, 2, 2);
-		entity.setScale(2);
-		entity.setScaleCenter(0, 0);
-		AssertUtils.assertArrayEquals(new float[]{12, 12}, entity.getSceneCenterCoordinates(), DELTA);
-	}
-
-	public void testGetSceneCenterCoordinatesRotatedUneven() {
-		final Entity entity = new Entity(10, 10, 2, 2);
-		entity.setRotation(90);
+	public void testRotationCenter1() throws Exception {
+		final IEntity entity = new Entity(0, 0, 2, 2);
 		entity.setRotationCenter(0, 0);
-		AssertUtils.assertArrayEquals(new float[]{9, 11}, entity.getSceneCenterCoordinates(), DELTA);
+		entity.setRotation(90);
+
+		final float localX = 0;
+		final float localY = 0;
+
+		final float sceneX = -1;
+		final float sceneY = -1;
+
+		EntityTest.testCoordinateConversion(localX, localY, entity, sceneX, sceneY);
+	}
+
+	public void testRotationCenter2() throws Exception {
+		final IEntity entity = new Entity(0, 0, 2, 2);
+		entity.setRotationCenter(1, 0);
+		entity.setRotation(180);
+
+		final float localX = 0;
+		final float localY = 0;
+
+		final float sceneX = 3;
+		final float sceneY = -1;
+
+		EntityTest.testCoordinateConversion(localX, localY, entity, sceneX, sceneY);
+	}
+
+	public void testRotationCenterNonOrigin() throws Exception {
+		final IEntity entity = new Entity(10, 10, 2, 2);
+		entity.setRotationCenter(1, 0);
+		entity.setRotation(180);
+
+		final float localX = 0;
+		final float localY = 0;
+
+		final float sceneX = 13;
+		final float sceneY = 9;
+
+		EntityTest.testCoordinateConversion(localX, localY, entity, sceneX, sceneY);
+	}
+
+	public void testScaleCenter1() throws Exception {
+		final IEntity entity = new Entity(0, 0, 2, 2);
+		entity.setScaleCenter(1, 1);
+		entity.setScale(2);
+
+		final float localX = 0;
+		final float localY = 0;
+
+		final float sceneX = -3;
+		final float sceneY = -3;
+
+		EntityTest.testCoordinateConversion(localX, localY, entity, sceneX, sceneY);
+
+		final float sceneCenterX = -1;
+		final float sceneCenterY = -1;
+
+		EntityTest.testGetSceneCenterCoordinates(sceneCenterX, sceneCenterY, entity);
+	}
+
+	public void testOffsetCenter() throws Exception {
+		final IEntity entity = new Entity(0, 0, 2, 2);
+		entity.setOffsetCenter(0, 0);
+
+		final float localX = 0;
+		final float localY = 0;
+
+		final float sceneX = 0;
+		final float sceneY = 0;
+
+		EntityTest.testCoordinateConversion(localX, localY, entity, sceneX, sceneY);
+	}
+
+	public void testNonOriginScaled() throws Exception {
+		final IEntity entity = new Entity(10, 10, 2, 2);
+		entity.setScale(2);
+
+		final float localX = 0;
+		final float localY = 0;
+
+		final float sceneX = 8;
+		final float sceneY = 8;
+
+		EntityTest.testCoordinateConversion(localX, localY, entity, sceneX, sceneY);
+	}
+
+	public void testOffsetCenterNonOriginScaled() throws Exception {
+		final IEntity entity = new Entity(10, 10, 2, 2);
+		entity.setOffsetCenter(0, 0);
+		entity.setScale(2);
+
+		final float localX = 0;
+		final float localY = 0;
+
+		final float sceneX = 9;
+		final float sceneY = 9;
+
+		EntityTest.testCoordinateConversion(localX, localY, entity, sceneX, sceneY);
+
+		final float sceneCenterX = 11;
+		final float sceneCenterY = 11;
+
+		EntityTest.testGetSceneCenterCoordinates(sceneCenterX, sceneCenterY, entity);
+	}
+
+	public void testCollidesWithIdentical() {
+		final IEntity entityA = new Entity(0, 0, 2, 2);
+		final IEntity entityB = new Entity(0, 0, 2, 2);
+
+		EntityTest.assertCollidesWith(entityA, entityB);
+	}
+
+	public void testCollidesWith() {
+		final IEntity entityA = new Entity(0, 0, 2, 2);
+		final IEntity entityB = new Entity(2 - DELTA, 0, 2, 2);
+
+		EntityTest.assertCollidesWith(entityA, entityB);
+	}
+
+	public void testCollidesRotated() {
+		final IEntity entityA = new Entity(0, 0, 2, 2);
+		final IEntity entityB = new Entity(0, 0, 2, 2);
+
+		entityA.setRotation(45);
+		entityB.setRotation(45);
+
+		entityB.setX(2 * SQRT_2 - DELTA);
+		EntityTest.assertCollidesWith(entityA, entityB);
+
+		entityB.setX(2 * SQRT_2 + DELTA);
+		EntityTest.assertNotCollidesWith(entityA, entityB);
 	}
 
 	// ===========================================================
 	// Inner and Anonymous Classes
 	// ===========================================================
 
-	private void testConvertLocalToSceneCoordinates(final IEntity pEntity, final float pTestX, final float pTestY, final float pExpectedX, final float pExpectedY) {
-		final float[] actual = pEntity.convertLocalToSceneCoordinates(pTestX, pTestY);
-
-		AssertUtils.assertArrayEquals(new float[]{pExpectedX, pExpectedY}, actual, EntityTest.DELTA);
+	private static void assertCollidesWith(final IEntity pEntityA, final IEntity pEntityB) {
+		Assert.assertTrue(pEntityA.collidesWith(pEntityB));
 	}
 
-	private void testConvertSceneToLocalCoordinates(final IEntity pEntity, final float pTestX, final float pTestY, final float pExpectedX, final float pExpectedY) {
-		final float[] actual = pEntity.convertSceneToLocalCoordinates(pTestX, pTestY);
+	private static void assertNotCollidesWith(final IEntity pEntityA, final IEntity pEntityB) {
+		Assert.assertFalse(pEntityA.collidesWith(pEntityB));
+	}
 
-		AssertUtils.assertArrayEquals(new float[]{pExpectedX, pExpectedY}, actual, EntityTest.DELTA);
+	private static void testContains(final float pSceneX, final float pSceneY, final IEntity pEntity) {
+		Assert.assertTrue(pEntity.contains(pSceneX, pSceneY));
+	}
+
+	private static void testNotContains(final float pSceneX, final float pSceneY, final IEntity pEntity) {
+		Assert.assertFalse(pEntity.contains(pSceneX, pSceneY));
+	}
+
+	private static void testGetSceneCenterCoordinates(final float pSceneCenterX, final float pSceneCenterY, final IEntity pEntity) {
+		final float[] expected = new float[]{pSceneCenterX, pSceneCenterY};
+		final float[] actual = pEntity.getSceneCenterCoordinates();
+
+		AssertUtils.assertArrayEquals(expected, actual, EntityTest.DELTA);
+	}
+
+	private static void testCoordinateConversion(final float pLocalX, final float pLocalY, final IEntity pEntity, final float pSceneX, final float pSceneY) {
+		EntityTest.testConvertLocalToSceneCoordinates(pSceneX, pSceneY, pEntity, pLocalX, pLocalY);
+		EntityTest.testConvertSceneToLocalCoordinates(pLocalX, pLocalY, pEntity, pSceneX, pSceneY);
+	}
+
+	private static void testConvertLocalToSceneCoordinates(final float pSceneX, final float pSceneY, final IEntity pEntity, final float pLocalX, final float pLocalY) {
+		final float[] expected = new float[]{pSceneX, pSceneY};
+		final float[] actual = pEntity.convertLocalToSceneCoordinates(pLocalX, pLocalY);
+
+		AssertUtils.assertArrayEquals(expected, actual, EntityTest.DELTA);
+	}
+
+	private static void testConvertSceneToLocalCoordinates(final float pLocalX, final float pLocalY, final IEntity pEntity, final float pSceneX, final float pSceneY) {
+		final float[] expected = new float[]{pLocalX, pLocalY};
+		final float[] actual = pEntity.convertSceneToLocalCoordinates(pSceneX, pSceneY);
+
+		AssertUtils.assertArrayEquals(expected, actual, EntityTest.DELTA);
 	}
 }
