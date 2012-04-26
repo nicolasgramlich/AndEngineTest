@@ -34,11 +34,13 @@ public class FontUtilsTest extends TestCase {
 
 	private final IFont mFont = new IFont() {
 		@Override
-		public void unload() {
+		public void load() {
+
 		}
 
 		@Override
-		public void load() {
+		public void unload() {
+
 		}
 
 		@Override
@@ -48,6 +50,11 @@ public class FontUtilsTest extends TestCase {
 
 		@Override
 		public float getLineHeight() {
+			return 0;
+		}
+
+		@Override
+		public float getAscent() {
 			return 0;
 		}
 
