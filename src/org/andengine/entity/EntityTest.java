@@ -95,8 +95,8 @@ public class EntityTest extends AndroidTestCase {
 		final float localX = 0;
 		final float localY = 0;
 
-		final float sceneX = 1;
-		final float sceneY = -1;
+		final float sceneX = -1;
+		final float sceneY = 1;
 
 		EntityTest.testCoordinateConversion(localX, localY, entity, sceneX, sceneY);
 

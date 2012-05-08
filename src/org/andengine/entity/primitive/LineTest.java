@@ -70,7 +70,7 @@ public class LineTest extends TestCase {
 		final Line line = new Line(-1, 0, 1, 0, this.mVertexBufferObjectManager);
 		line.setRotation(90);
 
-		this.assertLine(0, -1, 0, 1, line);
+		this.assertLine(0, 1, 0, -1, line);
 	}
 
 	public void testRotation180() {
