@@ -219,7 +219,7 @@ public class CameraTest  extends AndroidTestCase {
 	}
 
 
-	public void testConvertSceneToSurfaceTouchEventCenter() {
+	public void testConvertSceneTouchEventToSurfaceTouchEventCenter() {
 		this.mCamera.setCenter(0, 0);
 
 		final TouchEvent touchEvent = TouchEvent.obtain(0, 0, TouchEvent.ACTION_DOWN, 0, null);
@@ -227,13 +227,13 @@ public class CameraTest  extends AndroidTestCase {
 		final int surfaceWidth = 100;
 		final int surfaceHeight = 100;
 
-		this.mCamera.convertSceneToSurfaceTouchEvent(touchEvent, surfaceWidth, surfaceHeight);
+		this.mCamera.convertSceneTouchEventToSurfaceTouchEvent(touchEvent, surfaceWidth, surfaceHeight);
 
 		Assert.assertEquals(50, touchEvent.getX(), CameraTest.DELTA);
 		Assert.assertEquals(50, touchEvent.getY(), CameraTest.DELTA);
 	}
 
-	public void testConvertSceneToSurfaceTouchEventCenterRotated180() {
+	public void testConvertSceneTouchEventToSurfaceTouchEventCenterRotated180() {
 		this.mCamera.setCenter(0, 0);
 		this.mCamera.setRotation(180);
 
@@ -242,13 +242,13 @@ public class CameraTest  extends AndroidTestCase {
 		final int surfaceWidth = 100;
 		final int surfaceHeight = 100;
 
-		this.mCamera.convertSceneToSurfaceTouchEvent(touchEvent, surfaceWidth, surfaceHeight);
+		this.mCamera.convertSceneTouchEventToSurfaceTouchEvent(touchEvent, surfaceWidth, surfaceHeight);
 
 		Assert.assertEquals(50, touchEvent.getX(), CameraTest.DELTA);
 		Assert.assertEquals(50, touchEvent.getY(), CameraTest.DELTA);
 	}
 
-	public void testConvertSceneToSurfaceTouchEventNonCenter() {
+	public void testConvertSceneTouchEventToSurfaceTouchEventNonCenter() {
 		this.mCamera.setCenter(0, 0);
 
 		final TouchEvent touchEvent = TouchEvent.obtain(-50, -50, TouchEvent.ACTION_DOWN, 0, null);
@@ -256,28 +256,28 @@ public class CameraTest  extends AndroidTestCase {
 		final int surfaceWidth = 100;
 		final int surfaceHeight = 100;
 
-		this.mCamera.convertSceneToSurfaceTouchEvent(touchEvent, surfaceWidth, surfaceHeight);
+		this.mCamera.convertSceneTouchEventToSurfaceTouchEvent(touchEvent, surfaceWidth, surfaceHeight);
 
 		Assert.assertEquals(0, touchEvent.getX(), CameraTest.DELTA);
-		Assert.assertEquals(0, touchEvent.getY(), CameraTest.DELTA);
-	}
-
-	public void testConvertSceneToSurfaceTouchEventNonCenterRotated180() {
-		this.mCamera.setCenter(0, 0);
-		this.mCamera.setRotation(180);
-
-		final TouchEvent touchEvent = TouchEvent.obtain(-50, -50, TouchEvent.ACTION_DOWN, 0, null);
-
-		final int surfaceWidth = 100;
-		final int surfaceHeight = 100;
-
-		this.mCamera.convertSceneToSurfaceTouchEvent(touchEvent, surfaceWidth, surfaceHeight);
-
-		Assert.assertEquals(100, touchEvent.getX(), CameraTest.DELTA);
 		Assert.assertEquals(100, touchEvent.getY(), CameraTest.DELTA);
 	}
 
-	public void testConvertSceneToSurfaceTouchEventNonCenterRotated90() {
+	public void testConvertSceneTouchEventToSurfaceTouchEventNonCenterRotated180() {
+		this.mCamera.setCenter(0, 0);
+		this.mCamera.setRotation(180);
+
+		final TouchEvent touchEvent = TouchEvent.obtain(-50, -50, TouchEvent.ACTION_DOWN, 0, null);
+
+		final int surfaceWidth = 100;
+		final int surfaceHeight = 100;
+
+		this.mCamera.convertSceneTouchEventToSurfaceTouchEvent(touchEvent, surfaceWidth, surfaceHeight);
+
+		Assert.assertEquals(100, touchEvent.getX(), CameraTest.DELTA);
+		Assert.assertEquals(0, touchEvent.getY(), CameraTest.DELTA);
+	}
+
+	public void testConvertSceneTouchEventToSurfaceTouchEventNonCenterRotated90() {
 		this.mCamera.setCenter(0, 0);
 		this.mCamera.setRotation(90);
 
@@ -286,7 +286,7 @@ public class CameraTest  extends AndroidTestCase {
 		final int surfaceWidth = 100;
 		final int surfaceHeight = 100;
 
-		this.mCamera.convertSceneToSurfaceTouchEvent(touchEvent, surfaceWidth, surfaceHeight);
+		this.mCamera.convertSceneTouchEventToSurfaceTouchEvent(touchEvent, surfaceWidth, surfaceHeight);
 
 		Assert.assertEquals(0, touchEvent.getX(), CameraTest.DELTA);
 		Assert.assertEquals(0, touchEvent.getY(), CameraTest.DELTA);
