@@ -280,14 +280,14 @@ public class EntityTest extends AndroidTestCase {
 
 	private static void testConvertLocalToSceneCoordinates(final float pSceneX, final float pSceneY, final IEntity pEntity, final float pLocalX, final float pLocalY) {
 		final float[] expected = new float[]{pSceneX, pSceneY};
-		final float[] actual = pEntity.convertLocalToSceneCoordinates(pLocalX, pLocalY);
+		final float[] actual = pEntity.convertLocalCoordinatesToSceneCoordinates(pLocalX, pLocalY);
 
 		AssertUtils.assertArrayEquals(expected, actual, EntityTest.DELTA);
 	}
 
 	private static void testConvertSceneToLocalCoordinates(final float pLocalX, final float pLocalY, final IEntity pEntity, final float pSceneX, final float pSceneY) {
 		final float[] expected = new float[]{pLocalX, pLocalY};
-		final float[] actual = pEntity.convertSceneToLocalCoordinates(pSceneX, pSceneY);
+		final float[] actual = pEntity.convertSceneCoordinatesToLocalCoordinates(pSceneX, pSceneY);
 
 		AssertUtils.assertArrayEquals(expected, actual, EntityTest.DELTA);
 	}
