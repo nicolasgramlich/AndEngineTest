@@ -35,7 +35,7 @@ public class SprialTest extends TestCase {
 	// TestMethods
 	// ===========================================================
 
-	public void testScaleAroundCenterNonOriginFactor() {
+	public void testSpiral() {
 		final Spiral spiral = new Spiral(0, 0);
 
 		Assert.assertEquals(0, spiral.getX());
@@ -47,15 +47,15 @@ public class SprialTest extends TestCase {
 
 		spiral.step();
 		Assert.assertEquals(1, spiral.getX());
-		Assert.assertEquals(1, spiral.getY());
+		Assert.assertEquals(-1, spiral.getY());
 
 		spiral.step();
 		Assert.assertEquals(0, spiral.getX());
-		Assert.assertEquals(1, spiral.getY());
+		Assert.assertEquals(-1, spiral.getY());
 
 		spiral.step();
 		Assert.assertEquals(-1, spiral.getX());
-		Assert.assertEquals(1, spiral.getY());
+		Assert.assertEquals(-1, spiral.getY());
 
 		spiral.step();
 		Assert.assertEquals(-1, spiral.getX());
@@ -63,19 +63,19 @@ public class SprialTest extends TestCase {
 
 		spiral.step();
 		Assert.assertEquals(-1, spiral.getX());
-		Assert.assertEquals(-1, spiral.getY());
+		Assert.assertEquals(1, spiral.getY());
 
 		spiral.step();
 		Assert.assertEquals(0, spiral.getX());
-		Assert.assertEquals(-1, spiral.getY());
+		Assert.assertEquals(1, spiral.getY());
 
 		spiral.step();
 		Assert.assertEquals(1, spiral.getX());
-		Assert.assertEquals(-1, spiral.getY());
+		Assert.assertEquals(1, spiral.getY());
 
 		spiral.step();
 		Assert.assertEquals(2, spiral.getX());
-		Assert.assertEquals(-1, spiral.getY());
+		Assert.assertEquals(1, spiral.getY());
 	}
 
 	// ===========================================================
