@@ -231,7 +231,7 @@ public class BlackPawnTextureAtlasBuilderTest extends TestCase {
 		@Override
 		public void setTextureHeight(final int pTextureHeight) {
 		}
-		
+
 		@Override
 		public ITextureAtlasSource deepCopy() throws DeepCopyNotSupportedException {
 			return null;

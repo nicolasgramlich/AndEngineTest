@@ -89,7 +89,7 @@ public class LoopModifierTest extends AndroidTestCase implements ILoopModifierLi
 
 		elapsed = loopModifier.onUpdate(DURATION, null);
 		Assert.assertEquals(0, elapsed, DELTA);
-		
+
 		Assert.assertEquals(1, this.mLoopsStarted);
 		Assert.assertEquals(1, this.mLoopsFinished);
 	}
@@ -152,7 +152,7 @@ public class LoopModifierTest extends AndroidTestCase implements ILoopModifierLi
 		final LoopModifier<Object> innerLoopModifier = new LoopModifier<Object>(innerSequenceModifier, 3);
 		final SequenceModifier<Object> outerSequenceModifier = new SequenceModifier<Object>(new IModifier[]{innerLoopModifier, new DummyModifier(DURATION)});
 		final LoopModifier<Object> outerLoopModifier = new LoopModifier<Object>(outerSequenceModifier);
-		
+
 		/* Should not cause an infinite loop. */
 		outerLoopModifier.onUpdate(1000, null);
 	}

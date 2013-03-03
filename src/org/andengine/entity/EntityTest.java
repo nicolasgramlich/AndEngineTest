@@ -81,7 +81,7 @@ public class EntityTest extends AndroidTestCase {
 		EntityTest.testContains(1 - EntityTest.DELTA, -1 + EntityTest.DELTA, entity);
 		EntityTest.testContains(-1 + EntityTest.DELTA, 1 - EntityTest.DELTA, entity);
 		EntityTest.testContains(1 - EntityTest.DELTA, 1 - EntityTest.DELTA, entity);
-		
+
 		EntityTest.testNotContains(-1 - EntityTest.DELTA, -1 - EntityTest.DELTA, entity);
 		EntityTest.testNotContains(1 + EntityTest.DELTA, -1 - EntityTest.DELTA, entity);
 		EntityTest.testNotContains(-1 - EntityTest.DELTA, 1 + EntityTest.DELTA, entity);
@@ -105,7 +105,7 @@ public class EntityTest extends AndroidTestCase {
 		EntityTest.testContains(1 - EntityTest.DELTA, -1 + EntityTest.DELTA, entity);
 		EntityTest.testContains(-1 + EntityTest.DELTA, 1 - EntityTest.DELTA, entity);
 		EntityTest.testContains(1 - EntityTest.DELTA, 1 - EntityTest.DELTA, entity);
-		
+
 		EntityTest.testNotContains(-1 - EntityTest.DELTA, -1 - EntityTest.DELTA, entity);
 		EntityTest.testNotContains(1 + EntityTest.DELTA, -1 - EntityTest.DELTA, entity);
 		EntityTest.testNotContains(-1 - EntityTest.DELTA, 1 + EntityTest.DELTA, entity);

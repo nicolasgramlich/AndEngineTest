@@ -219,7 +219,7 @@ public abstract class IListTest extends TestCase {
 
 	public void testGetExactSIze() {
 		this.mList = this.newList(3);
-		
+
 		this.mList.add("A");
 		this.mList.add("B");
 		this.mList.add("C");
@@ -231,11 +231,11 @@ public abstract class IListTest extends TestCase {
 
 	public void testGet() {
 		this.mList = this.newList(2);
-		
+
 		this.mList.add("A");
 		this.mList.add("B");
 		this.mList.add("C");
-		
+
 		Assert.assertEquals("A", this.mList.get(0));
 		Assert.assertEquals("B", this.mList.get(1));
 		Assert.assertEquals("C", this.mList.get(2));
@@ -243,11 +243,11 @@ public abstract class IListTest extends TestCase {
 
 	public void testIndexOfExactSize() {
 		this.mList = this.newList(2);
-		
+
 		this.mList.add("A");
 		this.mList.add("B");
 		this.mList.add("C");
-		
+
 		Assert.assertEquals(0, this.mList.indexOf("A"));
 		Assert.assertEquals(1, this.mList.indexOf("B"));
 		Assert.assertEquals(2, this.mList.indexOf("C"));
@@ -255,7 +255,7 @@ public abstract class IListTest extends TestCase {
 
 	public void testIndexOfWithRemove() {
 		this.mList = this.newList(2);
-		
+
 		this.mList.add("A");
 		this.mList.add("B");
 		this.mList.add("C");
@@ -265,7 +265,7 @@ public abstract class IListTest extends TestCase {
 		this.mList.remove("B");
 
 		this.mList.add("F");
-		
+
 		Assert.assertEquals(0, this.mList.indexOf("A"));
 		Assert.assertEquals(1, this.mList.indexOf("C"));
 		Assert.assertEquals(2, this.mList.indexOf("D"));
@@ -275,17 +275,17 @@ public abstract class IListTest extends TestCase {
 
 	public void testIndexOfWithRemove2() {
 		this.mList = this.newList(2);
-		
+
 		this.mList.add("A");
 		this.mList.add("B");
 		this.mList.add("C");
 		this.mList.add("D");
 		this.mList.add("E");
-		
+
 		this.mList.remove("C");
-		
+
 		this.mList.add("F");
-		
+
 		Assert.assertEquals(0, this.mList.indexOf("A"));
 		Assert.assertEquals(1, this.mList.indexOf("B"));
 		Assert.assertEquals(2, this.mList.indexOf("D"));
@@ -295,15 +295,15 @@ public abstract class IListTest extends TestCase {
 
 	public void testIndexOfWithPoll() {
 		this.mList = this.newList(2);
-		
+
 		this.mList.add("A");
 		this.mList.add("B");
 		this.mList.add("C");
-		
+
 		this.mList.remove(0);
-		
+
 		this.mList.add("D");
-		
+
 		Assert.assertEquals(0, this.mList.indexOf("B"));
 		Assert.assertEquals(1, this.mList.indexOf("C"));
 		Assert.assertEquals(2, this.mList.indexOf("D"));
@@ -314,20 +314,20 @@ public abstract class IListTest extends TestCase {
 
 		final IList<String> list = newList(5);
 		final ArrayList<String> arraylist = new ArrayList<String>(5);
-		
+
 		for(int i = 0; i < values.length; i++) {
 			String valueOf = String.valueOf(values[i]);
 			list.add(valueOf);
 			arraylist.add(valueOf);
 		}
-		
+
 		list.removeFirst();
 		list.removeFirst();
 		arraylist.remove(0);
 		arraylist.remove(0);
-		
+
 		testIdentical(list, arraylist);
-		
+
 		list.remove(8);
 		arraylist.remove(8);
 
@@ -338,7 +338,7 @@ public abstract class IListTest extends TestCase {
 		MathUtils.RANDOM.setSeed(1234567890);
 		final IList<String> list = newList(5);
 		final ArrayList<String> arraylist = new ArrayList<String>(5);
-		
+
 		for(int i = 0; i < CORRECTNESS_ITERATIONS; i++) {
 			final int random = MathUtils.random(0, 1000);
 			final String randomString = String.valueOf(random);

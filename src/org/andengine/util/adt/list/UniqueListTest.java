@@ -43,7 +43,7 @@ public class UniqueListTest extends TestCase {
 		UniqueInteger zero = new UniqueInteger(0, "ZERO");
 		UniqueInteger one_1 = new UniqueInteger(1, "ONE(1)");
 		UniqueInteger one_2 = new UniqueInteger(1, "ONE(2)");
-		
+
 		this.mUniqueIntegerList.add(zero);
 		this.mUniqueIntegerList.add(one_1);
 		this.mUniqueIntegerList.add(one_2);

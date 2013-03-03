@@ -70,7 +70,7 @@ public class ModifierTest extends AndroidTestCase {
 
 		Assert.assertEquals(1, this.mManagedInitialize);
 	}
-	
+
 	@SuppressWarnings("unchecked")
 	public void test2() throws Exception {
 		float elapsed;
@@ -109,7 +109,7 @@ public class ModifierTest extends AndroidTestCase {
 
 		Assert.assertEquals(2, this.mManagedInitialize);
 	}
-	
+
 	@SuppressWarnings("unchecked")
 	public void test3() throws Exception {
 		float elapsed;
@@ -192,7 +192,7 @@ public class ModifierTest extends AndroidTestCase {
 		protected void onManagedInitialize(final Object pItem) {
 
 		}
-		
+
 		@Override
 		public void reset() {
 			super.reset();
@@ -206,7 +206,7 @@ public class ModifierTest extends AndroidTestCase {
 		// Inner and Anonymous Classes
 		// ===========================================================
 	}
-	
+
 	public class CountingModifier extends BaseDurationModifier<Object> {
 		// ===========================================================
 		// Constants
@@ -246,7 +246,7 @@ public class ModifierTest extends AndroidTestCase {
 		protected void onManagedInitialize(final Object pItem) {
 			mManagedInitialize++;
 		}
-		
+
 		@Override
 		public void reset() {
 			super.reset();

@@ -56,22 +56,22 @@ public class TrieTest extends TestCase {
 		this.mTrie.add("HELL");
 		this.mTrie.add("HELLO");
 	}
-	
+
 	public void testAddSubSequenceOfExisting() {
 		this.mTrie.add("HELLO");
 		this.mTrie.add("HELL");
 	}
-	
+
 	public void testContains() {
 		this.mTrie.add("HELL");
 		Assert.assertTrue(this.mTrie.contains("HELL"));
 	}
-	
+
 	public void testContainsSubSequenceExisting() {
 		this.mTrie.add("HELL");
 		Assert.assertFalse(this.mTrie.contains("HELLO"));
 	}
-	
+
 	public void testContainsSubSequenceOfExisting() {
 		this.mTrie.add("HELLO");
 		Assert.assertFalse(this.mTrie.contains("HELL"));
@@ -82,7 +82,7 @@ public class TrieTest extends TestCase {
 		this.mTrie.add("HELL");
 		Assert.assertTrue(this.mTrie.contains("HELL"));
 	}
-	
+
 	public void testContainsAddingSubSequenceExisting() {
 		this.mTrie.add("HELL");
 		this.mTrie.add("HELLO");

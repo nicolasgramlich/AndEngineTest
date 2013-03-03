@@ -110,7 +110,7 @@ public class SortedListTest extends TestCase {
 		UniqueInteger zero = new UniqueInteger(0, "ZERO");
 		UniqueInteger one_1 = new UniqueInteger(1, "ONE(1)");
 		UniqueInteger one_2 = new UniqueInteger(1, "ONE(2)");
-		
+
 		this.mUniqueIntegerSortedList.add(zero);
 		this.mUniqueIntegerSortedList.add(one_1);
 		this.mUniqueIntegerSortedList.add(one_2);
@@ -122,7 +122,7 @@ public class SortedListTest extends TestCase {
 		UniqueInteger zero = new UniqueInteger(0, "ZERO");
 		UniqueInteger one_1 = new UniqueInteger(1, "ONE(1)");
 		UniqueInteger one_2 = new UniqueInteger(1, "ONE(2)");
-		
+
 		this.mUniqueIntegerSortedList.add(zero);
 		this.mUniqueIntegerSortedList.add(one_1);
 		this.mUniqueIntegerSortedList.add(one_2);

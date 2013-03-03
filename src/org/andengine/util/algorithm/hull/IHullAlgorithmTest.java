@@ -57,7 +57,7 @@ public abstract class IHullAlgorithmTest extends TestCase {
 
 	public void testSwappingOutNonHullPoint() {
 		final IHullAlgorithm hullAlgorithm = this.newHullALgorithm();
-		
+
 		final float[] vertices = new float[] {
 				0, 1,
 				1, 1,
@@ -65,9 +65,9 @@ public abstract class IHullAlgorithmTest extends TestCase {
 				0.5f, 0.5f,
 				0, 0,
 		};
-		
+
 		final int hullvertices = hullAlgorithm.computeHull(vertices, 5, 0, 1, 2);
-		
+
 		Assert.assertEquals(4, hullvertices);
 		Assert.assertEquals(VertexUtils.getVertex(vertices, 0, 2, 4), 0.5f);
 		Assert.assertEquals(VertexUtils.getVertex(vertices, 1, 2, 4), 0.5f);
@@ -75,7 +75,7 @@ public abstract class IHullAlgorithmTest extends TestCase {
 
 	public void testDuplicateHullVertices() {
 		final IHullAlgorithm hullAlgorithm = this.newHullALgorithm();
-		
+
 		final float[] vertices = new float[] {
 				0, 1,
 				1, 1,
@@ -88,9 +88,9 @@ public abstract class IHullAlgorithmTest extends TestCase {
 				0.5f, 0.5f,
 				0, 0,
 		};
-		
+
 		final int hullvertices = hullAlgorithm.computeHull(vertices, vertices.length / 2, 0, 1, 2);
-		
+
 		Assert.assertEquals(4, hullvertices);
 	}
 

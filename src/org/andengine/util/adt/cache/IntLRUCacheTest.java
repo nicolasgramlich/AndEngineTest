@@ -51,7 +51,7 @@ public class IntLRUCacheTest extends AndroidTestCase {
 	public void testCorrectness() throws Exception {
 		final IntLRUCache<String> intLRUCache = new IntLRUCache<String>(5);
 		final LRUCache<Integer, String> lruCache = new LRUCache<Integer, String>(5);
-		
+
 		for(int i = 0; i < CORRECTNESS_ITERATIONS; i++) {
 			final int randomKey = ArrayUtils.random(KEYS);
 			final String randomValue = ArrayUtils.random(VALUES);
@@ -67,17 +67,17 @@ public class IntLRUCacheTest extends AndroidTestCase {
 	public void testClear() throws Exception {
 		final IntLRUCache<String> intLRUCache = new IntLRUCache<String>(5);
 		final LRUCache<Integer, String> lruCache = new LRUCache<Integer, String>(5);
-		
+
 		for(int i = 0; i < CORRECTNESS_ITERATIONS; i++) {
 			final int randomKey = ArrayUtils.random(KEYS);
 			final String randomValue = ArrayUtils.random(VALUES);
-			
+
 			intLRUCache.put(randomKey, randomValue);
 			lruCache.put(randomKey, randomValue);
-			
+
 			final int randomGetKey = ArrayUtils.random(KEYS);
 			Assert.assertEquals(lruCache.get(randomGetKey), intLRUCache.get(randomGetKey));
-			
+
 			if(i % CORRECTNESS_ITERATIONS_CLEAR == 0) {
 				intLRUCache.clear();
 				lruCache.clear();

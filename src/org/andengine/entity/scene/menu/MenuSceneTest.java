@@ -58,7 +58,7 @@ public class MenuSceneTest extends AndroidTestCase {
 		this.mCamera = new Camera(0, 0, CAMERA_WIDTH, CAMERA_HEIGHT);
 		this.mEngine = new Engine(new EngineOptions(true, ScreenOrientation.PORTRAIT_FIXED, new FillResolutionPolicy(), this.mCamera));
 		this.mEngine.setSurfaceSize(CAMERA_WIDTH, CAMERA_HEIGHT);
-		
+
 		this.mTexture = new BitmapTextureAtlas(this.mEngine.getTextureManager(), 2, 2);
 
 		this.mVertexBufferObjectManager = this.mEngine.getVertexBufferObjectManager();

@@ -126,11 +126,11 @@ public class AssertUtils {
 			Assert.fail("One of the arrays was null.");
 			return;
 		}
-		
+
 		if(pArrayA.length != pArrayB.length) {
 			Assert.fail("Arrays were not the same lenght.");
 		}
-		
+
 		for(int i = 0; i < pArrayA.length; i++) {
 			Assert.assertEquals("Index: [" + i + "] ", pArrayA[i], pArrayB[i]);
 		}

@@ -232,7 +232,7 @@ public class FontUtilsTest extends TestCase {
 		Assert.assertEquals(pExpectedLines.length, FontUtils.splitLines(this.mFont, pText, result, AutoWrap.WORDS, pLineWidthMaximum).size());
 		AssertUtils.assertArrayEquals(pExpectedLines, result.toArray(new String[pExpectedLines.length]));
 	}
-	
+
 	private void runSplitLinesByCJKTest(final String pText, final int pLineWidthMaximum, final String ... pExpectedLines) {
 		final ArrayList<CharSequence> result = new ArrayList<CharSequence>();
 		Assert.assertEquals(pExpectedLines.length, FontUtils.splitLines(this.mFont, pText, result, AutoWrap.CJK, pLineWidthMaximum).size());
