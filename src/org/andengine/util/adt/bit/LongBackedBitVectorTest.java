@@ -27,7 +27,7 @@ public class LongBackedBitVectorTest extends BitVectorTest {
 	// ===========================================================
 
 	@Override
-	protected IBitVector createBitVector(final byte[] pData) {
+	protected LongBackedBitVector createBitVector(final byte[] pData) {
 		return new LongBackedBitVector(pData);
 	}
 
