@@ -7,7 +7,7 @@ import junit.framework.TestCase;
 import org.andengine.util.AssertUtils;
 
 /**
- * (c) Zynga 2011
+ * (c) 2011 Zynga Inc.
  *
  * @author Nicolas Gramlich <ngramlich@zynga.com>
  * @since 10:50:39 - 08.11.2011

@@ -7,7 +7,7 @@ import junit.framework.TestCase;
 import org.andengine.opengl.util.VertexUtils;
 
 /**
- * (c) Zynga 2011
+ * (c) 2011 Zynga Inc.
  *
  * @author Nicolas Gramlich <ngramlich@zynga.com>
  * @since 16:32:32 - 08.02.2012

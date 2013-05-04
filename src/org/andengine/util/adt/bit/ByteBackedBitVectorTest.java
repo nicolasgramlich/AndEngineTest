@@ -67,7 +67,7 @@ public class ByteBackedBitVectorTest extends BitVectorTest {
 
 	@Test(expected = NullPointerException.class)
 	public void testConstructorByteArrayNull() {
-		new ByteBackedBitVector((byte[])null);
+		new ByteBackedBitVector((byte[]) null);
 	}
 
 	@Test(expected = IllegalArgumentException.class)

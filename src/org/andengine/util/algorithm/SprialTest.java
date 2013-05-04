@@ -5,7 +5,7 @@ import junit.framework.Assert;
 import junit.framework.TestCase;
 
 /**
- * (c) Zynga 2011
+ * (c) 2011 Zynga Inc.
  *
  * @author Nicolas Gramlich <ngramlich@zynga.com>
  * @since 10:55:22 PM - Nov 10, 2011

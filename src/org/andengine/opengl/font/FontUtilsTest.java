@@ -12,7 +12,7 @@ import org.andengine.opengl.texture.ITexture;
 import org.andengine.util.AssertUtils;
 
 /**
- * (c) Zynga 2012
+ * (c) 2012 Zynga Inc.
  *
  * @author Nicolas Gramlich <ngramlich@zynga.com>
  * @since 23:16:00 - 25.01.2012
@@ -206,7 +206,7 @@ public class FontUtilsTest extends TestCase {
 		this.runSplitLinesByLettersTest("A     ", 50, "A");
 	}
 
-	public void testSplitMultipleLinesByCJK(){
+	public void testSplitMultipleLinesByCJK() {
 		this.runSplitLinesByCJKTest("A      ", 0, "A");
 		this.runSplitLinesByCJKTest("AAA AA", 50, "AAA A", "A");
 		this.runSplitLinesByCJKTest("AAA  A", 50, "AAA  ", "A");
