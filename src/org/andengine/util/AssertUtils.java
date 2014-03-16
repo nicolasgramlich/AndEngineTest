@@ -38,7 +38,7 @@ public class AssertUtils {
 		}
 
 		if(pArrayA.length != pArrayB.length) {
-			Assert.fail("Arrays were not the same lenght.");
+			Assert.fail("Arrays were not the same length.");
 		}
 
 		for(int i = 0; i < pArrayA.length; i++) {
@@ -53,7 +53,7 @@ public class AssertUtils {
 		}
 
 		if(pArrayA.length != pArrayB.length) {
-			Assert.fail("Arrays were not the same lenght.");
+			Assert.fail("Arrays were not the same length.");
 		}
 
 		for(int i = 0; i < pArrayA.length; i++) {
@@ -68,7 +68,7 @@ public class AssertUtils {
 		}
 
 		if(pArrayA.length != pArrayB.length) {
-			Assert.fail("Arrays were not the same lenght.");
+			Assert.fail("Arrays were not the same length.");
 		}
 
 		for(int i = 0; i < pArrayA.length; i++) {
@@ -83,7 +83,7 @@ public class AssertUtils {
 		}
 
 		if(pArrayA.length != pArrayB.length) {
-			Assert.fail("Arrays were not the same lenght.");
+			Assert.fail("Arrays were not the same length.");
 		}
 
 		for(int i = 0; i < pArrayA.length; i++) {
@@ -98,7 +98,7 @@ public class AssertUtils {
 		}
 
 		if(pArrayA.length != pArrayB.length) {
-			Assert.fail("Arrays were not the same lenght.");
+			Assert.fail("Arrays were not the same length.");
 		}
 
 		for(int i = 0; i < pArrayA.length; i++) {
@@ -113,7 +113,7 @@ public class AssertUtils {
 		}
 
 		if(pArrayA.length != pArrayB.length) {
-			Assert.fail("Arrays were not the same lenght.");
+			Assert.fail("Arrays were not the same length.");
 		}
 
 		for(int i = 0; i < pArrayA.length; i++) {
@@ -128,7 +128,7 @@ public class AssertUtils {
 		}
 
 		if(pArrayA.length != pArrayB.length) {
-			Assert.fail("Arrays were not the same lenght.");
+			Assert.fail("Arrays were not the same length.");
 		}
 
 		for(int i = 0; i < pArrayA.length; i++) {

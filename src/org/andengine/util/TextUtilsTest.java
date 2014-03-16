@@ -95,13 +95,28 @@ public class TextUtilsTest extends TestCase {
 		this.assertArrayEquals(new String[]{"", "", "", ""}, split);
 	}
 
+	public void testEllipsize() {
+		final String ellipsized = TextUtils.ellipsize("12345", "…", 4);
+		Assert.assertEquals("123…", ellipsized);
+	}
+
+	public void testEllipsizeNoEllipsis() {
+		final String ellipsized = TextUtils.ellipsize("12345", "", 4);
+		Assert.assertEquals("1234", ellipsized);
+	}
+
+	public void testEllipsizeCompleteEllipsis() {
+		final String ellipsized = TextUtils.ellipsize("12345", "…………", 4);
+		Assert.assertEquals("…………", ellipsized);
+	}
+
 	private void assertArrayEquals(final Object[] pArrayA, final Object[] pArrayB) {
 		if(pArrayA == null || pArrayB == null) {
 			Assert.fail("One of the arrays was null.");
 		}
 
 		if(pArrayA.length != pArrayB.length) {
-			Assert.fail("Arrays were not the same lenght.");
+			Assert.fail("Arrays were not the same length.");
 		}
 
 		for(int i = 0; i < pArrayA.length; i++) {
